@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Order:</strong>
+  <%= @project_in_portfolio.order %>
+</p>
+
+<p>
+  <strong>Portfolio:</strong>
+  <%= @project_in_portfolio.portfolio_id %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @project_in_portfolio.project_id %>
+</p>
+
+<%= link_to 'Edit', edit_project_in_portfolio_path(@project_in_portfolio) %> |
+<%= link_to 'Back', project_in_portfolios_path %>

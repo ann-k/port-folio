@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Project In Portfolios</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Order</th>
+      <th>Portfolio</th>
+      <th>Project</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @project_in_portfolios.each do |project_in_portfolio| %>
+      <tr>
+        <td><%= project_in_portfolio.order %></td>
+        <td><%= project_in_portfolio.portfolio_id %></td>
+        <td><%= project_in_portfolio.project_id %></td>
+        <td><%= link_to 'Show', project_in_portfolio %></td>
+        <td><%= link_to 'Edit', edit_project_in_portfolio_path(project_in_portfolio) %></td>
+        <td><%= link_to 'Destroy', project_in_portfolio, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Project In Portfolio', new_project_in_portfolio_path %>

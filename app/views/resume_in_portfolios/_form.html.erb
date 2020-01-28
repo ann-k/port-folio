@@ -1,0 +1,32 @@
+<%= form_with(model: resume_in_portfolio, local: true) do |form| %>
+  <% if resume_in_portfolio.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(resume_in_portfolio.errors.count, "error") %> prohibited this resume_in_portfolio from being saved:</h2>
+
+      <ul>
+        <% resume_in_portfolio.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :order %>
+    <%= form.number_field :order %>
+  </div>
+
+  <div class="field">
+    <%= form.label :portfolio_id %>
+    <%= form.number_field :portfolio_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :resume_id %>
+    <%= form.number_field :resume_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

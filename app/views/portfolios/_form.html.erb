@@ -22,8 +22,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :cover %>
-    <%= form.text_field :cover %>
+    <%#= form.label :cover %>
+    <%#= form.text_field :cover %>
   </div>
 
   <div class="field">
@@ -44,6 +44,16 @@
   <div class="field">
     <%= form.label :user_id %>
     <%= form.number_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.label 'Резюме' %>
+    <%= link_to 'Связать с резюме' %>
+  </div>
+
+  <div>
+    <%= form.label 'Проекты' %>
+    <%= link_to 'Добавить проект' %>
   </div>
 
   <div class="actions">

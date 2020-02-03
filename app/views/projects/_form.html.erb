@@ -12,13 +12,28 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%#= form.label :name %>
+    <%#= form.text_field :name %>
   </div>
 
-  <div class="field">
-    <%= form.label :cover %>
-    <%= form.text_field :cover %>
+  <div class="settings">
+    <div class="field">
+      <%= form.label :cover %>
+      <%= form.file_field :cover %>
+
+      <% if project.cover? %>
+        <%= image_tag project.cover.url %>
+        <div>
+          Remove cover
+          <%= form.check_box :remove_cover %>
+        </div>
+      <% end %>
+    </div>
+
+    <div>
+      <%= form.label 'Портфолио' %>
+      <%= link_to 'Добавить в портфолио' %>
+    </div>
   </div>
 
   <div class="field">

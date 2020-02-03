@@ -7,7 +7,7 @@
 
 <p>
   <strong>Cover:</strong>
-  <%= @project.cover %>
+  <%= image_tag(@project.cover.url, alt: 'Cover') if @project.cover? %>
 </p>
 
 <p>

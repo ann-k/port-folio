@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
+  devise_for :users, path: 'auth', path_names: { sign_in: 'sign in', sign_out: 'sign out' }
+  devise_scope :user do
+    get 'sign_in', to: 'devise/sessions#new'
+    get 'sign_out', to: 'devise/sessions#destroy'
+  end
+  
   root 'portfolios#index'
 
   resources :contents
-  resources :users
   resources :resume_in_portfolios
   resources :project_in_portfolios
   resources :resumes

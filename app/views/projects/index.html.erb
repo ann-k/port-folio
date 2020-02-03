@@ -6,7 +6,6 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Cover</th>
       <th>Language</th>
       <th>Title</th>
       <th>User</th>
@@ -17,8 +16,8 @@
   <tbody>
     <% @projects.each do |project| %>
       <tr>
+        <%= image_tag(project.cover.url, alt: 'Cover') if project.cover? %>
         <td><%= project.name %></td>
-        <td><%= project.cover %></td>
         <td><%= project.language %></td>
         <td><%= project.title %></td>
         <td><%= project.user_id %></td>

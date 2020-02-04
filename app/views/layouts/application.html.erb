@@ -17,10 +17,7 @@
 
       <%= link_to 'Оформление' %>
       <%= link_to 'Примеры' %>
-      <%= link_to 'Настройки' %>
-
-      <%= link_to 'Выйти', destroy_user_session_path, method: :delete %>
-      <%= link_to 'Редактировать пользователя', edit_user_registration_path %>
+      <%= link_to 'Аккаунт', account_path %>
     <% end %>
 
     <%= yield %>

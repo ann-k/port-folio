@@ -1,34 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Projects</h1>
+<%= link_to 'Поиск по проектам' %>
+<%= link_to 'Создать проект', new_project_path %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Language</th>
-      <th>Title</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<h1>Мои проекты</h1>
 
-  <tbody>
-    <% @projects.each do |project| %>
-      <tr>
-        <%= image_tag(project.cover.url, alt: 'Cover') if project.cover? %>
-        <td><%= project.name %></td>
-        <td><%= project.language %></td>
-        <td><%= project.title %></td>
-        <td><%= project.user_id %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% @projects.each do |project| %>
+  <%= link_to edit_project_path(project) do %>
+    <div><%= image_tag project.cover.url %></div>
+    <div><%= project.name %></div>
+  <% end %>
 
-<br>
-
-<%= link_to 'New Project', new_project_path %>
+  <div>
+    <%= link_to 'Экспортировать' %>
+    <%= link_to 'Удалить', project, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+<% end %>

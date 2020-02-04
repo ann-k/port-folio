@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%#= form.label :name %>
-    <%#= form.text_field :name %>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
   </div>
 
   <div class="settings">
@@ -36,19 +36,22 @@
     </div>
   </div>
 
-  <div class="field">
-    <%= form.label :language %>
-    <%= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
+  <div class="decoration">
+  </div>
+
+  <div class="content">
+  </div>
+
+  <div class="toolbar">
+    <div class="field">
+      <%= form.label :language %>
+      <%= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
+    </div>
   </div>
 
   <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
+    <%#= form.label :title %>
+    <%#= form.text_field :title %>
   </div>
 
   <div class="actions">

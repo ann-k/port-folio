@@ -11,49 +11,56 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="settings">
+    <div class="field">
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= form.label :description %>
+      <%= form.text_area :description %>
+    </div>
+
+    <div>
+      <%= form.label 'Резюме' %>
+      <%= link_to 'Связать с резюме' %>
+    </div>
+
+    <div>
+      <%= form.label 'Проекты' %>
+      <%= link_to 'Добавить проект' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+  <div class="decoration">
+  </div>
+
+  <div class="content">
+  </div>
+
+  <div class="toolbar">
+    <div class="field">
+      <%= form.label :language %>
+      <%= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
+    </div>
+  </div>
+
+  <div class="editor">
+    <div class="field">
+      <%= form.label :title %>
+      <%= form.text_field :title %>
+    </div>
+
+    <div class="field">
+      <%= form.label :body %>
+      <%= form.text_area :body %>
+    </div>
   </div>
 
   <div class="field">
     <%#= form.label :cover %>
-    <%#= form.text_field :cover %>
-  </div>
-
-  <div class="field">
-    <%= form.label :language %>
-    <%= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
-  </div>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
-  </div>
-
-  <div>
-    <%= form.label 'Резюме' %>
-    <%= link_to 'Связать с резюме' %>
-  </div>
-
-  <div>
-    <%= form.label 'Проекты' %>
-    <%= link_to 'Добавить проект' %>
+    <%#= form.file_field :cover %>
   </div>
 
   <div class="actions">

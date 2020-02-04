@@ -4,8 +4,10 @@ Rails.application.routes.draw do
     get 'sign_in', to: 'devise/sessions#new'
     get 'sign_out', to: 'devise/sessions#destroy'
   end
-  
+
   root 'portfolios#index'
+
+  get 'account' => 'static_pages#account'
 
   resources :contents
   resources :resume_in_portfolios

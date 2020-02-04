@@ -13,3 +13,28 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+  background-color: #212121;
+  color: white;
+}
+
+a, a:visited {
+  color: white;
+  background-color: #212121;
+}
+
+navbar {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 257px;
+  position: fixed;
+  background-color: #292929;
+  top: 0px;
+  left: 0px;
+}
+
+.container {
+  margin-left: 373px;
+}

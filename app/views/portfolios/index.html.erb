@@ -1,24 +1,24 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
 
-<%= link_to 'Поиск по портфолио' %>
-<%= link_to 'Создать портфолио', new_portfolio_path %>
+  <%= link_to 'Поиск по портфолио' %>
+  <%= link_to 'Создать портфолио', new_portfolio_path %>
 
-<h1>Мои портфолио</h1>
+  <h1>Мои портфолио</h1>
 
-<% @portfolios.each do |portfolio| %>
-  <%= link_to edit_portfolio_path(portfolio) do %>
-    <div><%#= portfolio.cover %></div>
+  <% @portfolios.each do |portfolio| %>
+    <%= link_to edit_portfolio_path(portfolio) do %>
+      <div><%#= portfolio.cover %></div>
+      <div>
+        <div><%= portfolio.name %></div>
+        <div><%= portfolio.description %></div>
+      </div>
+    <% end %>
+
     <div>
-      <div><%= portfolio.name %></div>
-      <div><%= portfolio.description %></div>
+      <%= link_to 'Копировать' %>
+      <%= link_to 'Экспортировать' %>
+      <%= link_to 'Удалить', portfolio, method: :delete, data: { confirm: 'Are you sure?' } %>
     </div>
   <% end %>
-
-  <div>
-    <%= link_to 'Копировать' %>
-    <%= link_to 'Экспортировать' %>
-    <%= link_to 'Удалить', portfolio, method: :delete, data: { confirm: 'Are you sure?' } %>
-  </div>
-<% end %>
-
-<br>
+</div>

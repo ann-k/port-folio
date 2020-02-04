@@ -10,16 +10,17 @@
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <%= link_to 'Портфолио', portfolios_path %>
-      <%= link_to 'Проекты', projects_path %>
-      <%= link_to 'Резюме', resumes_path %>
+    <navbar class="navbar">
+      <% if user_signed_in? %>
+        <div><%= link_to 'Портфолио', portfolios_path %></div>
+        <div><%= link_to 'Проекты', projects_path %></div>
+        <div><%= link_to 'Резюме', resumes_path %></div>
 
-      <%= link_to 'Оформление' %>
-      <%= link_to 'Примеры' %>
-      <%= link_to 'Аккаунт', account_path %>
-    <% end %>
-
+        <div><%= link_to 'Оформление' %></div>
+        <div><%= link_to 'Примеры' %></div>
+        <div><%= link_to 'Аккаунт', account_path %></div>
+      <% end %>
+    </navbar>
     <%= yield %>
   </body>
 </html>

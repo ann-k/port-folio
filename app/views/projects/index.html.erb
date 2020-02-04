@@ -1,18 +1,20 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
 
-<%= link_to 'Поиск по проектам' %>
-<%= link_to 'Создать проект', new_project_path %>
+  <%= link_to 'Поиск по проектам' %>
+  <%= link_to 'Создать проект', new_project_path %>
 
-<h1>Мои проекты</h1>
+  <h1>Мои проекты</h1>
 
-<% @projects.each do |project| %>
-  <%= link_to edit_project_path(project) do %>
-    <div><%= image_tag project.cover.url %></div>
-    <div><%= project.name %></div>
+  <% @projects.each do |project| %>
+    <%= link_to edit_project_path(project) do %>
+      <div><%= image_tag project.cover.url %></div>
+      <div><%= project.name %></div>
+    <% end %>
+
+    <div>
+      <%= link_to 'Экспортировать' %>
+      <%= link_to 'Удалить', project, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
   <% end %>
-
-  <div>
-    <%= link_to 'Экспортировать' %>
-    <%= link_to 'Удалить', project, method: :delete, data: { confirm: 'Are you sure?' } %>
-  </div>
-<% end %>
+</div>

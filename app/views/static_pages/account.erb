@@ -1,4 +1,6 @@
-<% if user_signed_in? %>
-  <%= link_to 'Выйти', destroy_user_session_path, method: :delete %>
-  <%= link_to 'Редактировать пользователя', edit_user_registration_path %>
-<% end %>
+<div class="container">
+  <% if user_signed_in? %>
+    <%= link_to 'Выйти', destroy_user_session_path, method: :delete %>
+    <%= link_to 'Редактировать пользователя', edit_user_registration_path %>
+  <% end %>
+</div>

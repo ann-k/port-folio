@@ -11,41 +11,6 @@
     </div>
   <% end %>
 
-  <div class="settings">
-    <div class="field">
-      <%= form.label :name %>
-      <%= form.text_field :name %>
-    </div>
-
-    <div class="field">
-      <%= form.label :description %>
-      <%= form.text_area :description %>
-    </div>
-
-    <div>
-      <%= form.label 'Резюме' %>
-      <%= link_to 'Связать с резюме' %>
-    </div>
-
-    <div>
-      <%= form.label 'Проекты' %>
-      <%= link_to 'Добавить проект' %>
-    </div>
-  </div>
-
-  <div class="decoration">
-  </div>
-
-  <div class="content">
-  </div>
-
-  <div class="toolbar">
-    <div class="field">
-      <%= form.label :language %>
-      <%= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
-    </div>
-  </div>
-
   <div class="editor">
     <div class="field">
       <%= form.label :title %>
@@ -58,12 +23,56 @@
     </div>
   </div>
 
+  <div class="edit">
+    <div class="tabs">
+      <button type="button" name="button">Настройки</button>
+      <button type="button" name="button">Оформление</button>
+      <button type="button" name="button">Контент</button>
+    </div>
+
+    <div class="settings">
+      <div class="field">
+        <%= form.label "Название портфолио (видно только вам)" %>
+        <%= form.text_field :name %>
+      </div>
+
+      <div class="field">
+        <%= form.label "Описание (видно только вам)" %>
+        <%= form.text_area :description %>
+      </div>
+
+      <div>
+        <%= form.label 'Резюме' %>
+        <%= link_to 'Связать с резюме' %>
+      </div>
+
+      <div>
+        <%= form.label 'Проекты' %>
+        <%= link_to 'Добавить проект' %>
+      </div>
+    </div>
+
+    <div class="decoration">
+    </div>
+
+    <div class="content">
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <div class="field">
+      <%= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
+    </div>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  </div>
+
+
   <div class="field">
     <%#= form.label :cover %>
     <%#= form.file_field :cover %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>

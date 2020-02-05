@@ -22,6 +22,11 @@ body {
 a, a:visited {
   color: white;
   background-color: #212121;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #648FFD;
 }
 
 navbar {
@@ -37,4 +42,23 @@ navbar {
 
 .container {
   margin-left: 373px;
+}
+
+.editor {
+  position: fixed;
+  left: 277px;
+}
+
+.edit {
+  position: fixed;
+  right: 100px;
+  left: 823px;
+  top: 0;
+}
+
+.toolbar {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 823px;
 }

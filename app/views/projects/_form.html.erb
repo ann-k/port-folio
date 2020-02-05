@@ -11,35 +11,48 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="editor">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
   </div>
 
-  <div class="settings">
-    <div class="field">
-      <%= form.label :cover %>
-      <%= form.file_field :cover %>
-
-      <% if project.cover? %>
-        <%= image_tag project.cover.url %>
-        <div>
-          Remove cover
-          <%= form.check_box :remove_cover %>
-        </div>
-      <% end %>
+  <div class="edit">
+    <div class="tabs">
+      <button type="button" name="button">Настройки</button>
+      <button type="button" name="button">Оформление</button>
+      <button type="button" name="button">Контент</button>
     </div>
 
-    <div>
-      <%= form.label 'Портфолио' %>
-      <%= link_to 'Добавить в портфолио' %>
+    <div class="settings">
+      <div class="field">
+        <%#= form.label :name %>
+        <%#= form.text_field :name %>
+      </div>
+
+      <div class="field">
+        <%= form.label :cover %>
+        <%= form.file_field :cover %>
+
+        <% if project.cover? %>
+          <%= image_tag project.cover.url %>
+          <div>
+            Remove cover
+            <%= form.check_box :remove_cover %>
+          </div>
+        <% end %>
+      </div>
+
+      <div>
+        <%= form.label 'Портфолио' %>
+        <%= link_to 'Добавить в портфолио' %>
+      </div>
     </div>
-  </div>
 
-  <div class="decoration">
-  </div>
+    <div class="decoration">
+    </div>
 
-  <div class="content">
+    <div class="content">
+    </div>
   </div>
 
   <div class="toolbar">
@@ -47,14 +60,9 @@
       <%= form.label :language %>
       <%= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
     </div>
-  </div>
 
-  <div class="field">
-    <%#= form.label :title %>
-    <%#= form.text_field :title %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+    <div class="actions">
+      <%= form.submit %>
+    </div>
   </div>
 <% end %>

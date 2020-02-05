@@ -10,8 +10,8 @@
   </head>
 
   <body>
-    <navbar class="navbar">
-      <% if user_signed_in? %>
+    <% if user_signed_in? %>
+      <navbar class="navbar">
         <div><%= link_to 'Портфолио', portfolios_path %></div>
         <div><%= link_to 'Проекты', projects_path %></div>
         <div><%= link_to 'Резюме', resumes_path %></div>
@@ -19,8 +19,8 @@
         <div><%= link_to 'Оформление' %></div>
         <div><%= link_to 'Примеры' %></div>
         <div><%= link_to 'Аккаунт', account_path %></div>
-      <% end %>
-    </navbar>
+      </navbar>
+    <% end %>
     <%= yield %>
   </body>
 </html>

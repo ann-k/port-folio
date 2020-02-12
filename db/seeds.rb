@@ -33,81 +33,86 @@ end
   puts "User with email #{u.email} created"
 end
 
-def random_user_id
-end
+@user_ids = [1, 2]
+
 
 
 #Portfolios
 
 @portfolios = [
-  {name: "Веб-дизайн портфолио", description: "Для веб-дизайна", user_id: 1},
-  {name: "Граф дизайн портфолио", description: "Для граф дизайна", user_id: 1},
-  {name: "Программирование портфолио", description: "Для программирования", user_id: 1},
-  {name: "Веб-дизайн портфолио", description: "Для веб-дизайна", user_id: 2},
-  {name: "Граф дизайн портфолио", description: "Для граф дизайна", user_id: 2},
-  {name: "Программирование портфолио", description: "Для программирования", user_id: 2}
+  {name: "Веб портфолио", description: "Для веб-дизайна"},
+  {name: "Граф портфолио", description: "Для граф дизайна"},
+  {name: "Код портфолио", description: "Для программирования"}
 ]
 
-def create_portfolio(portfolio)
+def create_portfolio(portfolio, user_id)
   Portfolio.create(
     name:    portfolio[:name],
     description: portfolio[:description],
-    user_id: portfolio[:user_id]
+    user_id: user_id
   )
 end
 
-@portfolios.each do |portfolio|
-  p = create_portfolio(portfolio)
-  puts "Portfolio with name #{p.name} and user id #{p.user_id} created"
+User.all.each do |user|
+  3.times do
+    portfolio = @portfolios.sample
+
+    p = create_portfolio(portfolio, user.id)
+    puts "Portfolio with user id #{p.user_id} and name #{p.name} created"
+  end
 end
+
+
 
 #Projects
 
-@projects = [
-  {name: "Мой первый проект"},
-  {name: "Мой второй проект"},
-  {name: "Мой третий проект"}
+@projects_titles = [
+  "Сайт",
+  "Приложение",
+  "Лендинг"
 ]
 
-def create_project1(project)
+def create_project(user_id)
   Project.create(
-    name: project[:name],
-    user_id: 1
+    title: @projects_titles.sample,
+    user_id: user_id
   )
 end
 
-def create_project2(project)
-  Project.create(
-    name: project[:name],
-    user_id: 2
-  )
+User.all.each do |user|
+  5.times do
+    p = create_project(user.id)
+    puts "Project with user id #{p.user_id} and name #{p.title} created"
+  end
 end
 
-@projects.each do |project|
-  p = create_project1(project)
-  puts "Project with name #{p.name} and user id #{p.user_id} created"
 
-  p = create_project2(project)
-  puts "Project with name #{p.name} and user id #{p.user_id} created"
-end
 
 #Projects in portfolio
 
-# @project_in_portfolios = [
-#   {order: "?"},
-# ]
-#
-# def create_project_in_portfolio(project_in_portfolio, project)
-#   Portfolio.create(
-#     order:    project_in_portfolio[:order],
-#     project_id: project[:id]
-#   )
-# end
-#
-# @project_in_portfolios.each do |project_in_portfolio|
-#   p = create_project_in_portfolio(project_in_portfolio)
-#   puts "Project in portfolio with name #{p.name} and user id #{p.user_id} created"
-# end
+@portfolios = Portfolio.all
+
+def create_project_in_portfolio(portfolio, project_id)
+  portfolio = @portfolios.sample
+
+  portfolio.project_in_portfolios.create(
+    project_id: project_id
+  )
+end
+
+Portfolio.all.each do |portfolio|
+  project = Project.all.sample
+  project_in_certain_portfolios = Portfolio.find(portfolio.id).projects
+
+  unless project_in_certain_portfolios.include?(project)
+    p = create_project_in_portfolio(portfolio, project.id)
+    puts "Project in portfolio with portfolio id #{p.portfolio_id} and project id #{p.project_id} created"
+  end
+end
+
+
+
+
 
 
 #Resumes

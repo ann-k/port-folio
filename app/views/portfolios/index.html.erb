@@ -1,12 +1,14 @@
 <div class="container">
   <p id="notice"><%= notice %></p>
 
-  <%= link_to 'Поиск по портфолио' %>
-  <%= link_to 'Создать портфолио', new_portfolio_path %>
+  <div class="buttons">
+    <%= link_to 'Поиск по портфолио' %>
+    <%= link_to 'Создать портфолио', new_portfolio_path %>
+  </div>
 
   <h1>Мои портфолио</h1>
 
-  <% @portfolios.each do |portfolio| %>
+  <% current_user.portfolios.each do |portfolio| %>
     <%= link_to edit_portfolio_path(portfolio) do %>
       <div><%#= portfolio.cover %></div>
       <div>

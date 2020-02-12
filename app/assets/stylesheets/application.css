@@ -14,19 +14,27 @@
  *= require_self
  */
 
+@font-face {
+  font-family: 'ptrootui';
+  src: url(/assets/ptrootui/ptrootui-bold.ttf) format("truetype");
+  src: url(/assets/ptrootui/ptrootui-medium.ttf) format("truetype");
+}
+
 body {
+  font-family: 'ptrootui';
   background-color: #212121;
   color: white;
+  font-size: 16px;
 }
 
 a, a:visited {
   color: white;
-  background-color: #212121;
   text-decoration: none;
 }
 
 a:hover {
   color: #648FFD;
+  background-color: rgba(255, 0, 0, 0);
 }
 
 navbar {
@@ -49,7 +57,7 @@ navbar {
   left: 277px;
 }
 
-.edit {
+.tabbar {
   position: fixed;
   right: 100px;
   left: 823px;
@@ -61,4 +69,22 @@ navbar {
   position: fixed;
   bottom: 0;
   left: 823px;
+}
+
+.buttons {
+  width: 874px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttons a {
+  height: 48px;
+  background-color: #292929;
+  line-height: 48px;
+  font-weight: bold;
+  border-radius: 11px;
+}
+
+h1 {
+  font-size: 76px;
 }

@@ -1,15 +1,17 @@
 <div class="container">
   <p id="notice"><%= notice %></p>
 
-  <%= link_to 'Поиск по проектам' %>
-  <%= link_to 'Создать проект', new_project_path %>
+  <div class="buttons">
+    <%= link_to 'Поиск по проектам' %>
+    <%= link_to 'Создать проект', new_project_path %>
+  </div>
 
   <h1>Мои проекты</h1>
 
-  <% @projects.each do |project| %>
+  <% current_user.projects.each do |project| %>
     <%= link_to edit_project_path(project) do %>
       <div><%= image_tag project.cover.url %></div>
-      <div><%= project.name %></div>
+      <div><%= project.title %></div>
     <% end %>
 
     <div>

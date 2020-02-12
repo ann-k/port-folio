@@ -16,7 +16,7 @@
     <%= form.text_field :title %>
   </div>
 
-  <div class="edit">
+  <div class="tabbar">
     <div class="tabs">
       <button type="button" name="button">Настройки</button>
       <button type="button" name="button">Оформление</button>
@@ -24,11 +24,6 @@
     </div>
 
     <div class="settings">
-      <div class="field">
-        <%#= form.label :name %>
-        <%#= form.text_field :name %>
-      </div>
-
       <div class="field">
         <%= form.label :cover %>
         <%= form.file_field :cover %>
@@ -45,6 +40,9 @@
       <div>
         <%= form.label 'Портфолио' %>
         <%= link_to 'Добавить в портфолио' %>
+        <% project.portfolios.each do |portfolio| %>
+          <div><%= portfolio.name %></div>
+        <% end %>
       </div>
     </div>
 

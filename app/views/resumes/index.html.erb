@@ -15,7 +15,7 @@
   </thead>
 
   <tbody>
-    <% @resumes.each do |resume| %>
+    <% current_user.resumes.each do |resume| %>
       <tr>
         <td><%= resume.name %></td>
         <td><%= resume.description %></td>

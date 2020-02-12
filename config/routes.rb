@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   root 'portfolios#index'
 
-  get 'account' => 'static_pages#account'
+  get 'account' => 'other_pages#account'
 
   resources :contents
   resources :resume_in_portfolios

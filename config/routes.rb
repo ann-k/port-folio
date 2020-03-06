@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
+  root 'portfolios#index'
+
   devise_for :users, path: 'auth', path_names: { sign_in: 'sign in', sign_out: 'sign out' }
   devise_scope :user do
     get 'sign_in', to: 'devise/sessions#new'
     get 'sign_out', to: 'devise/sessions#destroy'
   end
-
-  root 'portfolios#index'
 
   get 'account' => 'other_pages#account'
 

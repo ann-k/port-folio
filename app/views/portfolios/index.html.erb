@@ -8,7 +8,7 @@
 
   <h1>Мои портфолио</h1>
 
-  <% current_user.portfolios.each do |portfolio| %>
+  <% @portfolios.each do |portfolio| %>
     <%= link_to edit_portfolio_path(portfolio) do %>
       <div><%#= portfolio.cover %></div>
       <div>

@@ -11,32 +11,53 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="editor">
+    <%= form.text_field :title, class: 'field', placeholder: "Новое резюме" %>
+    <%= form.text_area :body, class: 'field', placeholder: "Опишите свой опыт" %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+  <div class="tab">
+    <div class="tabbar">
+      <div class="tablinks active" onclick="openTab(event, 'settings')">Настройки</div>
+      <div class="tablinks" onclick="openTab(event, 'decoration')">Оформление</div>
+      <div class="tablinks" onclick="openTab(event, 'content')">Контент</div>
+    </div>
+
+    <div class="tabcontent" id="settings" style="display: block;">
+      <div class="field">
+        <%= form.label "Название резюме (видно только вам)" %>
+        <%= form.text_field :name %>
+      </div>
+
+      <div class="field">
+        <%= form.label "Описание (видно только вам)" %>
+        <%= form.text_area :description %>
+      </div>
+
+      <div>
+        <%= form.label 'Портфолио' %>
+        <%= link_to '+ Добавить портфолио' %>
+        <% resume.portfolios.each do |portfolio| %>
+          <div>
+            <%#= image_tag portfolio.cover.url, :class => 'miniature' %>
+            <%= portfolio.name %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="tabcontent" id="decoration">Coming soon...</div>
+
+    <div class="tabcontent" id="content">Coming soon...</div>
   </div>
 
-  <div class="field">
-    <%= form.label :cover %>
-    <%= form.text_field :cover %>
-  </div>
+  <div class="toolbar">
+    <div class="field">
+      <%= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
+    </div>
 
-  <div class="field">
-    <%= form.label :language %>
-    <%= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
-  </div>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+    <div class="actions">
+      <%= form.submit "Сохранить резюме" %>
+    </div>
   </div>
 <% end %>

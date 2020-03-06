@@ -4,7 +4,7 @@ class ResumesController < ApplicationController
   # GET /resumes
   # GET /resumes.json
   def index
-    @resumes = Resume.all
+    @resumes = current_user.resumes.all
   end
 
   # GET /resumes/1
@@ -14,7 +14,7 @@ class ResumesController < ApplicationController
 
   # GET /resumes/new
   def new
-    @resume = Resume.new
+    @resume = current_user.resumes.new
   end
 
   # GET /resumes/1/edit
@@ -24,7 +24,7 @@ class ResumesController < ApplicationController
   # POST /resumes
   # POST /resumes.json
   def create
-    @resume = Resume.new(resume_params)
+    @resume = current_user.resumes.new(resume_params)
     @resume.user_id = current_user.id
 
     respond_to do |format|
@@ -65,7 +65,7 @@ class ResumesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_resume
-      @resume = Resume.find(params[:id])
+      @resume = current_user.resumes.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

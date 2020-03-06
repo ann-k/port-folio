@@ -36,7 +36,6 @@ end
 @user_ids = [1, 2]
 
 
-
 #Portfolios
 
 @portfolios = [
@@ -54,7 +53,7 @@ def create_portfolio(portfolio, user_id)
 end
 
 User.all.each do |user|
-  3.times do
+  5.times do
     portfolio = @portfolios.sample
 
     p = create_portfolio(portfolio, user.id)
@@ -63,13 +62,13 @@ User.all.each do |user|
 end
 
 
-
 #Projects
 
 @projects_titles = [
   "Сайт",
   "Приложение",
-  "Лендинг"
+  "Лендинг",
+  "Книга"
 ]
 
 def create_project(user_id)
@@ -80,15 +79,14 @@ def create_project(user_id)
 end
 
 User.all.each do |user|
-  5.times do
+  10.times do
     p = create_project(user.id)
     puts "Project with user id #{p.user_id} and name #{p.title} created"
   end
 end
 
 
-
-#Projects in portfolio
+#Project in portfolio
 
 @portfolios = Portfolio.all
 
@@ -101,21 +99,68 @@ def create_project_in_portfolio(portfolio, project_id)
 end
 
 Portfolio.all.each do |portfolio|
-  project = Project.all.sample
-  project_in_certain_portfolios = Portfolio.find(portfolio.id).projects
+  2.times do
+    project = Project.all.sample
+    project_in_certain_portfolios = Portfolio.find(portfolio.id).projects
 
-  unless project_in_certain_portfolios.include?(project)
-    p = create_project_in_portfolio(portfolio, project.id)
-    puts "Project in portfolio with portfolio id #{p.portfolio_id} and project id #{p.project_id} created"
+    unless project_in_certain_portfolios.include?(project)
+      p = create_project_in_portfolio(portfolio, project.id)
+      puts "Project in portfolio with portfolio id #{p.portfolio_id} and project id #{p.project_id} created"
+    end
   end
 end
 
 
-
-
-
-
 #Resumes
+
+@resumes = [
+  {name: "Веб резюме", description: "Для веб-дизайна"},
+  {name: "Граф резюме", description: "Для граф дизайна"},
+  {name: "Код резюме", description: "Для программирования"}
+]
+
+def create_resume(resume, user_id)
+  Resume.create(
+    name:    resume[:name],
+    description: resume[:description],
+    user_id: user_id
+  )
+end
+
+User.all.each do |user|
+  5.times do
+    resume = @resumes.sample
+
+    r = create_resume(resume, user.id)
+    puts "Resume with user id #{r.user_id} and name #{r.name} created"
+  end
+end
+
+
+#Resume in portfolio
+
+@portfolios = Portfolio.all
+
+def create_resume_in_portfolio(portfolio, resume_id)
+  portfolio = @portfolios.sample
+
+  portfolio.resume_in_portfolios.create(
+    resume_id: resume_id
+  )
+end
+
+Portfolio.all.each do |portfolio|
+  2.times do
+    resume = Resume.all.sample
+    resume_in_certain_portfolios = Portfolio.find(portfolio.id).resumes
+
+    unless resume_in_certain_portfolios.include?(resume)
+      p = create_resume_in_portfolio(portfolio, resume.id)
+      puts "Resume in portfolio with portfolio id #{p.portfolio_id} and resume id #{p.resume_id} created"
+    end
+  end
+end
+
 
 # Contents ??
 

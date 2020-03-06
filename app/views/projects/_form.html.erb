@@ -16,12 +16,10 @@
     <%= form.text_field :title %>
   </div>
 
-  <div class="tabbar">
-    <div class="tabs">
-      <button type="button" name="button">Настройки</button>
-      <button type="button" name="button">Оформление</button>
-      <button type="button" name="button">Контент</button>
-    </div>
+  <div id="tabs">
+    <button type="button" name="button">Настройки</button>
+    <button type="button" name="button">Оформление</button>
+    <button type="button" name="button">Контент</button>
 
     <div class="settings">
       <div class="field">
@@ -60,7 +58,7 @@
     </div>
 
     <div class="actions">
-      <%= form.submit %>
+      <%= form.submit "Сохранить проект" %>
     </div>
   </div>
 <% end %>

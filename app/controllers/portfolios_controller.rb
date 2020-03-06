@@ -4,7 +4,7 @@ class PortfoliosController < ApplicationController
   # GET /portfolios
   # GET /portfolios.json
   def index
-    @portfolios = Portfolio.all
+    @portfolios = current_user.portfolios.all
   end
 
   # GET /portfolios/1
@@ -14,7 +14,7 @@ class PortfoliosController < ApplicationController
 
   # GET /portfolios/new
   def new
-    @portfolio = Portfolio.new
+    @portfolio = current_user.portfolios.new
   end
 
   # GET /portfolios/1/edit
@@ -24,12 +24,12 @@ class PortfoliosController < ApplicationController
   # POST /portfolios
   # POST /portfolios.json
   def create
-    @portfolio = Portfolio.new(portfolio_params)
+    @portfolio = current_user.portfolios.new(portfolio_params)
     @portfolio.user_id = current_user.id
 
     respond_to do |format|
       if @portfolio.save
-        format.html { redirect_to edit_portfolio_path, notice: 'Portfolio was successfully created.' }
+        format.html { redirect_to edit_portfolio_path(@portfolio), notice: 'Portfolio was successfully created.' }
         format.json { render :show, status: :created, location: @portfolio }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class PortfoliosController < ApplicationController
   def update
     respond_to do |format|
       if @portfolio.update(portfolio_params)
-        format.html { redirect_to edit_portfolio_path, notice: 'Portfolio was successfully updated.' }
+        format.html { redirect_to edit_portfolio_path }
         format.json { render :show, status: :ok, location: @portfolio }
       else
         format.html { render :edit }
@@ -65,7 +65,7 @@ class PortfoliosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_portfolio
-      @portfolio = Portfolio.find(params[:id])
+      @portfolio = current_user.portfolios.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

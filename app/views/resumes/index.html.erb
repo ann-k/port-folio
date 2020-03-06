@@ -1,35 +1,28 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
 
-<h1>Resumes</h1>
+  <div class="buttons">
+    <%= link_to 'Поиск по резюме' %>
+    <%= link_to 'Создать резюме', new_resume_path %>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Cover</th>
-      <th>Language</th>
-      <th>Title</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <h1>Мои резюме</h1>
 
-  <tbody>
-    <% current_user.resumes.each do |resume| %>
-      <tr>
-        <td><%= resume.name %></td>
-        <td><%= resume.description %></td>
-        <td><%= resume.cover %></td>
-        <td><%= resume.language %></td>
-        <td><%= resume.title %></td>
-        <td><%= link_to 'Show', resume %></td>
-        <td><%= link_to 'Edit', edit_resume_path(resume) %></td>
-        <td><%= link_to 'Destroy', resume, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+  <% @resumes.each do |resume| %>
+    <%= link_to edit_resume_path(resume) do %>
+      <div><%#= resume.cover %></div>
+      <div>
+        <div><%= resume.name %></div>
+        <div><%= resume.description %></div>
+      </div>
     <% end %>
-  </tbody>
-</table>
 
-<br>
+    <div>
+      <%= link_to 'Копировать' %>
+      <%= link_to 'Экспортировать' %>
+      <%= link_to 'Удалить', resume, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
 
-<%= link_to 'New Resume', new_resume_path %>
+    <br>
+  <% end %>
+</div>

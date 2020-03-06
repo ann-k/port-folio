@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require jquery-ui
  */
 
 @font-face {
@@ -41,7 +42,7 @@ navbar {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  width: 257px;
+  width: 16vw;
   position: fixed;
   background-color: #292929;
   top: 0px;
@@ -54,21 +55,32 @@ navbar {
 
 .editor {
   position: fixed;
-  left: 277px;
+  width: 40vw;
+  height: 100vh;
+  left: calc(16vw + 2vw);
+  background-color: white;
 }
 
-.tabbar {
-  position: fixed;
-  right: 100px;
-  left: 823px;
-  top: 0;
+.editor .field{
+  width: inherit;
+  border-style: none;
+  padding: 0px;
 }
+
+.editor * {
+  color: black;
+}
+
+/* .ui-tabs-panel {
+  color: inherit;
+  background-color: #292929;
+} */
 
 .toolbar {
   display: flex;
   position: fixed;
   bottom: 0;
-  left: 823px;
+  left: calc(16vw + 2vw + 40vw + 2vw);
 }
 
 .buttons {
@@ -83,8 +95,54 @@ navbar {
   line-height: 48px;
   font-weight: bold;
   border-radius: 11px;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 h1 {
   font-size: 76px;
+}
+
+.miniature {
+  width: 48px;
+}
+
+
+
+
+
+/* Style the tab */
+.tab {
+ overflow: hidden;
+ cursor: pointer;
+ position: fixed;
+ width: 36vw;
+ right: 100px;
+ left: calc(16vw + 2vw + 40vw + 2vw);
+ top: 0;
+}
+
+.tabbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab .tablinks {
+ /* transition: 0.3s; */
+}
+
+/* Change background color of buttons on hover */
+.tab .tablinks:hover {
+}
+
+/* Create an active/current tablink class */
+.tab .tablinks.active {
+  color: #648FFD;
+}
+
+/* Style the tab content */
+.tabcontent {
+ display: none;
 }

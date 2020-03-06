@@ -12,25 +12,23 @@
   <% end %>
 
   <div class="editor">
-    <div class="field">
-      <%= form.label :title %>
-      <%= form.text_field :title %>
-    </div>
+    <%= form.text_field :title, class: 'field', placeholder: "Новое портфолио" %>
+    <%= form.text_area :body, class: 'field', placeholder: "Напишите немного о себе и добавьте проекты" %>
 
-    <div class="field">
-      <%= form.label :body %>
-      <%= form.text_area :body %>
-    </div>
+    <% portfolio.projects.each do |project| %>
+      <div><%= image_tag project.cover.url %></div>
+      <div><%= project.title %></div>
+    <% end %>
   </div>
 
-  <div class="tabbar">
-    <ul id="tabs">
-      <li><a href="#tabs-1">Настройки</a></li>
-      <li><a href="#tabs-2">Оформление</a></li>
-      <li><a href="#tabs-3">Контент</a></li>
-    </ul>
+  <div class="tab">
+    <div class="tabbar">
+      <div class="tablinks active" onclick="openTab(event, 'settings')">Настройки</div>
+      <div class="tablinks" onclick="openTab(event, 'decoration')">Оформление</div>
+      <div class="tablinks" onclick="openTab(event, 'content')">Контент</div>
+    </div>
 
-    <div class="tab-section" id="tabs-1">
+    <div class="tabcontent" id="settings" style="display: block;">
       <div class="field">
         <%= form.label "Название портфолио (видно только вам)" %>
         <%= form.text_field :name %>
@@ -43,26 +41,31 @@
 
       <div>
         <%= form.label 'Резюме' %>
-        <%= link_to 'Связать с резюме' %>
+        <%= link_to '+ Связать с резюме' %>
+        <% portfolio.resumes.each do |resume| %>
+          <div>
+            <%= resume.name %>
+          </div>
+        <% end %>
       </div>
+
+      <br>
 
       <div>
         <%= form.label 'Проекты' %>
-        <%= link_to 'Добавить проект' %>
+        <%= link_to '+ Добавить проект' %>
         <% portfolio.projects.each do |project| %>
           <div>
-            <%= image_tag project.cover.url %>
+            <%= image_tag project.cover.url, :class => 'miniature' %>
             <%= project.title %>
           </div>
         <% end %>
       </div>
     </div>
 
-    <div class="tab-section" id="tabs-2">
-    </div>
+    <div class="tabcontent" id="decoration">Coming soon...</div>
 
-    <div class="tab-section" id="tabs-3">
-    </div>
+    <div class="tabcontent" id="content">Coming soon...</div>
   </div>
 
   <div class="toolbar">
@@ -71,7 +74,7 @@
     </div>
 
     <div class="actions">
-      <%= form.submit %>
+      <%= form.submit "Сохранить портфолио" %>
     </div>
   </div>
 

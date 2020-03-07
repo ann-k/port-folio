@@ -23,12 +23,12 @@
 
   <div class="tab">
     <div class="tabbar">
-      <div class="tablinks active" onclick="openTab(event, 'settings')">Настройки</div>
+      <div class="tablinks" id="defaultTab" onclick="openTab(event, 'settings')">Настройки</div>
       <div class="tablinks" onclick="openTab(event, 'decoration')">Оформление</div>
       <div class="tablinks" onclick="openTab(event, 'content')">Контент</div>
     </div>
 
-    <div class="tabcontent" id="settings" style="display: block;">
+    <div class="tabcontent" id="settings">
       <div class="field">
         <%= form.label "Название портфолио (видно только вам)" %>
         <%= form.text_field :name %>

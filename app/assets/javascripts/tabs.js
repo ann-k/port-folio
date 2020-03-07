@@ -19,8 +19,6 @@ function openTab(evt, tabName) {
   evt.currentTarget.className += " active";
 }
 
-// window.addEventListener('DOMContentLoaded', (event) => {
-//   document.getElementById("defaultTab").click();
-// });
-
-console.log("hi");
+window.addEventListener('DOMContentLoaded', (event) => {
+  document.getElementById("defaultTab").click();
+});

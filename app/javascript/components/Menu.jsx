@@ -1,25 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+const menuItems = [
+  "Портфолио (реакт)",
+  "Проекты (реакт)",
+  "Резюме (реакт)"
+]
+
 export default class Menu extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      menuItems: [
-        {name: "Портфолио (реакт)", id: 0},
-        {name: "Проекты (реакт)", id: 1},
-        {name: "Резюме (реакт)", id: 2}
-      ]
-    }
-  }
-
   render() {
-    const smth = this.state.menuItems.map((menuItem) => {
-      return (<div key={menuItem.id}>{menuItem.name}</div>)
-    })
-
     return (
-      smth
+      menuItems.map((menuItem, id) => {
+        return (<div key={id}>{menuItem}</div>)
+      })
     )
   }
 }

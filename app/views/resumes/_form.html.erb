@@ -11,19 +11,19 @@
     </div>
   <% end %>
 
-  <div class="editor">
-    <%= form.text_field :title, class: 'field', placeholder: "Новое резюме" %>
-    <%= form.text_area :body, class: 'field', placeholder: "Опишите свой опыт" %>
+  <div class="editor" id="editor">
+    <%#= form.text_field :title, class: 'field', placeholder: "Новое резюме" %>
+    <%#= form.text_area :body, class: 'field', placeholder: "Опишите свой опыт" %>
   </div>
 
   <div class="tab">
     <div class="tabbar">
-      <div class="tablinks active" onclick="openTab(event, 'settings')">Настройки</div>
+      <div class="tablinks" id="defaultTab" onclick="openTab(event, 'settings')">Настройки</div>
       <div class="tablinks" onclick="openTab(event, 'decoration')">Оформление</div>
       <div class="tablinks" onclick="openTab(event, 'content')">Контент</div>
     </div>
 
-    <div class="tabcontent" id="settings" style="display: block;">
+    <div class="tabcontent" id="settings">
       <div class="field">
         <%= form.label "Название резюме (видно только вам)" %>
         <%= form.text_field :name %>
@@ -58,6 +58,9 @@
 
     <div class="actions">
       <%= form.submit "Сохранить резюме" %>
+    </div>
+
+    <div class="actions" id="editorJsSaveButton">Сохранить editor js
     </div>
   </div>
 <% end %>

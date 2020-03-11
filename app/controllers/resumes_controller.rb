@@ -29,7 +29,7 @@ class ResumesController < ApplicationController
 
     respond_to do |format|
       if @resume.save
-        format.html { redirect_to @resume, notice: 'Resume was successfully created.' }
+        format.html { redirect_to edit_portfolio_path(@resume), notice: 'Resume was successfully created.' }
         format.json { render :show, status: :created, location: @resume }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class ResumesController < ApplicationController
   def update
     respond_to do |format|
       if @resume.update(resume_params)
-        format.html { redirect_to @resume, notice: 'Resume was successfully updated.' }
+        format.html { redirect_to edit_resume_path, notice: 'Resume was successfully updated.' }
         format.json { render :show, status: :ok, location: @resume }
       else
         format.html { render :edit }

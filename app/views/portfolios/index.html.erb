@@ -1,28 +1,54 @@
-<div class="container">
-  <p id="notice"><%= notice %></p>
+<div class="index-outer-container">
+  <div class="index-inner-container">
+    <%#= notice %>
 
-  <div class="buttons">
-    <%= link_to 'Поиск по портфолио' %>
-    <%= link_to 'Создать портфолио', new_portfolio_path %>
-  </div>
+    <div class="index-buttons-container">
+      <%= link_to(new_portfolio_path, class: "button") do%>
+        <%= image_tag "icons/button/search/default.svg" %>
+        <h3>Поиск по портфолио</h3>
+      <% end %>
 
-  <h1>Мои портфолио</h1>
-
-  <% @portfolios.each do |portfolio| %>
-    <%= link_to edit_portfolio_path(portfolio) do %>
-      <div><%#= portfolio.cover %></div>
-      <div>
-        <div><%= portfolio.name %></div>
-        <div><%= portfolio.description %></div>
-      </div>
-    <% end %>
-
-    <div>
-      <%= link_to 'Копировать' %>
-      <%= link_to 'Экспортировать' %>
-      <%= link_to 'Удалить', portfolio, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to(new_portfolio_path, class: "button") do%>
+        <%= image_tag "icons/button/add/default.svg" %>
+        <h3>Создать портфолио</h3>
+      <% end %>
     </div>
 
-    <br>
-  <% end %>
+    <h1>Мои портфолио</h1>
+
+    <% @portfolios.each do |portfolio| %>
+      <div class="card">
+        <div class="card-cover">
+          <%= link_to edit_portfolio_path(portfolio) do %>
+            <%= image_tag portfolio.cover.url %>
+          <% end %>
+        </div>
+
+        <div class="card-text">
+          <%= link_to edit_portfolio_path(portfolio) do %>
+            <h2><%= portfolio.name %></h2>
+            <p><%= portfolio.description %>Mauris non tempor quam, et lacinia sapien. Mauris accumsan eros eget libero posuere vulputate.</p>
+          <% end %>
+        </div>
+
+        <div class="card-icons-group">
+          <%= link_to do%>
+            <%= image_tag "icons/card/copy/default@2.png" %>
+          <% end %>
+
+          <%= link_to do %>
+            <%= image_tag "icons/card/export/default@2.png" %>
+          <% end %>
+
+          <%#= link_to 'Удалить', portfolio, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= image_tag "icons/card/options/default@2.png" %>
+          <%# end %>
+        </div>
+      </div>
+
+      <div class="divider-line"></div>
+    <% end %>
+
+  </div>
+  <%= render 'layouts/footer' %>
 </div>

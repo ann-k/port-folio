@@ -1,25 +1,46 @@
-<div class="container">
-  <p id="notice"><%= notice %></p>
+<div class="index-outer-container">
+  <div class="index-inner-container">
+    <%#= notice %>
 
-  <div class="buttons">
-    <%= link_to 'Поиск по проектам' %>
-    <%= link_to 'Создать проект', new_project_path %>
-  </div>
+    <div class="index-buttons-container">
+      <%= link_to(new_project_path, class: "button") do%>
+        <%= image_tag "icons/button/search/default.svg" %>
+        <h3>Поиск по проектам</h3>
+      <% end %>
 
-  <h1>Мои проекты</h1>
-
-  <% @projects.each do |project| %>
-    <%= link_to edit_project_path(project) do %>
-      <div><%= image_tag project.cover.url %></div>
-      <div><%= project.title %></div>
-    <% end %>
-
-    <div>
-      <%= link_to 'Экспортировать' %>
-      <%= link_to 'Удалить', project, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to(new_portfolio_path, class: "button") do%>
+        <%= image_tag "icons/button/add/default.svg" %>
+        <h3>Создать проект</h3>
+      <% end %>
     </div>
 
-    <br>
-  <% end %>
+    <h1>Мои проекты</h1>
 
+    <div class="projects-cards-container">
+      <% @projects.each do |project| %>
+        <div class="project-card">
+          <%= link_to edit_project_path(project), class: "project-card-cover" do %>
+            <%= image_tag project.cover.url %>
+          <% end %>
+
+          <div class="project-card-body">
+            <%= link_to edit_project_path(project) do %>
+              <h2><%= project.title %></h2>
+            <% end %>
+
+            <div class="card-icons-group">
+              <%= link_to do %>
+                <%= image_tag "icons/card/export/default@2.png" %>
+              <% end %>
+
+              <%#= link_to project, method: :delete do %>
+                <%= image_tag "icons/card/options/default@2.png" %>
+              <%# end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <%= render 'layouts/footer' %>
 </div>

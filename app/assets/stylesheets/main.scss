@@ -1,0 +1,91 @@
+@import "variables";
+@import "portfolios_and_resumes";
+
+* {
+ box-sizing: border-box;
+ margin: 0;
+}
+
+body {
+  font-family: 'ptrootui';
+  background-color: #212121;
+  color: white;
+  font-size: 16px;
+}
+
+// .container {
+//   margin-left: 373px;
+// }
+
+a, a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+
+a:hover {
+  color: #648FFD;
+  background-color: rgba(255, 0, 0, 0);
+}
+
+.editor {
+  position: fixed;
+  width: 40vw;
+  height: 100vh;
+  left: calc(16vw + 2vw);
+  background-color: white;
+}
+
+.editor .field{
+  width: inherit;
+  border-style: none;
+  padding: 0px;
+}
+
+.editor * {
+  color: black;
+}
+
+.toolbar {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: calc(16vw + 2vw + 40vw + 2vw);
+}
+
+.miniature {
+  width: 48px;
+}
+
+
+/* Style the tab */
+.tab {
+ overflow: hidden;
+ cursor: pointer;
+ position: fixed;
+ width: 36vw;
+ right: 100px;
+ left: calc(16vw + 2vw + 40vw + 2vw);
+ top: 0;
+}
+
+.tabbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.tab .tablinks {
+ /* transition: 0.3s; */
+}
+
+.tab .tablinks:hover {
+}
+
+.tab .tablinks.active {
+  color: $primary;
+}
+
+.tabcontent {
+ display: none;
+}

@@ -1,0 +1,67 @@
+@import "variables";
+
+.index-outer-container {
+  left: 16vw;
+
+  position: absolute;
+
+  width: 100vw - 16vw;
+}
+
+.index-inner-container {
+  width: 60vw;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.index-buttons-container {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 32px;
+  margin-bottom: 64px;
+}
+
+.button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  padding-left: 16px;
+  padding-right: 16px;
+  height: 48px;
+
+  border-radius: 11px;
+  background-color: $surface;
+}
+
+.button h3 {
+  margin-left: 8px;
+}
+
+h1 {
+  margin-bottom: 48px;
+}
+
+.card-icons-group {
+  align-self: flex-start;
+  flex-basis: auto;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+
+  margin-top: 32px;
+  margin-right: 8px;
+
+  img {
+    height: 16px;
+    margin-right: 24px;
+  }
+
+  a + img {
+    margin-right: 0;
+  }
+}

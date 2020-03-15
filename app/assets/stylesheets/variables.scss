@@ -1,0 +1,63 @@
+// Colors
+
+$text: #FFFFFF;
+$background: #212121;
+$surface: #2F2F2F;
+$primary: #648FFD;
+$secondary: #2C4EA6;
+$error: #EE5960;
+$grey: #4D4D4D;
+
+
+// Fonts
+
+@font-face {
+  font-family: "ptrootui bold";
+  src: url(/assets/ptrootui/ptrootui-bold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "ptrootui medium";
+  src: url(/assets/ptrootui/ptrootui-medium.ttf) format("truetype");
+}
+
+
+// Text Styles
+
+h1 {
+  font-family: "ptrootui bold";
+  font-weight: normal;
+
+  font-size: 76px;
+  line-height: 68px;
+}
+
+h2 {
+  font-family: "ptrootui bold";
+  font-weight: normal;
+
+  font-size: 24px;
+  line-height: 24px;
+
+  margin: 0;
+}
+
+h3 {
+  font-family: "ptrootui bold";
+  font-weight: normal;
+
+  font-size: 16px;
+  line-height: 24px;
+
+  margin: 0;
+}
+
+p {
+  font-family: "ptrootui medium";
+  font-weight: normal;
+
+  font-size: 16px;
+  line-height: 24px;
+
+  margin: 0;
+}

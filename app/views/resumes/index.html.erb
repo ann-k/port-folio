@@ -1,28 +1,54 @@
-<div class="container">
-  <p id="notice"><%= notice %></p>
+<div class="index-outer-container">
+  <div class="index-inner-container">
+    <%#= notice %>
 
-  <div class="buttons">
-    <%= link_to 'Поиск по резюме' %>
-    <%= link_to 'Создать резюме', new_resume_path %>
-  </div>
+    <div class="index-buttons-container">
+      <%= link_to(new_resume_path, class: "button") do%>
+        <%= image_tag "icons/button/search/default.svg" %>
+        <h3>Поиск по резюме</h3>
+      <% end %>
 
-  <h1>Мои резюме</h1>
-
-  <% @resumes.each do |resume| %>
-    <%= link_to edit_resume_path(resume) do %>
-      <div><%#= resume.cover %></div>
-      <div>
-        <div><%= resume.name %></div>
-        <div><%= resume.description %></div>
-      </div>
-    <% end %>
-
-    <div>
-      <%= link_to 'Копировать' %>
-      <%= link_to 'Экспортировать' %>
-      <%= link_to 'Удалить', resume, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to(new_resume_path, class: "button") do%>
+        <%= image_tag "icons/button/add/default.svg" %>
+        <h3>Создать резюме</h3>
+      <% end %>
     </div>
 
-    <br>
-  <% end %>
+    <h1>Мои резюме</h1>
+
+    <% @resumes.each do |resume| %>
+      <div class="card">
+        <div class="card-cover">
+          <%= link_to edit_resume_path(resume) do %>
+            <%= image_tag resume.cover.url %>
+          <% end %>
+        </div>
+
+        <div class="card-text">
+          <%= link_to edit_resume_path(resume) do %>
+            <h2><%= resume.name %></h2>
+            <p><%= resume.description %>Mauris non tempor quam, et lacinia sapien. Mauris accumsan eros eget libero posuere vulputate.</p>
+          <% end %>
+        </div>
+
+        <div class="card-icons-group">
+          <%= link_to do%>
+            <%= image_tag "icons/card/copy/default@2.png" %>
+          <% end %>
+
+          <%= link_to do %>
+            <%= image_tag "icons/card/export/default@2.png" %>
+          <% end %>
+
+          <%#= link_to 'Удалить', resume, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= image_tag "icons/card/options/default@2.png" %>
+          <%# end %>
+        </div>
+      </div>
+
+      <div class="divider-line"></div>
+    <% end %>
+  </div>
+
+  <%= render 'layouts/footer' %>
 </div>

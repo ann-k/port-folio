@@ -5,23 +5,52 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'tabs', 'data-turbolinks-track' => true  %>
-    <%= javascript_pack_tag 'main' %>
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
+    <%#= javascript_pack_tag "application", "data-turbolinks-track": "reload" %>
+    <%= javascript_include_tag "tabs", "data-turbolinks-track" => true  %>
+    <%= javascript_pack_tag "main" %>
   </head>
 
   <body>
     <% if user_signed_in? %>
-      <navbar class="navbar" id="navbar">
-        <div><%= link_to 'Портфолио', portfolios_path %></div>
-        <div><%= link_to 'Проекты', projects_path %></div>
-        <div><%= link_to 'Резюме', resumes_path %></div>
+      <nav>
+        <div class="logo"><%= image_tag "logo/long.svg" %></div>
+        <div class="nav-items-group">
+          <div class="nav-items-top">
+            <%= link_to(portfolios_path) do %>
+                <%= image_tag "icons/menu/portfolios/default@2.png" %>
+                <h3>Портфолио</h3>
+            <% end %>
 
-        <div><%= link_to 'Оформление' %></div>
-        <div><%= link_to 'Примеры' %></div>
-        <div><%= link_to 'Аккаунт', account_path %></div>
-      </navbar>
+            <%= link_to(projects_path) do %>
+              <%= image_tag "icons/menu/projects/default@2.png" %>
+              <h3>Проекты</h3>
+            <% end %>
+
+            <%= link_to(resumes_path) do %>
+              <%= image_tag "icons/menu/resumes/default@2.png" %>
+              <h3>Резюме</h3>
+            <% end %>
+          </div>
+
+          <div class="nav-items-bottom">
+            <%= link_to do %>
+              <%= image_tag "icons/menu/decorations/default@2.png" %>
+              <h3>Оформление</h3>
+            <% end %>
+
+            <%= link_to do %>
+              <%= image_tag "icons/menu/explore/default@2.png" %>
+              <h3>Примеры</h3>
+            <% end %>
+
+            <%= link_to account_path do %>
+              <%= image_tag "icons/menu/settings/default@2.png" %>
+              <h3>Аккаунт</h3>
+            <% end %>
+          </div>
+        </div>
+      </nav>
     <% end %>
     <%= yield %>
   </body>

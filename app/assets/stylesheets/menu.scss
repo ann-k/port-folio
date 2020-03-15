@@ -1,0 +1,52 @@
+@import "variables";
+
+nav {
+  top: 0px;
+  left: 0px;
+  position: fixed;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 16vw;
+  height: 100vh;
+
+  padding-top: 32px;
+  padding-bottom: 32px;
+
+  height: 100vh;
+
+  background-color: $surface;
+}
+
+nav > div {
+  margin-left: 12%;
+}
+
+.nav-items-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: inherit;
+
+  a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    height: 24px;
+
+    margin-top: 16px;
+  }
+
+  img {
+  width: 18px;
+  height: 14px;
+  }
+
+  h3 {
+    margin-left: 8px;
+  }
+}

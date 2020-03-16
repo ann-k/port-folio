@@ -26,6 +26,7 @@ class PortfoliosController < ApplicationController
   def create
     @portfolio = current_user.portfolios.new(portfolio_params)
     @portfolio.user_id = current_user.id
+    @portfolio.name = params[:name] || "Новое портфолио"
 
     respond_to do |format|
       if @portfolio.save

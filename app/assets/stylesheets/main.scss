@@ -7,85 +7,58 @@
 }
 
 body {
-  font-family: 'ptrootui';
+  font-family: 'ptrootui medium';
   background-color: #212121;
   color: white;
   font-size: 16px;
+  margin: 0;
 }
 
-// .container {
-//   margin-left: 373px;
-// }
+.outer-container {
+  left: 16vw;
+
+  position: absolute;
+
+  width: 100vw - 16vw;
+}
+
+.button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  padding-left: 16px;
+  padding-right: 16px;
+  height: 48px;
+
+  border-radius: 11px;
+  background-color: $surface;
+}
+
+.button h3 {
+  margin-left: 8px;
+}
+
+input[type=text], input[type=password], input[type=number], textarea {
+  padding: 16px;
+
+  color: $text;
+  background-color: $surface;
+  border: none;
+
+  font-family: "ptrootui medium";
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+
+  resize: none;
+}
 
 a, a:visited {
-  color: white;
+  color: $text;
   text-decoration: none;
 }
 
-
 a:hover {
-  color: #648FFD;
-  background-color: rgba(255, 0, 0, 0);
-}
-
-.editor {
-  position: fixed;
-  width: 40vw;
-  height: 100vh;
-  left: calc(16vw + 2vw);
-  background-color: white;
-}
-
-.editor .field{
-  width: inherit;
-  border-style: none;
-  padding: 0px;
-}
-
-.editor * {
-  color: black;
-}
-
-.toolbar {
-  display: flex;
-  position: fixed;
-  bottom: 0;
-  left: calc(16vw + 2vw + 40vw + 2vw);
-}
-
-.miniature {
-  width: 48px;
-}
-
-
-/* Style the tab */
-.tab {
- overflow: hidden;
- cursor: pointer;
- position: fixed;
- width: 36vw;
- right: 100px;
- left: calc(16vw + 2vw + 40vw + 2vw);
- top: 0;
-}
-
-.tabbar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.tab .tablinks {
- /* transition: 0.3s; */
-}
-
-.tab .tablinks:hover {
-}
-
-.tab .tablinks.active {
   color: $primary;
-}
-
-.tabcontent {
- display: none;
 }

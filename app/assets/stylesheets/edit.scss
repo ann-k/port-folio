@@ -1,0 +1,126 @@
+@import "variables";
+
+.edit-inner-container {
+  display: grid;
+  grid-template-columns: 5fr 4fr;
+  grid-column-gap: 32px;
+
+  width: 100%;
+  height: 100%;
+
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.topbar {
+  display: grid;
+  grid-template-columns: 5fr 4fr;
+  grid-column-gap: 32px;
+
+  top: 0;
+  right: 0;
+  position: fixed;
+
+  width: 100vw - 16vw;
+  height: 48px;
+  padding-right: 24px;
+  padding-left: 24px;
+
+  div {
+    background-color: $surface;
+  }
+
+  .constructor-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: space-between;
+
+    h3 {
+      margin: auto;
+      cursor: pointer;
+
+      &.active {
+        color: $primary;
+      }
+    }
+  }
+}
+
+.editor {
+  margin-top: 64px;
+  padding: 24px 40px 120px 40px;
+
+  color: $background;
+  background-color: white;
+}
+
+.editorjs {
+  height: 20vh;
+}
+
+.editor-projects-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 32px;
+  grid-row-gap: 48px;
+
+  img {
+    width: 100%;
+  }
+}
+
+.constructor {
+  margin-top: 64px;
+}
+
+.tabContent {
+  display: none;
+
+  input, textarea {
+    width: 100%;
+    margin-bottom: 24px;
+  }
+}
+
+.tabs-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  margin-bottom: 32px;
+
+  div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    width: 100%;
+  }
+
+  p {
+    margin-left: 16px;
+  }
+}
+
+.tabs-list-header {
+  justify-content: space-between;
+}
+
+.tabs-list-item {
+  height: 48px;
+}
+
+.miniature {
+  width: 48px;
+  height: 32px;
+}
+
+.bottombar {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  position: fixed;
+  bottom: 0;
+
+  background-color: $surface;
+}

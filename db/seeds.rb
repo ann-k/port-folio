@@ -79,7 +79,7 @@ def create_project(user_id)
 end
 
 User.all.each do |user|
-  10.times do
+  30.times do
     p = create_project(user.id)
     puts "Project with user id #{p.user_id} and name #{p.title} created"
   end
@@ -99,7 +99,7 @@ def create_project_in_portfolio(portfolio, project_id)
 end
 
 Portfolio.all.each do |portfolio|
-  2.times do
+  5.times do
     project = Project.all.sample
     project_in_certain_portfolios = Portfolio.find(portfolio.id).projects
 

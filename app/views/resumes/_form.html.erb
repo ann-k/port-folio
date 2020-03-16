@@ -1,66 +1,98 @@
 <%= form_with(model: resume, local: true) do |form| %>
-  <% if resume.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(resume.errors.count, "error") %> prohibited this resume from being saved:</h2>
+  <div class="outer-container">
+    <div class="notification">
+      <% if resume.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(resume.errors.count, "error") %> prohibited this resume from being saved:</h2>
 
-      <ul>
-        <% resume.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="editor" id="editor">
-    <%#= form.text_field :title, class: 'field', placeholder: "Новое резюме" %>
-    <%#= form.text_area :body, class: 'field', placeholder: "Опишите свой опыт" %>
-  </div>
-
-  <div class="tab">
-    <div class="tabbar">
-      <div class="tablinks" id="defaultTab" onclick="openTab(event, 'settings')">Настройки</div>
-      <div class="tablinks" onclick="openTab(event, 'decoration')">Оформление</div>
-      <div class="tablinks" onclick="openTab(event, 'content')">Контент</div>
+          <ul>
+            <% resume.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
     </div>
 
-    <div class="tabcontent" id="settings">
-      <div class="field">
-        <%= form.label "Название резюме (видно только вам)" %>
-        <%= form.text_field :name %>
+    <div class="edit-inner-container">
+      <div class="topbar">
+        <div class="editor-tabs">
+          <%= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
+        </div>
+
+        <div class="constructor-tabs">
+          <h3 class="tablinks" id="defaultTab" onclick="openTab(event, 'settings')">Настройки</h3>
+          <h3 class="tablinks" onclick="openTab(event, 'decoration')">Оформление</h3>
+          <h3 class="tablinks" onclick="openTab(event, 'content')">Контент</h3>
+        </div>
       </div>
 
-      <div class="field">
-        <%= form.label "Описание (видно только вам)" %>
-        <%= form.text_area :description %>
+      <div class="editor">
+        <div class="editorjs" id="editorjs"></div>
+          <%#= form.text_field :title, class: 'field', placeholder: "Новое резюме" %>
+          <%#= form.text_area :body, class: 'field', placeholder: "Опишите свой опыт" %>
       </div>
 
-      <div>
-        <%= form.label 'Портфолио' %>
-        <%= link_to '+ Добавить портфолио' %>
-        <% resume.portfolios.each do |portfolio| %>
-          <div>
-            <%#= image_tag portfolio.cover.url, :class => 'miniature' %>
-            <%= portfolio.name %>
+      <div class="constructor">
+        <div class="tabContent" id="settings">
+          <%#= form.label :cover %>
+          <%#= form.file_field :cover %>
+
+          <div class="input">
+            <h3>Название резюме (видно только вам)</h3>
+            <%= form.text_field :name, placeholder: "Новое резюме" %>
           </div>
-        <% end %>
+
+          <div class="input">
+            <h3>Описание (видно только вам)</h3>
+            <%= form.text_area :description, placeholder: "Здесь будет описание" %>
+          </div>
+
+          <div class="tabs-list">
+            <div class="tabs-list-header">
+              <h3>Портфолио</h3>
+              <%= link_to(new_portfolio_path, class: "button") do%>
+                <%= image_tag "icons/button/add/default.svg" %>
+                <h3>Связать с портфолио</h3>
+              <% end %>
+            </div>
+
+            <% resume.portfolios.each do |portfolio| %>
+              <div class="tabs-list-item">
+                <%= image_tag portfolio.cover.url, :class => 'miniature' %>
+                <p><%= portfolio.name %></p>
+              </div>
+
+              <div class="divider-line"></div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="tabContent" id="decoration"><p>Coming soon...</p></div>
+        <div class="tabContent" id="content"><p>Coming soon...</p></div>
+
+        <div class="bottombar">
+          <div id="editorJsSaveButton">
+            <%= image_tag "icons/button/add/default.svg" %>
+            <%= form.submit "Сохранить" %>
+          </div>
+
+          <!-- <div class=""> -->
+            <%= link_to(new_resume_path, class: "button") do%>
+              <%= image_tag "icons/button/add/default.svg" %>
+              <h3>Опубликовать</h3>
+            <% end %>
+          <!-- </div> -->
+
+          <!-- <div> -->
+            <%= link_to(new_resume_path, class: "button") do%>
+              <%= image_tag "icons/button/add/default.svg" %>
+              <h3>Экспортировать</h3>
+            <% end %>
+          <!-- </div> -->
+        </div>
       </div>
-    </div>
-
-    <div class="tabcontent" id="decoration">Coming soon...</div>
-
-    <div class="tabcontent" id="content">Coming soon...</div>
-  </div>
-
-  <div class="toolbar">
-    <div class="field">
-      <%= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
-    </div>
-
-    <div class="actions">
-      <%= form.submit "Сохранить резюме" %>
-    </div>
-
-    <div class="actions" id="editorJsSaveButton">Сохранить editor js
+      <!-- <div class="actions" id="editorJsSaveButton">Сохранить editor js -->
     </div>
   </div>
 <% end %>

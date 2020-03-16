@@ -1,87 +1,127 @@
 <%= form_with(model: portfolio, local: true) do |form| %>
-  <% if portfolio.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(portfolio.errors.count, "error") %> prohibited this portfolio from being saved:</h2>
+  <div class="outer-container">
+    <div class="notification">
+      <% if portfolio.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(portfolio.errors.count, "error") %> prohibited this portfolio from being saved:</h2>
 
-      <ul>
-        <% portfolio.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="editor">
-    <%= form.text_field :title, class: 'field', placeholder: "Новое портфолио" %>
-    <%= form.text_area :body, class: 'field', placeholder: "Напишите немного о себе и добавьте проекты" %>
-
-    <% portfolio.projects.each do |project| %>
-      <div><%= image_tag project.cover.url %></div>
-      <div><%= project.title %></div>
-    <% end %>
-  </div>
-
-  <div class="tab">
-    <div class="tabbar">
-      <div class="tablinks" id="defaultTab" onclick="openTab(event, 'settings')">Настройки</div>
-      <div class="tablinks" onclick="openTab(event, 'decoration')">Оформление</div>
-      <div class="tablinks" onclick="openTab(event, 'content')">Контент</div>
+          <ul>
+            <% portfolio.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
     </div>
 
-    <div class="tabcontent" id="settings">
-      <div class="field">
-        <%= form.label "Название портфолио (видно только вам)" %>
-        <%= form.text_field :name %>
+    <div class="edit-inner-container">
+
+      <div class="topbar">
+        <div class="editor-tabs">
+          <%= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
+        </div>
+
+        <div class="constructor-tabs">
+          <h3 class="tablinks" id="defaultTab" onclick="openTab(event, 'settings')">Настройки</h3>
+          <h3 class="tablinks" onclick="openTab(event, 'decoration')">Оформление</h3>
+          <h3 class="tablinks" onclick="openTab(event, 'content')">Контент</h3>
+        </div>
       </div>
 
-      <div class="field">
-        <%= form.label "Описание (видно только вам)" %>
-        <%= form.text_area :description %>
-      </div>
+      <div class="editor">
+        <div class="editorjs" id="editorjs"></div>
+          <%#= form.text_field :title, class: 'field', placeholder: "Новое портфолио" %>
+          <%#= form.text_area :body, class: 'field', placeholder: "Напишите немного о себе и добавьте проекты" %>
 
-      <div>
-        <%= form.label 'Резюме' %>
-        <%= link_to '+ Связать с резюме' %>
-        <% portfolio.resumes.each do |resume| %>
-          <div>
-            <%= resume.name %>
+          <div class="editor-projects-container">
+            <% portfolio.projects.each do |project| %>
+                <div>
+                  <%= image_tag project.cover.url %>
+                  <h3><%= project.title %></h3>
+                </div>
+            <% end %>
           </div>
-        <% end %>
       </div>
 
-      <br>
+      <div class="constructor">
+        <div class="tabContent" id="settings">
+          <%#= form.label :cover %>
+          <%#= form.file_field :cover %>
 
-      <div>
-        <%= form.label 'Проекты' %>
-        <%= link_to '+ Добавить проект' %>
-        <% portfolio.projects.each do |project| %>
-          <div>
-            <%= image_tag project.cover.url, :class => 'miniature' %>
-            <%= project.title %>
+          <div class="input">
+            <h3>Название портфолио (видно только вам)</h3>
+            <%= form.text_field :name, placeholder: "Новое портфолио" %>
           </div>
-        <% end %>
+
+          <div class="input">
+            <h3>Описание (видно только вам)</h3>
+            <%= form.text_area :description, placeholder: "Здесь будет описание" %>
+          </div>
+
+          <div class="tabs-list">
+            <div class="tabs-list-header">
+              <h3>Резюме</h3>
+              <%= link_to(new_portfolio_path, class: "button") do%>
+                <%= image_tag "icons/button/add/default.svg" %>
+                <h3>Связать с резюме</h3>
+              <% end %>
+            </div>
+
+            <% portfolio.resumes.each do |resume| %>
+              <div class="tabs-list-item">
+                <%= image_tag resume.cover.url, :class => 'miniature' %>
+                <p><%= resume.name %></p>
+              </div>
+
+              <div class="divider-line"></div>
+            <% end %>
+          </div>
+
+          <div class="tabs-list">
+            <div class="tabs-list-header">
+              <h3>Проекты</h3>
+              <%= link_to(new_portfolio_path, class: "button") do%>
+                <%= image_tag "icons/button/add/default.svg" %>
+                <h3>Добавить проект</h3>
+              <% end %>
+            </div>
+
+            <% portfolio.projects.each do |project| %>
+              <div class="tabs-list-item">
+                <%= image_tag project.cover.url, :class => 'miniature' %>
+                <p><%= project.title %></p>
+              </div>
+
+              <div class="divider-line"></div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="tabContent" id="decoration"><p>Coming soon...</p></div>
+
+        <div class="tabContent" id="content"><p>Coming soon...</p></div>
+
+        <div class="bottombar">
+          <div>
+            <%= image_tag "icons/button/add/default.svg" %>
+            <%= form.submit "Сохранить" %>
+          </div>
+
+          <!-- <div class=""> -->
+            <%= link_to(new_portfolio_path, class: "button") do%>
+              <%= image_tag "icons/button/add/default.svg" %>
+              <h3>Опубликовать</h3>
+            <% end %>
+          <!-- </div> -->
+
+          <!-- <div> -->
+            <%= link_to(new_portfolio_path, class: "button") do%>
+              <%= image_tag "icons/button/add/default.svg" %>
+              <h3>Экспортировать</h3>
+            <% end %>
+          <!-- </div> -->
+        </div>
       </div>
     </div>
-
-    <div class="tabcontent" id="decoration">Coming soon...</div>
-
-    <div class="tabcontent" id="content">Coming soon...</div>
   </div>
-
-  <div class="toolbar">
-    <div class="field">
-      <%= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
-    </div>
-
-    <div class="actions">
-      <%= form.submit "Сохранить портфолио" %>
-    </div>
-  </div>
-
-
-  <div class="field">
-    <%#= form.label :cover %>
-    <%#= form.file_field :cover %>
-  </div>
-
 <% end %>

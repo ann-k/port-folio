@@ -16,10 +16,10 @@ const Header = require('@editorjs/header')
 
 document.addEventListener('DOMContentLoaded', () => {
   const editor = new EditorJS({
-    holder: 'editor',
+    holder: 'editorjs',
     data: {},
     onChange: () => {console.log('Now I know that Editor\'s content changed!')},
-    placeholder: 'Резюме',
+    placeholder: 'Текст',
 
     tools: {
       header: {

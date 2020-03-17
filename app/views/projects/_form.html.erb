@@ -1,64 +1,110 @@
 <%= form_with(model: project, local: true) do |form| %>
-  <% if project.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
+  <div class="outer-container">
+    <div class="notification">
+      <% if project.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
 
-      <ul>
-        <% project.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+          <ul>
+            <% project.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
     </div>
-  <% end %>
 
-  <div class="editor">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+    <div class="edit-inner-container">
 
-  <div id="tabs">
-    <button type="button" name="button">Настройки</button>
-    <button type="button" name="button">Оформление</button>
-    <button type="button" name="button">Контент</button>
+      <div class="topbar">
+        <div class="editor-tabs">
+          <%= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
+        </div>
 
-    <div class="settings">
-      <div class="field">
-        <%= form.label :cover %>
-        <%= form.file_field :cover %>
+        <div class="constructor-tabs">
+          <h3 class="tablinks" id="defaultTab" onclick="openTab(event, 'settings')">Настройки</h3>
+          <h3 class="tablinks" onclick="openTab(event, 'decoration')">Оформление</h3>
+          <h3 class="tablinks" onclick="openTab(event, 'content')">Контент</h3>
+        </div>
+      </div>
 
-        <% if project.cover? %>
-          <%= image_tag project.cover.url %>
-          <div>
-            Remove cover
-            <%= form.check_box :remove_cover %>
+      <div class="editor">
+        <div class="editorjs" id="editorjs"></div>
+          <%#= form.text_field :title, class: 'field', placeholder: "Новое портфолио" %>
+          <%#= form.text_area :body, class: 'field', placeholder: "Напишите немного о себе и добавьте проекты" %>
+      </div>
+
+      <div class="constructor">
+        <div class="tabContent" id="settings">
+          <div class="project-cover">
+            <%= form.label :cover %>
+            <%= form.file_field :cover %>
+
+            <% if project.cover? %>
+              <%= image_tag project.cover.url %>
+              <div class="label-checkbox">
+                <p>Удалить обложку</p>
+                <%= form.check_box :remove_cover %>
+              </div>
+            <% end %>
           </div>
-        <% end %>
+
+          <div class="input">
+            <h3>Название проекта</h3>
+            <%= form.text_field :title, placeholder: "Новый проект" %>
+          </div>
+
+          <div class="tabs-list">
+            <div class="tabs-list-header" id="specialButton" onclick="showBlock()">
+              <h3>Портфолио</h3>
+              <%= link_to("#", class: "button") do%>
+                <%= image_tag "icons/button/add/default.svg" %>
+                <h3>Добавить в портфолио</h3>
+              <% end %>
+            </div>
+
+            <% project.portfolios.each do |portfolio| %>
+              <% if current_user.portfolios.include?(portfolio) %>
+                <div class="tabs-list-item">
+                  <%= image_tag portfolio.cover.url, :class => 'miniature' %>
+                  <p><%= portfolio.name %></p>
+                </div>
+
+                <div class="divider-line"></div>
+              <% end %>
+            <% end %>
+          </div>
+
+          <div id="addProjectToPortfolio">
+            <%= form.collection_check_boxes(:portfolio_ids, current_user.portfolios.all, :id, :name) do |b| %>
+              <%= b.label class:"label-checkbox" do %>
+                <%= b.check_box + b.text%>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="tabContent" id="decoration"><p>Coming soon...</p></div>
+
+        <div class="tabContent" id="content"><p>Coming soon...</p></div>
+
+        <div class="bottombar">
+          <div>
+            <%#= image_tag "icons/button/add/default.svg" %>
+            <%= form.submit "Сохранить" %>
+          </div>
+
+          <%= link_to(new_project_path, class: "button") do%>
+            <%#= image_tag "icons/button/add/default.svg" %>
+            <h3>Опубликовать</h3>
+          <% end %>
+
+          <%= link_to(new_project_path, class: "button") do%>
+            <%#= image_tag "icons/button/add/default.svg" %>
+            <h3>Экспортировать</h3>
+          <% end %>
+        </div>
       </div>
-
-      <div>
-        <%= form.label 'Портфолио' %>
-        <%= link_to 'Добавить в портфолио' %>
-        <% project.portfolios.each do |portfolio| %>
-          <div><%= portfolio.name %></div>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="decoration">
-    </div>
-
-    <div class="content">
-    </div>
-  </div>
-
-  <div class="toolbar">
-    <div class="field">
-      <%= form.label :language %>
-      <%= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
-    </div>
-
-    <div class="actions">
-      <%= form.submit "Сохранить проект" %>
     </div>
   </div>
 <% end %>

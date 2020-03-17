@@ -8,7 +8,7 @@
         <h3>Поиск по проектам</h3>
       <% end %>
 
-      <%= link_to(new_portfolio_path, class: "button") do%>
+      <%= link_to(new_project_path, class: "button") do%>
         <%= image_tag "icons/button/add/default.svg" %>
         <h3>Создать проект</h3>
       <% end %>
@@ -33,9 +33,9 @@
                 <%= image_tag "icons/card/export/default@2.png" %>
               <% end %>
 
-              <%#= link_to project, method: :delete do %>
+              <%= link_to(project, method: :delete, data: { confirm: 'Are you sure?' }) do %>
                 <%= image_tag "icons/card/options/default@2.png" %>
-              <%# end %>
+              <% end %>
             </div>
           </div>
         </div>

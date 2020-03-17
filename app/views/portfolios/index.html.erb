@@ -40,9 +40,9 @@
             <%= image_tag "icons/card/export/default@2.png" %>
           <% end %>
 
-          <%#= link_to 'Удалить', portfolio, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to(portfolio, method: :delete, data: { confirm: 'Are you sure?' }) do %>
             <%= image_tag "icons/card/options/default@2.png" %>
-          <%# end %>
+          <% end %>
         </div>
       </div>
 

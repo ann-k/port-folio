@@ -49,9 +49,6 @@
 
       <div class="constructor">
         <div class="tabContent" id="settings">
-          <%#= form.label :cover %>
-          <%#= form.file_field :cover %>
-
           <div class="input">
             <h3>Название портфолио (видно только вам)</h3>
             <%= form.text_field :name, placeholder: "Новое портфолио" %>
@@ -127,23 +124,19 @@
 
         <div class="bottombar">
           <div>
-            <%= image_tag "icons/button/add/default.svg" %>
+            <%#= image_tag "icons/button/add/default.svg" %>
             <%= form.submit "Сохранить" %>
           </div>
 
-          <!-- <div class=""> -->
-            <%= link_to(new_portfolio_path, class: "button") do%>
-              <%= image_tag "icons/button/add/default.svg" %>
-              <h3>Опубликовать</h3>
-            <% end %>
-          <!-- </div> -->
+          <%= link_to(new_portfolio_path, class: "button") do%>
+            <%#= image_tag "icons/button/add/default.svg" %>
+            <h3>Опубликовать</h3>
+          <% end %>
 
-          <!-- <div> -->
-            <%= link_to(new_portfolio_path, class: "button") do%>
-              <%= image_tag "icons/button/add/default.svg" %>
-              <h3>Экспортировать</h3>
-            <% end %>
-          <!-- </div> -->
+          <%= link_to(new_portfolio_path, class: "button") do%>
+            <%#= image_tag "icons/button/add/default.svg" %>
+            <h3>Экспортировать</h3>
+          <% end %>
         </div>
       </div>
     </div>

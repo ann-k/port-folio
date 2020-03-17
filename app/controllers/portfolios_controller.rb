@@ -15,6 +15,7 @@ class PortfoliosController < ApplicationController
   # GET /portfolios/new
   def new
     @portfolio = current_user.portfolios.new
+    @portfolio.project_in_portfolios.build
   end
 
   # GET /portfolios/1/edit
@@ -71,6 +72,8 @@ class PortfoliosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def portfolio_params
-      params.require(:portfolio).permit(:name, :description, :cover, :language, :title, :body, :user_id)
+      params.require(:portfolio).permit(:name, :description, :cover, :language, :title, :body, :user_id, project_ids:[],
+        project_in_portfolios_attributes: [:id, :order, :portfolio_id, :project_id, :_destroy],
+        )
     end
 end

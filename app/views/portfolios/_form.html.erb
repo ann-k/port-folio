@@ -35,10 +35,14 @@
 
           <div class="editor-projects-container">
             <% portfolio.projects.each do |project| %>
+              <% if current_user.projects.include?(project) %>
                 <div>
                   <%= image_tag project.cover.url %>
-                  <h3><%= project.title %></h3>
+                  <h3>
+                    <%= project.title %>
+                  </h3>
                 </div>
+              <% end %>
             <% end %>
           </div>
       </div>
@@ -78,22 +82,42 @@
           </div>
 
           <div class="tabs-list">
-            <div class="tabs-list-header">
+            <div class="tabs-list-header" id="specialButton" onclick="showBlock()">
               <h3>Проекты</h3>
-              <%= link_to(new_portfolio_path, class: "button") do%>
+              <%= link_to("#", class: "button") do%>
                 <%= image_tag "icons/button/add/default.svg" %>
                 <h3>Добавить проект</h3>
               <% end %>
             </div>
 
             <% portfolio.projects.each do |project| %>
-              <div class="tabs-list-item">
-                <%= image_tag project.cover.url, :class => 'miniature' %>
-                <p><%= project.title %></p>
-              </div>
+              <% if current_user.projects.include?(project) %>
+                <div class="tabs-list-item">
+                  <%= image_tag project.cover.url, :class => 'miniature' %>
+                  <p><%= project.title %></p>
+                  <%#= project.id %>
+                </div>
 
-              <div class="divider-line"></div>
+                <div class="divider-line"></div>
+              <% end %>
             <% end %>
+          </div>
+
+          <div id="addProjectToPortfolio">
+            <%= form.collection_check_boxes(:project_ids, current_user.projects.all, :id, :title) do |b| %>
+              <%= b.label class:"label-checkbox" do %>
+                <%= b.check_box + b.text%>
+              <% end %>
+            <% end %>
+
+            <%#= form.fields_for :project_in_portfolios do |project_in_portfolios_form| %>
+              <%#= project_in_portfolios_form.collection_select :project_id, Project.all, :id, :title, prompt: true %>
+              <%#= project_in_portfolios_form.check_box :_destroy %>
+            <%# end %>
+
+            <%#= form.fields_for :project_in_portfolio, Project_in_portfolio.new do |project_in_portfolio_attributes|%>
+              <%#= project_in_portfolio_attributes.text_field :project_id %>
+            <%# end %>
           </div>
         </div>
 

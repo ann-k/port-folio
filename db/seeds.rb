@@ -39,8 +39,8 @@ end
 #Portfolios
 
 @portfolios = [
-  {name: "Веб портфолио", description: "Для веб-дизайна"},
-  {name: "Граф портфолио", description: "Для граф дизайна"},
+  {name: "Веб-дизайн портфолио", description: "Для веб-дизайна"},
+  {name: "Граф-дизайн портфолио", description: "Для граф дизайна"},
   {name: "Код портфолио", description: "Для программирования"}
 ]
 
@@ -68,21 +68,25 @@ end
   "Сайт",
   "Приложение",
   "Лендинг",
-  "Книга"
+  "Книга",
+  "Сервис",
+  "Журнал",
+  "Фото-проект",
+  "Фирменный стиль"
 ]
 
-def create_project(user_id)
+def create_project(title, user_id)
   Project.create(
-    title: @projects_titles.sample,
+    title: title,
     user_id: user_id
   )
 end
 
 User.all.each do |user|
-  30.times do
-    p = create_project(user.id)
+  @projects_titles.each { |project_title|
+    p = create_project(project_title, user.id)
     puts "Project with user id #{p.user_id} and name #{p.title} created"
-  end
+  }
 end
 
 
@@ -103,10 +107,10 @@ Portfolio.all.each do |portfolio|
     project = Project.all.sample
     project_in_certain_portfolios = Portfolio.find(portfolio.id).projects
 
-    unless project_in_certain_portfolios.include?(project)
+    # unless project_in_certain_portfolios.include?(project)
       p = create_project_in_portfolio(portfolio, project.id)
       puts "Project in portfolio with portfolio id #{p.portfolio_id} and project id #{p.project_id} created"
-    end
+    # end
   end
 end
 

@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2020_02_03_004158) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "contents", force: :cascade do |t|
     t.integer "contentable_id"
     t.string "contentable_type"

@@ -18,7 +18,7 @@
 
       <div class="topbar">
         <div class="editor-tabs">
-          <%= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
+          <%#= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
         </div>
 
         <div class="constructor-tabs">
@@ -68,14 +68,13 @@
               <% end %>
             </div>
 
-            <% portfolio.resumes.each do |resume| %>
-              <div class="tabs-list-item">
-                <%= image_tag resume.cover.url, :class => 'miniature' %>
-                <p><%= resume.name %></p>
-              </div>
+            <%# portfolio.resumes.each do |resume| %>
+              <!-- <div class="tabs-list-item"> -->
+                <p><%#= resume.name %></p>
+              <!-- </div> -->
 
-              <div class="divider-line"></div>
-            <% end %>
+              <!-- <div class="divider-line"></div> -->
+            <%# end %>
           </div>
 
           <div class="tabs-list">
@@ -92,7 +91,6 @@
                 <div class="tabs-list-item">
                   <%= image_tag project.cover.url, :class => 'miniature' %>
                   <p><%= project.title %></p>
-                  <%#= project.id %>
                 </div>
 
                 <div class="divider-line"></div>
@@ -123,7 +121,7 @@
         <div class="tabContent" id="content"><p>Coming soon...</p></div>
 
         <div class="bottombar">
-          <div>
+          <div class="button">
             <%#= image_tag "icons/button/add/default.svg" %>
             <%= form.submit "Сохранить" %>
           </div>

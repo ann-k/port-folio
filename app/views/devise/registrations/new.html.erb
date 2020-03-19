@@ -1,0 +1,32 @@
+<div class="sessions-container">
+  <h2>Регистрация</h2>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <h3>Email</h3>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+
+    <div class="field">
+      <h3>Пароль
+        <% if @minimum_password_length %>
+          (<%= @minimum_password_length %> знаков минимум)
+        <% end %>
+      </h3>
+      <%= f.password_field :password, autocomplete: "new-password" %>
+    </div>
+
+    <div class="field">
+      <h3>Повторите пароль</h3>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+
+    <div class="button">
+      <%= f.submit "Зарегистрироваться" %>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</div>

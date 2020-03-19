@@ -12,6 +12,10 @@
 
   padding-left: 24px;
   padding-right: 24px;
+
+  .button input {
+    margin: auto;
+  }
 }
 
 .topbar {
@@ -38,6 +42,8 @@
     grid-template-columns: 1fr 1fr 1fr;
     justify-content: space-between;
 
+    border-radius: 0 0 10px 10px;
+
     h3 {
       margin: auto;
       cursor: pointer;
@@ -46,6 +52,10 @@
         color: $primary;
       }
     }
+  }
+
+  .editor-tabs {
+    border-radius: 0 0 10px 10px;
   }
 }
 
@@ -124,7 +134,7 @@
 }
 
 #addProjectToPortfolio {
-  display: none;
+  // display: none;
 }
 
 .label-checkbox input {
@@ -140,4 +150,5 @@
   z-index: 2;
 
   background-color: $surface;
+  border-radius: 10px 10px 0 0;
 }

@@ -6,9 +6,9 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
-    <%= javascript_pack_tag "application", "data-turbolinks-track": "reload" %>
     <%= javascript_include_tag "tabs", "data-turbolinks-track" => true  %>
     <%= javascript_include_tag "add_project_to_portfolio", "data-turbolinks-track" => true  %>
+    <%= javascript_pack_tag "application", "data-turbolinks-track": "reload" %>
     <%= javascript_pack_tag "main" %>
   </head>
 
@@ -35,15 +35,15 @@
           </div>
 
           <div class="nav-items-bottom">
-            <%= link_to do %>
-              <%= image_tag "icons/menu/decorations/default@2.png" %>
-              <h3>Оформление</h3>
-            <% end %>
+            <%#= link_to do %>
+              <%#= image_tag "icons/menu/decorations/default@2.png" %>
+              <!-- <h3>Оформление</h3> -->
+            <%# end %>
 
-            <%= link_to do %>
-              <%= image_tag "icons/menu/explore/default@2.png" %>
-              <h3>Примеры</h3>
-            <% end %>
+            <%#= link_to do %>
+              <%#= image_tag "icons/menu/explore/default@2.png" %>
+              <!-- <h3>Примеры</h3> -->
+            <%# end %>
 
             <%= link_to account_path do %>
               <%= image_tag "icons/menu/settings/default@2.png" %>

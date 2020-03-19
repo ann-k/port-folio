@@ -17,7 +17,7 @@
     <div class="edit-inner-container">
       <div class="topbar">
         <div class="editor-tabs">
-          <%= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
+          <%#= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
         </div>
 
         <div class="constructor-tabs">
@@ -48,7 +48,7 @@
           <div class="tabs-list">
             <div class="tabs-list-header">
               <h3>Портфолио</h3>
-              <%= link_to(new_portfolio_path, class: "button") do%>
+              <%= link_to("#", class: "button") do%>
                 <%= image_tag "icons/button/add/default.svg" %>
                 <h3>Связать с портфолио</h3>
               <% end %>
@@ -56,7 +56,6 @@
 
             <% resume.portfolios.each do |portfolio| %>
               <div class="tabs-list-item">
-                <%= image_tag portfolio.cover.url, :class => 'miniature' %>
                 <p><%= portfolio.name %></p>
               </div>
 
@@ -69,21 +68,21 @@
         <div class="tabContent" id="content"><p>Coming soon...</p></div>
 
         <div class="bottombar">
-          <div id="editorJsSaveButton">
-            <%= image_tag "icons/button/add/default.svg" %>
+          <div class="button" id="editorJsSaveButton">
+            <%#= image_tag "icons/button/add/default.svg" %>
             <%= form.submit "Сохранить" %>
           </div>
 
           <!-- <div class=""> -->
             <%= link_to(new_resume_path, class: "button") do%>
-              <%= image_tag "icons/button/add/default.svg" %>
+              <%#= image_tag "icons/button/add/default.svg" %>
               <h3>Опубликовать</h3>
             <% end %>
           <!-- </div> -->
 
           <!-- <div> -->
             <%= link_to(new_resume_path, class: "button") do%>
-              <%= image_tag "icons/button/add/default.svg" %>
+              <%#= image_tag "icons/button/add/default.svg" %>
               <h3>Экспортировать</h3>
             <% end %>
           <!-- </div> -->

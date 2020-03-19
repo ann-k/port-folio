@@ -31,13 +31,19 @@ body {
 
   border-radius: 11px;
   background-color: $surface;
+
+  cursor: pointer;
+
+  * {
+    cursor: pointer;
+  }
 }
 
 .button h3 {
   margin-left: 8px;
 }
 
-input[type=text], input[type=password], input[type=number], textarea {
+input[type=text], input[type=email], input[type=password], input[type=number], textarea {
   padding: 16px;
 
   color: $text;
@@ -50,6 +56,19 @@ input[type=text], input[type=password], input[type=number], textarea {
   line-height: 24px;
 
   resize: none;
+}
+
+input[type=submit] {
+  color: $text;
+  background-color: $surface;
+  border: none;
+  padding: 0;
+
+  font-family: "ptrootui bold";
+  font-weight: 400;
+
+  font-size: 16px;
+  line-height: 24px;
 }
 
 a, a:visited {

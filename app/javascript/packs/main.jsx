@@ -13,6 +13,7 @@ import EditorJS from '@editorjs/editorjs'
 // })
 
 const Header = require('@editorjs/header')
+const List = require('@editorjs/list')
 
 document.addEventListener('DOMContentLoaded', () => {
   const editor = new EditorJS({
@@ -30,6 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
           levels: [1, 2, 3],
           defaultLevel: 2
         }
+      },
+      list: {
+        class: List,
+        inlineToolbar: true,
       }
     }
   })

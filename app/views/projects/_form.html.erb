@@ -18,7 +18,7 @@
 
       <div class="topbar">
         <div class="editor-tabs">
-          <%= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
+          <%#= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
         </div>
 
         <div class="constructor-tabs">
@@ -66,7 +66,6 @@
             <% project.portfolios.each do |portfolio| %>
               <% if current_user.portfolios.include?(portfolio) %>
                 <div class="tabs-list-item">
-                  <%= image_tag portfolio.cover.url, :class => 'miniature' %>
                   <p><%= portfolio.name %></p>
                 </div>
 
@@ -75,7 +74,7 @@
             <% end %>
           </div>
 
-          <div id="addProjectToPortfolio">
+          <div id="addProjectToPortfolio" style="display: none;">
             <%= form.collection_check_boxes(:portfolio_ids, current_user.portfolios.all, :id, :name) do |b| %>
               <%= b.label class:"label-checkbox" do %>
                 <%= b.check_box + b.text%>
@@ -89,7 +88,7 @@
         <div class="tabContent" id="content"><p>Coming soon...</p></div>
 
         <div class="bottombar">
-          <div>
+          <div class="button">
             <%#= image_tag "icons/button/add/default.svg" %>
             <%= form.submit "Сохранить" %>
           </div>

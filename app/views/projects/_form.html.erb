@@ -1,3 +1,5 @@
+<%= javascript_pack_tag "editorProject" %>
+
 <%= form_with(model: project, local: true) do |form| %>
   <div class="outer-container">
     <div class="notification">
@@ -28,16 +30,14 @@
         </div>
       </div>
 
-      <div class="editor">
-        <div class="editorjs" id="editorjs"></div>
-          <%#= form.text_field :title, class: 'field', placeholder: "Новое портфолио" %>
-          <%#= form.text_area :body, class: 'field', placeholder: "Напишите немного о себе и добавьте проекты" %>
+      <div class="editor" id="editorDataContainer" data-contents="<%= @project.content.to_json  %>">
+        <div class="editorjs" id="editorProject"></div>
       </div>
 
       <div class="constructor">
         <div class="tabContent" id="settings">
           <div class="project-cover">
-            <%= form.label :cover %>
+            <h3>Обложка</h3>
             <%= form.file_field :cover %>
 
             <% if project.cover? %>
@@ -50,8 +50,8 @@
           </div>
 
           <div class="input">
-            <h3>Название проекта</h3>
-            <%= form.text_field :title, placeholder: "Новый проект" %>
+            <h3 id="editorjstest" data-project="<%= @project.name  %>">Название проекта</h3>
+            <%= form.text_field :name, placeholder: "Новый проект", id: "" %>
           </div>
 
           <div class="tabs-list">
@@ -93,10 +93,11 @@
             <%= form.submit "Сохранить" %>
           </div>
 
-          <%= link_to(new_project_path, class: "button") do%>
-            <%#= image_tag "icons/button/add/default.svg" %>
-            <h3>Опубликовать</h3>
-          <% end %>
+          <div class="button" id="editorJsSaveButton">
+              <%#= image_tag "icons/button/add/default.svg" %>
+              <h3>Сохранить editorjs</h3>
+              <!-- <h3>Опубликовать</h3> -->
+          </div>
 
           <%= link_to(new_project_path, class: "button") do%>
             <%#= image_tag "icons/button/add/default.svg" %>

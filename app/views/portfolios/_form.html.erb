@@ -1,3 +1,5 @@
+<%= javascript_pack_tag "editorPortfolio" %>
+
 <%= form_with(model: portfolio, local: true) do |form| %>
   <div class="outer-container">
     <div class="notification">
@@ -29,9 +31,7 @@
       </div>
 
       <div class="editor">
-        <div class="editorjs" id="editorjs"></div>
-          <%#= form.text_field :title, class: 'field', placeholder: "Новое портфолио" %>
-          <%#= form.text_area :body, class: 'field', placeholder: "Напишите немного о себе и добавьте проекты" %>
+        <div class="editorjs" id="editorPortfolio"></div>
 
           <div class="editor-projects-container">
             <% portfolio.projects.each do |project| %>
@@ -61,29 +61,36 @@
 
           <div class="tabs-list">
             <div class="tabs-list-header">
-              <h3>Резюме</h3>
+              <div>
+                <%= image_tag "icons/menu/resumes/default.svg" %>
+                <h3>Резюме</h3>
+              </div>
               <%= link_to(new_portfolio_path, class: "button") do%>
                 <%= image_tag "icons/button/add/default.svg" %>
                 <h3>Связать с резюме</h3>
               <% end %>
             </div>
 
-            <%# portfolio.resumes.each do |resume| %>
-              <!-- <div class="tabs-list-item"> -->
-                <p><%#= resume.name %></p>
-              <!-- </div> -->
+            <% portfolio.resumes.each do |resume| %>
+              <div class="tabs-list-item">
+                <p><%= resume.name %></p>
+              </div>
 
-              <!-- <div class="divider-line"></div> -->
-            <%# end %>
+              <div class="divider-line"></div>
+            <% end %>
           </div>
 
           <div class="tabs-list">
             <div class="tabs-list-header" id="specialButton" onclick="showBlock()">
-              <h3>Проекты</h3>
-              <%= link_to("#", class: "button") do%>
+              <div>
+                <%= image_tag "icons/menu/projects/default.svg" %>
+                <h3>Проекты</h3>
+              </div>
+
+              <div class="button">
                 <%= image_tag "icons/button/add/default.svg" %>
                 <h3>Добавить проект</h3>
-              <% end %>
+              </div>
             </div>
 
             <% portfolio.projects.each do |project| %>
@@ -126,10 +133,11 @@
             <%= form.submit "Сохранить" %>
           </div>
 
-          <%= link_to(new_portfolio_path, class: "button") do%>
-            <%#= image_tag "icons/button/add/default.svg" %>
-            <h3>Опубликовать</h3>
-          <% end %>
+          <div class="button" id="editorJsSaveButton">
+              <%#= image_tag "icons/button/add/default.svg" %>
+              <h3>Сохранить editorjs</h3>
+              <!-- <h3>Опубликовать</h3> -->
+          </div>
 
           <%= link_to(new_portfolio_path, class: "button") do%>
             <%#= image_tag "icons/button/add/default.svg" %>

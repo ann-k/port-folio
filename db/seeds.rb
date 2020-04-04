@@ -9,10 +9,13 @@
 start = Time.now
 
 # Reset Database
-Rake::Task['db:drop'].invoke
+Portfolio.delete_all
+Resume.delete_all
+Project.delete_all
+Content.delete_all
+# Rake::Task['db:drop'].invoke
 Rake::Task['db:create'].invoke
 Rake::Task['db:migrate'].invoke
-
 
 #Users
 
@@ -64,7 +67,7 @@ end
 
 #Projects
 
-@projects_titles = [
+@projects_names = [
   "Сайт",
   "Приложение",
   "Лендинг",
@@ -75,18 +78,53 @@ end
   "Фирменный стиль"
 ]
 
-def create_project(title, user_id)
+def create_project(name, user_id)
   Project.create(
-    title: title,
+    name: name,
     user_id: user_id
   )
 end
 
 User.all.each do |user|
-  @projects_titles.each { |project_title|
-    p = create_project(project_title, user.id)
-    puts "Project with user id #{p.user_id} and name #{p.title} created"
+  @projects_names.each { |projects_name|
+    p = create_project(projects_name, user.id)
+    puts "Project with user id #{p.user_id} and name #{p.name} created"
   }
+end
+
+#Project Content
+
+@project_content_data = {
+   "time": Time.current.to_i,
+   "blocks": [
+     {
+        "type": "header",
+        "data": {
+          "text": "Название проекта",
+          "level": 2
+        }
+      },
+      {
+         "type": "paragraph",
+         "data": {
+           "text": "Здесь вы можете описать свой проект. Добавляйте текст, ссылки, картинки и видео."
+         }
+      }
+   ],
+   "version": "2.16.1"
+}
+
+def create_project_content(data, project_id)
+  Content.create(
+    content_data: data,
+    contentable_id: project_id,
+    contentable_type: Project
+  )
+end
+
+Project.all.each do |project|
+  c = create_project_content(@project_content_data, project.id)
+  puts "Content of a project with id #{c.contentable_id} and type #{c.contentable_type} created"
 end
 
 

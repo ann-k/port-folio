@@ -18,11 +18,11 @@
 
     <% @portfolios.each do |portfolio| %>
       <div class="card">
-        <!-- <div class="card-cover"> -->
-          <%#= link_to edit_portfolio_path(portfolio) do %>
-            <%#= image_tag portfolio.cover.url %>
-          <%# end %>
-        <!-- </div> -->
+        <div class="card-cover">
+          <%= link_to edit_portfolio_path(portfolio) do %>
+            <%= image_tag portfolio.cover.url %>
+          <% end %>
+        </div>
 
         <div class="card-text">
           <%= link_to edit_portfolio_path(portfolio) do %>

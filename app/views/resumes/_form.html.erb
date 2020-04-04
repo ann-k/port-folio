@@ -1,3 +1,5 @@
+<%= javascript_pack_tag "editorResume" %>
+
 <%= form_with(model: resume, local: true) do |form| %>
   <div class="outer-container">
     <div class="notification">
@@ -28,7 +30,7 @@
       </div>
 
       <div class="editor">
-        <div class="editorjs" id="editorjs"></div>
+        <div class="editorjs" id="editorResume"></div>
           <%#= form.text_field :title, class: 'field', placeholder: "Новое резюме" %>
           <%#= form.text_area :body, class: 'field', placeholder: "Опишите свой опыт" %>
       </div>

@@ -18,11 +18,11 @@
 
     <% @resumes.each do |resume| %>
       <div class="card">
-        <!-- <div class="card-cover"> -->
-          <%#= link_to edit_resume_path(resume) do %>
-            <%#= image_tag resume.cover.url %>
-          <%# end %>
-        <!-- </div> -->
+        <div class="card-cover">
+          <%= link_to edit_resume_path(resume) do %>
+            <%= image_tag resume.cover.url %>
+          <% end %>
+        </div>
 
         <div class="card-text">
           <%= link_to edit_resume_path(resume) do %>

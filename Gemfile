@@ -28,6 +28,8 @@ gem 'devise'
 gem 'carrierwave', '~> 2.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails', '~> 5.0'
+gem 'react-rails'
+gem 'active_model_serializers'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

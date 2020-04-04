@@ -72,7 +72,11 @@
 }
 
 .editorjs {
-  height: 20vh;
+  min-height: 20vh;
+}
+
+div.codex-editor__redactor {
+  padding-bottom: 40px !important;
 }
 
 .editor-projects-container {
@@ -112,20 +116,25 @@
     flex-direction: row;
     align-items: center;
 
-    width: 100%;
-  }
-
-  p {
-    margin-left: 16px;
   }
 }
 
 .tabs-list-header {
   justify-content: space-between;
+  width: 100%;
+
+  h3 {
+    margin-left: 8px;
+  }
 }
 
 .tabs-list-item {
   height: 48px;
+  width: 100%;
+
+  img {
+    margin-right: 16px;
+  }
 }
 
 .miniature {
@@ -133,12 +142,12 @@
   height: 32px;
 }
 
-#addProjectToPortfolio {
-  // display: none;
-}
-
 .label-checkbox input {
   width: 24px;
+}
+
+#addProjectToPortfolio {
+  display: none;
 }
 
 .bottombar {

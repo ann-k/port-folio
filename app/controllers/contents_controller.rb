@@ -4,12 +4,14 @@ class ContentsController < ApplicationController
   # GET /contents
   # GET /contents.json
   def index
-    @contents = Content.all
+    render json: Content.all
+    # @contents = Content.all
   end
 
   # GET /contents/1
   # GET /contents/1.json
   def show
+    render json: Content.find(params[:id])
   end
 
   # GET /contents/new
@@ -69,6 +71,6 @@ class ContentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def content_params
-      params.require(:content).permit(:contentable_id, :contentable_type)
+      params.require(:content).permit(:contentable_id, :contentable_type, :content_data)
     end
 end

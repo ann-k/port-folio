@@ -17,6 +17,7 @@
   "version": "0.1.0",
   "devDependencies": {
     "@editorjs/editorjs": "^2.16.1",
+    "@editorjs/embed": "^2.2.1",
     "@editorjs/header": "^2.4.0",
     "@editorjs/list": "^1.4.0",
     "webpack-dev-server": "^3.10.3"

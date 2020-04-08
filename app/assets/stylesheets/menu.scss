@@ -4,6 +4,7 @@ nav {
   top: 0px;
   left: 0px;
   position: fixed;
+  z-index: 2;
 
   display: flex;
   flex-direction: column;
@@ -12,18 +13,35 @@ nav {
   width: 16vw;
   height: 100vh;
 
-  padding-top: 32px;
+  padding-top: 16px;
   padding-bottom: 32px;
 
   height: 100vh;
 
-  background-color: $surface;
+  transition: all 0.5s ease;
 
-  // display: none;
+  &:hover {
+    width: 16vw;
+
+    h3 {
+      opacity: 1;
+    }
+  }
 }
 
 nav > div {
-  margin-left: 12%;
+  margin-left: 10px;
+}
+
+.menu-item-img {
+  width: 18px;
+  height: 14px;
+
+  margin-top: auto;
+  margin-bottom: auto;
+
+  background: white;
+  transition: all 0.5s ease;
 }
 
 .nav-items-group {
@@ -36,14 +54,74 @@ nav > div {
   a {
     display: flex;
     flex-direction: row;
-    align-items: center;
 
-    height: 24px;
+    height: 48px;
+    margin-right: 10px;
+    padding-left: 10px;
 
-    margin-top: 16px;
+    transition: all 0.5s ease;
+
+    &:hover {
+      border-radius: 10px;
+      background-color: $surface;
+
+      .menu-item-img {
+        background: $primary;
+      }
+    }
   }
 
   h3 {
     margin-left: 8px;
+    line-height: 48px;
+    opacity: 0;
+    transition: all 0.5s ease;
   }
+}
+
+.logo {
+  padding-left: 10px;
+  margin-bottom: 16px;
+
+  #logo-long {
+    display: none;
+  }
+}
+
+.nav-shown {
+  width: 16vw;
+  background-color: $surface;
+
+  #logo-long {
+    display: block;
+  }
+
+  #logo-short {
+    display: none;
+  }
+
+  h3 {
+    opacity: 1;
+  }
+
+  a:hover {
+    border-radius: 10px;
+    background-color: $background;
+  }
+}
+
+#portfolio-icon {
+  -webkit-mask: url("http://localhost:3000/assets/icons/menu/portfolios/default-25b0ece171a257e39a6acefa487952583ca3065cbbf8cf31ef1a7d61fb1a5b58.svg");
+}
+
+#project-icon {
+  -webkit-mask: url("http://localhost:3000/assets/icons/menu/projects/default-59231967d3d23129807c126fa300e6a53e5cd5ce211fb67b5a5ce482b6808221.svg");
+}
+
+#resume-icon {
+  -webkit-mask: url("http://localhost:3000/assets/icons/menu/resumes/default-fc786a2c8aa414f17be0020742ab0689afda917fd4e72ef1a1ac9c1b058be524.svg");
+}
+
+#settings-icon {
+  -webkit-mask: url("http://localhost:3000/assets/icons/menu/settings/default-0cec70e70fa175a7f4188a8d32c36e393059e2c0659a0ea1b97a5f81ec495312.svg");
 }

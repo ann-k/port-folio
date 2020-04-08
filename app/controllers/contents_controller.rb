@@ -42,8 +42,23 @@ class ContentsController < ApplicationController
   # PATCH/PUT /contents/1
   # PATCH/PUT /contents/1.json
   def update
+    puts params
     respond_to do |format|
-      if @content.update(content_params)
+      content = {
+        content_data: {
+          time: params[:content][:time],
+          blocks: params[:content][:blocks],
+          version: params[:content][:version]
+        }
+      }
+
+      # content = content_params
+      # content[:content][:content_data] = content_blocks_and_time
+      # content[:content].delete("time")
+      # content[:content].delete("blocks")
+      # content[:content].delete("version")
+
+      if @content.update(content)
         format.html { redirect_to @content, notice: 'Content was successfully updated.' }
         format.json { render :show, status: :ok, location: @content }
       else
@@ -71,6 +86,6 @@ class ContentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def content_params
-      params.require(:content).permit(:contentable_id, :contentable_type, :content_data)
+      params.require(:content).permit(:contentable_id, :contentable_type, :content_data, :time, :version, :blocks => [])
     end
 end

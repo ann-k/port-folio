@@ -1,5 +1,11 @@
 @import "variables";
 
+.index-outer-container {
+  left: 16vw;
+  position: absolute;
+  width: 100vw - 16vw;
+}
+
 .index-inner-container {
   width: 60vw;
 

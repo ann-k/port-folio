@@ -6,12 +6,12 @@ import EditorJS from '@editorjs/editorjs'
 
 const Header = require('@editorjs/header')
 const List = require('@editorjs/list')
+const Embed = require('@editorjs/embed');
 
 export const editorProject = document.addEventListener('DOMContentLoaded', () => {
   // let projectName = document.getElementById('editorjstest').dataset.project
 
   let dataFromBackend = JSON.parse(document.getElementById('editorDataContainer').dataset.contents).content_data
-  console.log(dataFromBackend);
 
   const editor = new EditorJS({
     holder: 'editorProject',
@@ -32,42 +32,50 @@ export const editorProject = document.addEventListener('DOMContentLoaded', () =>
       list: {
         class: List,
         inlineToolbar: true,
+      },
+      embed: {
+        class: Embed,
+        inlineToolbar: true
       }
     }
   })
 
   let saveButton = document.getElementById('editorJsSaveButton')
 
+  let url = document.getElementById('editorDataContainer').dataset.url + '.json'
+
   saveButton.addEventListener('click', () => {
     editor.save().then((outputData) => {
-      console.log('Article data: ', outputData)
+      // console.log('Article data: ', outputData)
 
-      let newContent = {
-        content_data: outputData,
-        contentable_id: 1,
-        contentable_type: 'Project'
-      }
-
-      fetch('http://localhost:3000/contents', {
-        method: 'POST',
+      fetch(url, {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(newContent)
+        body: JSON.stringify({content: outputData})
       })
-      .then(res => res.json())
+      .then(res => {
+        // return res.json()
+        console.log(res);
+      })
       .then(data => console.log(data))
       .catch((error) => {
         console.error('Error:', error)
       })
 
-      // let outputDataTextTest = outputData.blocks[0]
-      // console.log(outputDataTextTest.data.text);
-      // ReactDOM.render(
-      //   outputDataTextTest.data.text,
-      //   document.getElementById('editorjstest')
-      // )
-
+      // fetch('http://localhost:3000/contents', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   },
+      //   body: JSON.stringify(outputData)
+      // })
+      // .then(res => res.json())
+      // .then(data => console.log(data))
+      // .catch((error) => {
+      //   console.error('Error:', error)
+      // })
 
     }).catch((error) => {
       console.log('Saving failed: ', error)

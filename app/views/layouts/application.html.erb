@@ -1,35 +1,44 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PortFolio</title>
+    <title>P–F</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= favicon_link_tag asset_path('favicon.png') %>
 
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
     <%= javascript_include_tag "tabs", "data-turbolinks-track" => true  %>
+    <%= javascript_include_tag "menu", "data-turbolinks-track" => true  %>
+
     <%= javascript_include_tag "add_project_to_portfolio", "data-turbolinks-track" => true  %>
     <%= javascript_pack_tag "application", "data-turbolinks-track": "reload" %>
     <%#= javascript_pack_tag "main" %>
   </head>
 
-  <body>
+  <body id="<%= action_name %>">
     <% if user_signed_in? %>
       <nav>
-        <div class="logo"><%= image_tag "logo/long.svg" %></div>
+        <div class="logo">
+          <%= image_tag "logo/long.svg", id: "logo-long"%>
+          <%= image_tag "logo/short.svg", id: "logo-short" %>
+        </div>
         <div class="nav-items-group">
           <div class="nav-items-top">
             <%= link_to(portfolios_path) do %>
-                <%= image_tag "icons/menu/portfolios/default.svg" %>
-                <h3>Портфолио</h3>
+              <img class="menu-item-img" id="portfolio-icon"></img>
+              <%#= image_tag "icons/menu/portfolios/default.svg" %>
+              <h3>Портфолио</h3>
             <% end %>
 
             <%= link_to(projects_path) do %>
-              <%= image_tag "icons/menu/projects/default.svg" %>
+              <img class="menu-item-img" id="project-icon"></img>
+              <%#= image_tag "icons/menu/projects/default.svg" %>
               <h3>Проекты</h3>
             <% end %>
 
             <%= link_to(resumes_path) do %>
-              <%= image_tag "icons/menu/resumes/default.svg" %>
+              <img class="menu-item-img" id="resume-icon"></img>
+              <%#= image_tag "icons/menu/resumes/default.svg" %>
               <h3>Резюме</h3>
             <% end %>
           </div>
@@ -46,7 +55,8 @@
             <%# end %>
 
             <%= link_to account_path do %>
-              <%= image_tag "icons/menu/settings/default.svg" %>
+              <img class="menu-item-img" id="settings-icon"></img>
+              <%#= image_tag "icons/menu/settings/default.svg" %>
               <h3>Аккаунт</h3>
             <% end %>
           </div>

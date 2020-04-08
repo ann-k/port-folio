@@ -1,17 +1,17 @@
 @import "variables";
 
+.edit-outer-container {
+  right: 0;
+  position: absolute;
+  width: 100vw - 6vw;
+}
+
 .edit-inner-container {
   display: grid;
-  grid-template-columns: 5fr 4fr;
-  grid-column-gap: 32px;
+  grid-template-columns: 5fr 3fr;
+  grid-column-gap: 64px;
 
-  // position: relative;
-
-  // width: 100%;
-  // height: 100%;
-
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-right: 64px;
 
   .button input {
     margin: auto;
@@ -20,21 +20,28 @@
 
 .topbar {
   display: grid;
-  grid-template-columns: 5fr 4fr;
-  grid-column-gap: 32px;
+  grid-template-columns: 5fr 3fr;
+  grid-column-gap: 64px;
 
   top: 0;
   right: 0;
   position: fixed;
   z-index: 2;
 
-  width: 100vw - 16vw;
+  width: 100vw - 6vw;
   height: 48px;
-  padding-right: 24px;
-  padding-left: 24px;
+  padding-right: 64px;
 
   div {
     background-color: $surface;
+  }
+
+  .editor-tabs {
+    width: 334px;
+    margin-left: auto;
+    margin-right: auto;
+
+    border-radius: 0 0 10px 10px;
   }
 
   .constructor-tabs {
@@ -53,10 +60,6 @@
       }
     }
   }
-
-  .editor-tabs {
-    border-radius: 0 0 10px 10px;
-  }
 }
 
 .editor {
@@ -65,7 +68,7 @@
   min-height: 50vh;
 
   margin-top: 64px;
-  padding: 24px 40px 120px 40px;
+  padding: 80px 140px 80px 140px;
 
   color: $background;
   background-color: white;

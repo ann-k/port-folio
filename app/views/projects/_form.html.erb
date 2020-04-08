@@ -1,7 +1,7 @@
 <%= javascript_pack_tag "editorProject" %>
 
 <%= form_with(model: project, local: true) do |form| %>
-  <div class="outer-container">
+  <div class="edit-outer-container">
     <div class="notification">
       <% if project.errors.any? %>
         <div id="error_explanation">
@@ -30,7 +30,7 @@
         </div>
       </div>
 
-      <div class="editor" id="editorDataContainer" data-contents="<%= @project.content.to_json  %>">
+      <div class="editor" id="editorDataContainer" data-contents="<%= @project.content.to_json %>" data-url="<%= url_for(@project.content) %>">
         <div class="editorjs" id="editorProject"></div>
       </div>
 

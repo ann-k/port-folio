@@ -1,7 +1,7 @@
 <%= javascript_pack_tag "editorPortfolio" %>
 
 <%= form_with(model: portfolio, local: true) do |form| %>
-  <div class="outer-container">
+  <div class="edit-outer-container">
     <div class="notification">
       <% if portfolio.errors.any? %>
         <div id="error_explanation">
@@ -39,7 +39,7 @@
                 <div>
                   <%= image_tag project.cover.url %>
                   <h3>
-                    <%= project.title %>
+                    <%= project.name %>
                   </h3>
                 </div>
               <% end %>
@@ -97,7 +97,7 @@
               <% if current_user.projects.include?(project) %>
                 <div class="tabs-list-item">
                   <%= image_tag project.cover.url, :class => 'miniature' %>
-                  <p><%= project.title %></p>
+                  <p><%= project.name %></p>
                 </div>
 
                 <div class="divider-line"></div>

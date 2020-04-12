@@ -20,6 +20,9 @@
 
       <div class="topbar">
         <div class="editor-tabs">
+          <div class="button" id="editorJsSaveButton">
+              <h3>Сохранить editor</h3>
+          </div>
           <%#= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
         </div>
 
@@ -37,7 +40,7 @@
       <div class="constructor">
         <div class="tabContent" id="settings">
           <div class="project-cover">
-            <h3>Обложка</h3>
+            <h3><a href="http://localhost:3000<%= url_for(@project.content) %>">Превью</a></h3>
             <%= form.file_field :cover %>
 
             <% if project.cover? %>
@@ -88,15 +91,14 @@
         <div class="tabContent" id="content"><p>Coming soon...</p></div>
 
         <div class="bottombar">
-          <div class="button">
+          <div class="button" >
             <%#= image_tag "icons/button/add/default.svg" %>
             <%= form.submit "Сохранить" %>
           </div>
 
-          <div class="button" id="editorJsSaveButton">
+          <div class="button">
               <%#= image_tag "icons/button/add/default.svg" %>
-              <h3>Сохранить editorjs</h3>
-              <!-- <h3>Опубликовать</h3> -->
+              <h3>Опубликовать</h3>
           </div>
 
           <%= link_to(new_project_path, class: "button") do%>

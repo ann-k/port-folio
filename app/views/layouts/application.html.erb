@@ -15,7 +15,7 @@
     <%#= javascript_pack_tag "main" %>
   </head>
 
-  <body id="<%= action_name %>">
+  <body class="<%= controller_name %>" id="<%= action_name %>">
     <% if user_signed_in? %>
       <nav>
         <div class="logo">

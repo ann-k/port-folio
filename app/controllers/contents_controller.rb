@@ -11,7 +11,7 @@ class ContentsController < ApplicationController
   # GET /contents/1
   # GET /contents/1.json
   def show
-    render json: Content.find(params[:id])
+    # render json: Content.find(params[:id])
   end
 
   # GET /contents/new

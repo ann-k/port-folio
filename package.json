@@ -8,6 +8,7 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.2.2",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "html-react-parser": "^0.10.3",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
@@ -19,6 +20,7 @@
     "@editorjs/editorjs": "^2.16.1",
     "@editorjs/embed": "^2.2.1",
     "@editorjs/header": "^2.4.0",
+    "@editorjs/image": "^2.3.3",
     "@editorjs/list": "^1.4.0",
     "webpack-dev-server": "^3.10.3"
   }

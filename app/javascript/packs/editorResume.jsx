@@ -7,7 +7,7 @@ import EditorJS from '@editorjs/editorjs'
 const Header = require('@editorjs/header')
 const List = require('@editorjs/list')
 
-export const editorResume = document.addEventListener('DOMContentLoaded', () => {
+// export const editorResume = document.addEventListener('DOMContentLoaded', () => {
   const editor = new EditorJS({
     holder: 'editorResume',
     data: {},
@@ -27,6 +27,10 @@ export const editorResume = document.addEventListener('DOMContentLoaded', () => 
       list: {
         class: List,
         inlineToolbar: true,
+      },
+      embed: {
+        class: Embed,
+        inlineToolbar: true
       }
     }
   })
@@ -48,4 +52,4 @@ export const editorResume = document.addEventListener('DOMContentLoaded', () => 
     })
 
   })
-})
+// })

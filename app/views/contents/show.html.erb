@@ -1,14 +1,28 @@
-<p id="notice"><%= notice %></p>
+<%= javascript_pack_tag "editorReadOnly" %>
+<%= javascript_include_tag "content", "data-turbolinks-track" => true  %>
 
-<p>
-  <strong>Contentable:</strong>
-  <%= @content.contentable_id %>
-</p>
+<style media="screen">
+  nav { display: none; }
+</style>
 
-<p>
-  <strong>Contentable type:</strong>
-  <%= @content.contentable_type %>
-</p>
+<div class="" id="editorDataContainer" data-contents="<%= @content.to_json %>">
+  <div class="editorjs" id="editorProject"></div>
+</div>
 
-<%= link_to 'Edit', edit_content_path(@content) %> |
-<%= link_to 'Back', contents_path %>
+<div class="TEST" contenteditable="true">
+
+</div>
+
+
+
+
+
+<%#= p @content.content_data["blocks"] %>
+
+<%# @content.content_data.each_pair do |key, value| %>
+ <%#= key %>
+ <%#= value %>
+<%# end %>
+
+<%#= link_to 'Edit', edit_content_path(@content) %>
+<%#= link_to 'Back', contents_path %>

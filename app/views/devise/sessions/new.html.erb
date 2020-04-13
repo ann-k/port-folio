@@ -8,6 +8,11 @@
     </div>
 
     <div class="field">
+      <h3>Name</h3>
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "Ваше имя пользователя" %>
+    </div>
+
+    <div class="field">
       <h3>Пароль</h3>
       <%= f.password_field :password, autocomplete: "current-password", placeholder: "Ваш пароль" %>
     </div>

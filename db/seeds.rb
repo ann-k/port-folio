@@ -13,19 +13,26 @@ Portfolio.delete_all
 Resume.delete_all
 Project.delete_all
 Content.delete_all
+User.delete_all
 # Rake::Task['db:drop'].invoke
 Rake::Task['db:create'].invoke
 Rake::Task['db:migrate'].invoke
 
 #Users
 
-@users = [ {email: "user@user.com"}, {email: "test@test.com"} ]
+@users = [
+  { email: "user@user.com",
+    name: "cool_user" },
+  { email: "test@test.com",
+    name: "nice_user" }
+]
 
 def create_user(user)
   password = "password"
 
   User.create(
     email:    user[:email],
+    name:    user[:name],
     password: password,
     password_confirmation: password
   )
@@ -101,7 +108,7 @@ end
         "type": "header",
         "data": {
           "text": "Название проекта",
-          "level": 2
+          "level": 1
         }
       },
       {

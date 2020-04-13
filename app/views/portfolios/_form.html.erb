@@ -30,21 +30,21 @@
         </div>
       </div>
 
-      <div class="editor">
+      <div class="contents-container">
         <div class="editorjs" id="editorPortfolio"></div>
 
-          <div class="editor-projects-container">
-            <% portfolio.projects.each do |project| %>
-              <% if current_user.projects.include?(project) %>
-                <div>
-                  <%= image_tag project.cover.url %>
-                  <h3>
-                    <%= project.name %>
-                  </h3>
-                </div>
-              <% end %>
+        <div class="editor-projects-container">
+          <% portfolio.projects.each do |project| %>
+            <% if current_user.projects.include?(project) %>
+              <div>
+                <%= image_tag project.cover.url %>
+                <h3>
+                  <%= project.name %>
+                </h3>
+              </div>
             <% end %>
-          </div>
+          <% end %>
+        </div>
       </div>
 
       <div class="constructor">

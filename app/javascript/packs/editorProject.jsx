@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // let projectName = document.getElementById('editorjstest').dataset.project
   // let saveButton = document.getElementById('editorJsSaveButton')
 
-  let dataFromBackend = JSON.parse(document.getElementById('editorDataContainer').dataset.contents).content_data
-  let url = document.getElementById('editorDataContainer').dataset.url + '.json'
+  let dataFromBackend = JSON.parse(document.getElementById('editorProject').dataset.contents).content_data
+  let url = document.getElementById('editorProject').dataset.url + '.json'
 
   const editor = new EditorJS({
     holder: 'editorProject',

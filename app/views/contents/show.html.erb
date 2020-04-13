@@ -1,16 +1,12 @@
 <%= javascript_pack_tag "editorReadOnly" %>
-<%= javascript_include_tag "content", "data-turbolinks-track" => true  %>
 
 <style media="screen">
   nav { display: none; }
 </style>
 
-<div class="" id="editorDataContainer" data-contents="<%= @content.to_json %>">
-  <div class="editorjs" id="editorProject"></div>
-</div>
-
-<div class="TEST" contenteditable="true">
-
+<div class="contents-container">
+  <div class="editorjs" id="editorReadOnly" data-contents="<%= @content.to_json %>"></div>
+  <!-- ТУТ БУДУТ ПРОЕКТЫ, ЕСЛИ ЭТО КОНТЕНТ ПОРТФОЛИО -->
 </div>
 
 

@@ -4,7 +4,7 @@ import parser from 'html-react-parser'
 import EditorJS from '@editorjs/editorjs'
 
 document.addEventListener('DOMContentLoaded', () => {
-  let data = JSON.parse(document.getElementById('editorDataContainer').dataset.contents).content_data
+  let data = JSON.parse(document.getElementById('editorReadOnly').dataset.contents).content_data
 
   function ReadOnly() {
     const renderBlock = (block) => {
@@ -71,6 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ReadOnly(data).map((item, id) => {
       return (<div key={id}>{item}</div>)
     }),
-    document.getElementById('editorDataContainer')
+    document.getElementById('editorReadOnly')
   );
 })

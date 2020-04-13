@@ -1,4 +1,5 @@
 <%= javascript_pack_tag "editorProject" %>
+<%= javascript_include_tag "exportPanel" %>
 
 <%= form_with(model: project, local: true) do |form| %>
   <div class="edit-outer-container">
@@ -17,30 +18,14 @@
     </div>
 
     <div class="edit-inner-container">
-
-      <div class="topbar">
-        <div class="editor-tabs">
-          <div class="button" id="editorJsSaveButton">
-              <h3>Сохранить editor</h3>
-          </div>
-          <%#= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
-        </div>
-
-        <div class="constructor-tabs">
-          <h3 class="tablinks" id="defaultTab" onclick="openTab(event, 'settings')">Настройки</h3>
-          <h3 class="tablinks" onclick="openTab(event, 'decoration')">Оформление</h3>
-          <h3 class="tablinks" onclick="openTab(event, 'content')">Контент</h3>
-        </div>
-      </div>
-
-      <div class="editor" id="editorDataContainer" data-contents="<%= @project.content.to_json %>" data-url="<%= url_for(@project.content) %>">
-        <div class="editorjs" id="editorProject"></div>
+      <div class="contents-container">
+        <div class="editorjs" id="editorProject" data-contents="<%= @project.content.to_json %>" data-url="<%= url_for(@project.content) %>"></div>
       </div>
 
       <div class="constructor">
         <div class="tabContent" id="settings">
           <div class="project-cover">
-            <h3><a href="http://localhost:3000<%= url_for(@project.content) %>">Превью</a></h3>
+            <h3>Обложка</h3>
             <%= form.file_field :cover %>
 
             <% if project.cover? %>
@@ -90,23 +75,49 @@
 
         <div class="tabContent" id="content"><p>Coming soon...</p></div>
 
-        <div class="bottombar">
-          <div class="button" >
-            <%#= image_tag "icons/button/add/default.svg" %>
-            <%= form.submit "Сохранить" %>
-          </div>
+      </div>
+      <div class="fixed-bars bars-top-container">
+        <div class="bars-top bars-top-left">
+          <%#= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
+        </div>
 
-          <div class="button">
-              <%#= image_tag "icons/button/add/default.svg" %>
-              <h3>Опубликовать</h3>
-          </div>
-
-          <%= link_to(new_project_path, class: "button") do%>
-            <%#= image_tag "icons/button/add/default.svg" %>
-            <h3>Экспортировать</h3>
-          <% end %>
+        <div class="bars-top bars-top-right">
+          <h3 class="tablinks" id="defaultTab" onclick="openTab(event, 'settings')">Настройки</h3>
+          <h3 class="tablinks" onclick="openTab(event, 'decoration')">Оформление</h3>
+          <h3 class="tablinks" onclick="openTab(event, 'content')">Контент</h3>
         </div>
       </div>
+
+      <div class="fixed-bars bars-bottom-container">
+        <div class="bars-bottom bars-bottom-left"></div>
+
+        <div class="bars-bottom bars-bottom-right">
+          <div class="bars-bottom-right-buttons">
+            <div class="button" >
+              <%= image_tag "icons/button/add/default.svg" %>
+              <%= form.submit "Сохранить" %>
+            </div>
+
+            <div class="button">
+              <%= image_tag "icons/button/add/default.svg" %>
+              <h3>Опубликовать</h3>
+            </div>
+
+            <div id="exportButton" class="button" onclick="openExportPanel()">
+              <%= image_tag "icons/button/add/default.svg" %>
+              <h3>Экспортировать</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="export-panel">
+          Скопировать ссылку <a href="http://localhost:3000<%= url_for(@project.content) %>">
+            http://p-f.to/<%= @current_user.email %>/random-number
+          </a>
+        </div>
+
+      </div>
+
     </div>
   </div>
 <% end %>

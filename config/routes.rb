@@ -9,11 +9,15 @@ Rails.application.routes.draw do
 
   get 'account' => 'other_pages#account'
 
-  resources :contents
+  # get 'username/project/randomnumber' => 'contents#show'
+  get 'contents/:contentable_type-:id' => 'contents#show'
+
   resources :resume_in_portfolios
   resources :project_in_portfolios
   resources :resumes
   resources :portfolios
   resources :projects
+  resources :contents, only: [:index, :update]
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

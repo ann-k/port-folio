@@ -112,7 +112,7 @@
 
         <div class="export-panel">
           Скопировать ссылку <a href="http://localhost:3000<%= url_for(@project.content) %>">
-            www.p-f.to/<%= @current_user.name %>/random-number
+            www.p-f.to<%= url_for(@project.content) %>
           </a>
         </div>
 

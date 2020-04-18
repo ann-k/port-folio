@@ -7,8 +7,7 @@
     <%= favicon_link_tag asset_path('favicon.png') %>
 
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
-    <%= javascript_include_tag "tabs", "data-turbolinks-track" => true  %>
-    <%= javascript_include_tag "menu", "data-turbolinks-track" => true  %>
+    <%= javascript_include_tag "nav", "data-turbolinks-track" => true  %>
 
     <%= javascript_include_tag "add_project_to_portfolio", "data-turbolinks-track" => true  %>
     <%= javascript_pack_tag "application", "data-turbolinks-track": "reload" %>
@@ -24,39 +23,25 @@
         </div>
         <div class="nav-items-group">
           <div class="nav-items-top">
-            <%= link_to(portfolios_path) do %>
-              <img class="menu-item-img" id="portfolio-icon"></img>
-              <%#= image_tag "icons/menu/portfolios/default.svg" %>
+            <%= link_to(portfolios_path, class: "nav-item", id:"nav-item-portfolio", onmouseenter:"showMenu()", onmouseleave:"hideMenu()") do %>
+              <img class="nav-item-img" id="portfolio-icon"></img>
               <h3>Портфолио</h3>
             <% end %>
 
-            <%= link_to(projects_path) do %>
-              <img class="menu-item-img" id="project-icon"></img>
-              <%#= image_tag "icons/menu/projects/default.svg" %>
+            <%= link_to(projects_path, class: "nav-item", id:"nav-item-project", onmouseenter:"showMenu()", onmouseleave:"hideMenu()") do %>
+              <img class="nav-item-img" id="project-icon"></img>
               <h3>Проекты</h3>
             <% end %>
 
-            <%= link_to(resumes_path) do %>
-              <img class="menu-item-img" id="resume-icon"></img>
-              <%#= image_tag "icons/menu/resumes/default.svg" %>
+            <%= link_to(resumes_path, class: "nav-item", id:"nav-item-resume", onmouseenter:"showMenu()", onmouseleave:"hideMenu()") do %>
+              <img class="nav-item-img" id="resume-icon"></img>
               <h3>Резюме</h3>
             <% end %>
           </div>
 
           <div class="nav-items-bottom">
-            <%#= link_to do %>
-              <%#= image_tag "icons/menu/decorations/default.svg" %>
-              <!-- <h3>Оформление</h3> -->
-            <%# end %>
-
-            <%#= link_to do %>
-              <%#= image_tag "icons/menu/explore/default.svg" %>
-              <!-- <h3>Примеры</h3> -->
-            <%# end %>
-
-            <%= link_to account_path do %>
-              <img class="menu-item-img" id="settings-icon"></img>
-              <%#= image_tag "icons/menu/settings/default.svg" %>
+            <%= link_to(account_path, class: "nav-item", id:"nav-item-account", onmouseenter:"showMenu()", onmouseleave:"hideMenu()") do %>
+              <img class="nav-item-img" id="settings-icon"></img>
               <h3>Аккаунт</h3>
             <% end %>
           </div>

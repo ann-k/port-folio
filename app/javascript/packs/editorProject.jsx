@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // let saveButton = document.getElementById('editorJsSaveButton')
 
   let dataFromBackend = JSON.parse(document.getElementById('editorProject').dataset.contents).content_data
-  let url = document.getElementById('editorProject').dataset.url + '.json'
+  let url = 'http://localhost:3000//contents/' + document.getElementById('editorProject').dataset.url + '.json'
 
   const editor = new EditorJS({
     holder: 'editorProject',

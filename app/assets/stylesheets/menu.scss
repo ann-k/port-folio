@@ -19,21 +19,13 @@ nav {
   height: 100vh;
 
   transition: all 0.5s ease;
-
-  &:hover {
-    width: 16vw;
-
-    h3 {
-      opacity: 1;
-    }
-  }
 }
 
-nav > div {
-  margin-left: 10px;
-}
+// nav > div {
+//   margin-left: 10px;
+// }
 
-.menu-item-img {
+.nav-item-img {
   width: 18px;
   height: 14px;
 
@@ -51,31 +43,37 @@ nav > div {
 
   height: inherit;
 
-  a {
+  .nav-item {
     display: flex;
     flex-direction: row;
 
     height: 48px;
-    margin-right: 10px;
-    padding-left: 10px;
+    // margin-right: 10px;
+    // padding-left: 10px;
 
     transition: all 0.5s ease;
 
-    &:hover {
-      border-radius: 10px;
-      background-color: $surface;
-
-      .menu-item-img {
-        background: $primary;
-      }
-    }
+    // &:hover {
+    //   border-radius: 10px;
+    //   background-color: $surface;
+    //
+    //   .nav-item-img {
+    //     background: $primary;
+    //   }
+    // }
   }
 
   h3 {
     margin-left: 8px;
     line-height: 48px;
-    opacity: 0;
     transition: all 0.5s ease;
+  }
+}
+
+.nav-item {
+  width: 44px;
+  h3 {
+    display: none;
   }
 }
 
@@ -85,6 +83,22 @@ nav > div {
 
   #logo-long {
     display: none;
+  }
+}
+
+// transition: all 0.5s ease;
+
+.nav-item-shown {
+  width: 16vw;
+  background-color: $surface;
+  border-radius: 10px;
+
+  .nav-item-img {
+    background: $primary;
+  }
+
+  h3 {
+    display: block;
   }
 }
 
@@ -100,15 +114,21 @@ nav > div {
     display: none;
   }
 
-  h3 {
-    opacity: 1;
+  .nav-item-img, h3 {
+    display: block;
   }
 
-  a:hover {
+  .nav-item {
+    width: 16vw;
+  }
+
+  .nav-item:hover {
     border-radius: 10px;
     background-color: $background;
   }
 }
+
+
 
 #portfolio-icon {
   -webkit-mask: url("http://localhost:3000/assets/icons/menu/portfolios/default-25b0ece171a257e39a6acefa487952583ca3065cbbf8cf31ef1a7d61fb1a5b58.svg");

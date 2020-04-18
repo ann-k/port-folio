@@ -2,6 +2,6 @@ class Content < ApplicationRecord
   belongs_to :contentable, polymorphic: true
 
   def to_param
-    [contentable_type.downcase, id].join("-")
+    [id, contentable_type.downcase].join("-")
   end
 end

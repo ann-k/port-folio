@@ -7,6 +7,7 @@ class Portfolio < ApplicationRecord
 
   has_many :resume_in_portfolios
   has_many :resumes, through: :resume_in_portfolios
+  accepts_nested_attributes_for :resume_in_portfolios, allow_destroy: true
 
   mount_uploader :cover, CoverUploader
 end

@@ -1,4 +1,5 @@
 <%= javascript_pack_tag "editorPortfolio" %>
+<%= javascript_include_tag "tabs", "data-turbolinks-track" => true  %>
 
 <%= form_with(model: portfolio, local: true) do |form| %>
   <div class="edit-outer-container">
@@ -17,23 +18,9 @@
     </div>
 
     <div class="edit-inner-container">
-
-      <div class="topbar">
-        <div class="editor-tabs">
-          <%#= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
-        </div>
-
-        <div class="constructor-tabs">
-          <h3 class="tablinks" id="defaultTab" onclick="openTab(event, 'settings')">Настройки</h3>
-          <h3 class="tablinks" onclick="openTab(event, 'decoration')">Оформление</h3>
-          <h3 class="tablinks" onclick="openTab(event, 'content')">Контент</h3>
-        </div>
-      </div>
-
       <div class="contents-container">
-        <div class="editorjs" id="editorPortfolio"></div>
-
-        <div class="editor-projects-container">
+        <div class="editorjs" id="editorPortfolio" data-contents="<%#= @portfolio.content.to_json %>" data-url="<%#= @portfolio.content.id %>-<%#= @portfolio.content.contentable_type.downcase %>"></div>
+        <div class="projects-container">
           <% portfolio.projects.each do |project| %>
             <% if current_user.projects.include?(project) %>
               <div>
@@ -62,32 +49,11 @@
           <div class="tabs-list">
             <div class="tabs-list-header">
               <div>
-                <%= image_tag "icons/menu/resumes/default.svg" %>
-                <h3>Резюме</h3>
-              </div>
-              <%= link_to(new_portfolio_path, class: "button") do%>
-                <%= image_tag "icons/button/add/default.svg" %>
-                <h3>Связать с резюме</h3>
-              <% end %>
-            </div>
-
-            <% portfolio.resumes.each do |resume| %>
-              <div class="tabs-list-item">
-                <p><%= resume.name %></p>
-              </div>
-
-              <div class="divider-line"></div>
-            <% end %>
-          </div>
-
-          <div class="tabs-list">
-            <div class="tabs-list-header" id="specialButton" onclick="showBlock()">
-              <div>
                 <%= image_tag "icons/menu/projects/default.svg" %>
                 <h3>Проекты</h3>
               </div>
 
-              <div class="button">
+              <div class="button" onclick="showAddProjectToPortfolio()">
                 <%= image_tag "icons/button/add/default.svg" %>
                 <h3>Добавить проект</h3>
               </div>
@@ -106,7 +72,7 @@
           </div>
 
           <div id="addProjectToPortfolio">
-            <%= form.collection_check_boxes(:project_ids, current_user.projects.all, :id, :title) do |b| %>
+            <%= form.collection_check_boxes(:project_ids, current_user.projects.all, :id, :name) do |b| %>
               <%= b.label class:"label-checkbox" do %>
                 <%= b.check_box + b.text%>
               <% end %>
@@ -121,29 +87,78 @@
               <%#= project_in_portfolio_attributes.text_field :project_id %>
             <%# end %>
           </div>
+
+          <div class="tabs-list">
+            <div class="tabs-list-header">
+              <div>
+                <%= image_tag "icons/menu/resumes/default.svg" %>
+                <h3>Резюме</h3>
+              </div>
+
+              <div class="button" onclick="showAddResumeToPortfolio()">
+                <%= image_tag "icons/button/add/default.svg" %>
+                <h3>Связать с резюме</h3>
+              </div>
+            </div>
+
+            <% portfolio.resumes.each do |resume| %>
+              <div class="tabs-list-item">
+                <p><%= resume.name %></p>
+              </div>
+
+              <div class="divider-line"></div>
+            <% end %>
+          </div>
+        </div>
+
+        <div id="addResumeToPortfolio">
+          <%= form.collection_check_boxes(:resume_ids, current_user.resumes.all, :id, :name) do |b| %>
+            <%= b.label class:"label-checkbox" do %>
+              <%= b.check_box + b.text%>
+            <% end %>
+          <% end %>
         </div>
 
         <div class="tabContent" id="decoration"><p>Coming soon...</p></div>
 
         <div class="tabContent" id="content"><p>Coming soon...</p></div>
+      </div>
 
-        <div class="bottombar">
-          <div class="button">
-            <%#= image_tag "icons/button/add/default.svg" %>
-            <%= form.submit "Сохранить" %>
-          </div>
-
-          <div class="button" id="editorJsSaveButton">
-              <%#= image_tag "icons/button/add/default.svg" %>
-              <h3>Сохранить editorjs</h3>
-              <!-- <h3>Опубликовать</h3> -->
-          </div>
-
-          <%= link_to(new_portfolio_path, class: "button") do%>
-            <%#= image_tag "icons/button/add/default.svg" %>
-            <h3>Экспортировать</h3>
-          <% end %>
+      <div class="fixed-bars bars-top-container">
+        <div class="bars-top bars-top-left">
+          <%#= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
         </div>
+
+        <div class="bars-top bars-top-right">
+          <h3 class="tablinks" id="defaultTab" onclick="openTab(event, 'settings')">Настройки</h3>
+          <h3 class="tablinks" onclick="openTab(event, 'decoration')">Оформление</h3>
+          <h3 class="tablinks" onclick="openTab(event, 'content')">Контент</h3>
+        </div>
+      </div>
+
+      <div class="fixed-bars bars-bottom-container">
+        <div class="bars-bottom bars-bottom-left"></div>
+
+        <div class="bars-bottom bars-bottom-right">
+          <div class="bars-bottom-right-buttons">
+            <div class="button" >
+              <%= image_tag "icons/button/add/default.svg" %>
+              <%= form.submit "Сохранить" %>
+            </div>
+
+            <div id="exportButton" class="button" onclick="openExportPanel()">
+              <%= image_tag "icons/button/add/default.svg" %>
+              <h3>Экспортировать</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="export-panel">
+          Скопировать ссылку <a href="http://localhost:3000<%#= url_for(@portfolio.content) %>">
+            www.p-f.to<%#= url_for(@portfolio.content) %>
+          </a>
+        </div>
+
       </div>
     </div>
   </div>

@@ -1,4 +1,5 @@
 <%= javascript_pack_tag "editorProject" %>
+<%= javascript_include_tag "tabs", "data-turbolinks-track" => true  %>
 <%= javascript_include_tag "exportPanel" %>
 
 <%= form_with(model: project, local: true) do |form| %>
@@ -19,7 +20,7 @@
 
     <div class="edit-inner-container">
       <div class="contents-container">
-        <div class="editorjs" id="editorProject" data-contents="<%= @project.content.to_json %>" data-url="<%= url_for(@project.content) %>"></div>
+        <div class="editorjs" id="editorProject" data-contents="<%= @project.content.to_json %>" data-url="<%= @project.content.id %>-<%= @project.content.contentable_type.downcase %>"></div>
       </div>
 
       <div class="constructor">
@@ -76,15 +77,27 @@
         <div class="tabContent" id="content"><p>Coming soon...</p></div>
 
       </div>
+
       <div class="fixed-bars bars-top-container">
         <div class="bars-top bars-top-left">
           <%#= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
         </div>
 
         <div class="bars-top bars-top-right">
-          <h3 class="tablinks" id="defaultTab" onclick="openTab(event, 'settings')">Настройки</h3>
-          <h3 class="tablinks" onclick="openTab(event, 'decoration')">Оформление</h3>
-          <h3 class="tablinks" onclick="openTab(event, 'content')">Контент</h3>
+          <div class="tablinks" id="defaultTab" onclick="openTab(event, 'settings')">
+            <h3>Настройки</h3>
+            <div></div>
+          </div>
+          
+          <div class="tablinks" onclick="openTab(event, 'decoration')">
+            <h3>Оформление</h3>
+            <div></div>
+          </div>
+
+          <div class="tablinks" onclick="openTab(event, 'content')">
+            <h3>Контент</h3>
+            <div></div>
+          </div>
         </div>
       </div>
 
@@ -96,11 +109,6 @@
             <div class="button" >
               <%= image_tag "icons/button/add/default.svg" %>
               <%= form.submit "Сохранить" %>
-            </div>
-
-            <div class="button">
-              <%= image_tag "icons/button/add/default.svg" %>
-              <h3>Опубликовать</h3>
             </div>
 
             <div id="exportButton" class="button" onclick="openExportPanel()">

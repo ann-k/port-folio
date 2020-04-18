@@ -9,8 +9,7 @@ Rails.application.routes.draw do
 
   get 'account' => 'other_pages#account'
 
-  # get 'username/project/randomnumber' => 'contents#show'
-  get 'contents/:contentable_type-:id' => 'contents#show'
+  get ':id-:contentable_type' => 'contents#show'
 
   resources :resume_in_portfolios
   resources :project_in_portfolios

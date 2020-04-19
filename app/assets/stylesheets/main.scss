@@ -21,16 +21,24 @@ body {
 
   padding-left: 16px;
   padding-right: 16px;
-  height: 48px;
 
   border-radius: 10px;
   background-color: $surface;
+  box-shadow: $shadow;
 
   cursor: pointer;
 
   * {
     cursor: pointer;
   }
+}
+
+.button-big {
+  height: 48px;
+}
+
+.button-small {
+  height: 40px;
 }
 
 .button h3 {

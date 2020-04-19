@@ -1,5 +1,6 @@
 <%= javascript_pack_tag "editorPortfolio" %>
 <%= javascript_include_tag "tabs", "data-turbolinks-track" => true  %>
+<%= javascript_include_tag "exportPanel" %>
 
 <%= form_with(model: portfolio, local: true) do |form| %>
   <div class="edit-outer-container">
@@ -53,7 +54,7 @@
                 <h3>Проекты</h3>
               </div>
 
-              <div class="button" onclick="showAddProjectToPortfolio()">
+              <div class="button button-small" onclick="showAddProjectToPortfolio()">
                 <%= image_tag "icons/button/add/default.svg" %>
                 <h3>Добавить проект</h3>
               </div>
@@ -62,8 +63,10 @@
             <% portfolio.projects.each do |project| %>
               <% if current_user.projects.include?(project) %>
                 <div class="tabs-list-item">
+                  <%= image_tag "icons/constructor/dragndrop.svg" %>
                   <%= image_tag project.cover.url, :class => 'miniature' %>
                   <p><%= project.name %></p>
+                  <%= image_tag "icons/constructor/remove.svg" %>
                 </div>
 
                 <div class="divider-line"></div>
@@ -77,15 +80,6 @@
                 <%= b.check_box + b.text%>
               <% end %>
             <% end %>
-
-            <%#= form.fields_for :project_in_portfolios do |project_in_portfolios_form| %>
-              <%#= project_in_portfolios_form.collection_select :project_id, Project.all, :id, :title, prompt: true %>
-              <%#= project_in_portfolios_form.check_box :_destroy %>
-            <%# end %>
-
-            <%#= form.fields_for :project_in_portfolio, Project_in_portfolio.new do |project_in_portfolio_attributes|%>
-              <%#= project_in_portfolio_attributes.text_field :project_id %>
-            <%# end %>
           </div>
 
           <div class="tabs-list">
@@ -95,7 +89,7 @@
                 <h3>Резюме</h3>
               </div>
 
-              <div class="button" onclick="showAddResumeToPortfolio()">
+              <div class="button button-small" onclick="showAddResumeToPortfolio()">
                 <%= image_tag "icons/button/add/default.svg" %>
                 <h3>Связать с резюме</h3>
               </div>
@@ -130,9 +124,20 @@
         </div>
 
         <div class="bars-top bars-top-right">
-          <h3 class="tablinks" id="defaultTab" onclick="openTab(event, 'settings')">Настройки</h3>
-          <h3 class="tablinks" onclick="openTab(event, 'decoration')">Оформление</h3>
-          <h3 class="tablinks" onclick="openTab(event, 'content')">Контент</h3>
+          <div class="tablinks" id="defaultTab" onclick="openTab(event, 'settings')">
+            <h3>Настройки</h3>
+            <div></div>
+          </div>
+
+          <div class="tablinks" onclick="openTab(event, 'decoration')">
+            <h3>Оформление</h3>
+            <div></div>
+          </div>
+
+          <div class="tablinks" onclick="openTab(event, 'content')">
+            <h3>Контент</h3>
+            <div></div>
+          </div>
         </div>
       </div>
 

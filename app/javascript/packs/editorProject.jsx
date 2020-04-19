@@ -14,21 +14,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // let saveButton = document.getElementById('editorJsSaveButton')
 
   let dataFromBackend = JSON.parse(document.getElementById('editorProject').dataset.contents).content_data
-  let url = 'http://localhost:3000//contents/' + document.getElementById('editorProject').dataset.url + '.json'
+  let url = 'http://localhost:3000/' + document.getElementById('editorProject').dataset.url + '.json'
 
   const editor = new EditorJS({
     holder: 'editorProject',
     data: dataFromBackend,
-    placeholder: "Плейсхолдер",
+    placeholder: 'Плейсхолдер',
     onChange: () => {
       editor.save().then((outputData) => {
         console.log(outputData);
 
         fetch(url, {
           method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json'
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({content: outputData})
         })
         .then(res => {
@@ -38,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch((error) => {
           console.error('Error:', error)
         })
-
       }).catch((error) => {
         console.log('Saving failed: ', error)
       })

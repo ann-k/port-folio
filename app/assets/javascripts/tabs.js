@@ -24,3 +24,9 @@ document.addEventListener("turbolinks:load", function() {
     document.getElementById("defaultTab").click();
   // });
 })
+
+// document.addEventListener("turbolinks:load", function() {
+//   document.getElementsByTagName('form')[0].onsubmit = event => {
+//     event.preventDefault();
+//   }
+// })

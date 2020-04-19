@@ -186,6 +186,42 @@ User.all.each do |user|
 end
 
 
+#Resume Content
+
+@resume_content_data = {
+   "time": Time.current.to_i,
+   "blocks": [
+     {
+        "type": "header",
+        "data": {
+          "text": "Название резюме",
+          "level": 1
+        }
+      },
+      {
+         "type": "paragraph",
+         "data": {
+           "text": "Здесь вы можете описать свое резюме."
+         }
+      }
+   ],
+   "version": "2.16.1"
+}
+
+def create_resume_content(data, resume_id)
+  Content.create(
+    content_data: data,
+    contentable_id: resume_id,
+    contentable_type: Resume
+  )
+end
+
+Resume.all.each do |resume|
+  c = create_resume_content(@resume_content_data, resume.id)
+  puts "Content of a resume with id #{c.contentable_id} and type #{c.contentable_type} created"
+end
+
+
 #Resume in portfolio
 
 @portfolios = Portfolio.all

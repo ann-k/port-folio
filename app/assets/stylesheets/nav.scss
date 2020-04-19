@@ -10,7 +10,7 @@ nav {
   flex-direction: column;
   justify-content: space-between;
 
-  width: 16vw;
+  width: 44px;
   height: 100vh;
 
   padding-top: 16px;
@@ -20,10 +20,6 @@ nav {
 
   transition: all 0.5s ease;
 }
-
-// nav > div {
-//   margin-left: 10px;
-// }
 
 .nav-item-img {
   width: 18px;
@@ -48,19 +44,7 @@ nav {
     flex-direction: row;
 
     height: 48px;
-    // margin-right: 10px;
-    // padding-left: 10px;
-
-    transition: all 0.5s ease;
-
-    // &:hover {
-    //   border-radius: 10px;
-    //   background-color: $surface;
-    //
-    //   .nav-item-img {
-    //     background: $primary;
-    //   }
-    // }
+    // transition: all 0.5s ease;
   }
 
   h3 {
@@ -71,7 +55,7 @@ nav {
 }
 
 .nav-item {
-  width: 44px;
+  // width: 44px;
   h3 {
     display: none;
   }
@@ -85,8 +69,6 @@ nav {
     display: none;
   }
 }
-
-// transition: all 0.5s ease;
 
 .nav-item-shown {
   width: 16vw;
@@ -105,6 +87,7 @@ nav {
 .nav-shown {
   width: 16vw;
   background-color: $surface;
+  box-shadow: $shadow;
 
   #logo-long {
     display: block;

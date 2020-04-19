@@ -7,12 +7,38 @@ import EditorJS from '@editorjs/editorjs'
 const Header = require('@editorjs/header')
 const List = require('@editorjs/list')
 
-// export const editorResume = document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
+  let dataFromBackend = JSON.parse(document.getElementById('editorResume').dataset.contents).content_data
+  let url = 'http://localhost:3000/' + document.getElementById('editorResume').dataset.url + '.json'
+
   const editor = new EditorJS({
     holder: 'editorResume',
-    data: {},
+    data: dataFromBackend,
     onChange: () => {console.log('Now I know that Editor\'s content changed!')},
     placeholder: 'Новое резюме',
+    onChange: () => {
+      editor.save().then((outputData) => {
+        console.log(outputData);
+
+        fetch(url, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({content: outputData})
+        })
+        .then(res => {
+          return res.json()
+        })
+        .then(data => console.log(data))
+        .catch((error) => {
+          console.error('Error:', error)
+        })
+
+      }).catch((error) => {
+        console.log('Saving failed: ', error)
+      })
+    },
 
     tools: {
       header: {
@@ -27,29 +53,7 @@ const List = require('@editorjs/list')
       list: {
         class: List,
         inlineToolbar: true,
-      },
-      embed: {
-        class: Embed,
-        inlineToolbar: true
       }
     }
   })
-
-  let saveButton = document.getElementById('editorJsSaveButton')
-
-  saveButton.addEventListener('click', () => {
-    editor.save().then((outputData) => {
-      console.log('Article data: ', outputData)
-      let outputDataTextTest = outputData.blocks[0]
-      console.log(outputDataTextTest.data.text);
-
-      ReactDOM.render(
-        outputDataTextTest.data.text,
-        document.getElementById('editorjstest')
-      )
-    }).catch((error) => {
-      console.log('Saving failed: ', error)
-    })
-
-  })
-// })
+})

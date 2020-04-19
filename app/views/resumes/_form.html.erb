@@ -1,5 +1,6 @@
 <%= javascript_pack_tag "editorResume" %>
 <%= javascript_include_tag "tabs", "data-turbolinks-track" => true  %>
+<%= javascript_include_tag "exportPanel" %>
 
 <%= form_with(model: resume, local: true) do |form| %>
   <div class="outer-container">
@@ -18,22 +19,8 @@
     </div>
 
     <div class="edit-inner-container">
-      <div class="topbar">
-        <div class="editor-tabs">
-          <%#= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
-        </div>
-
-        <div class="constructor-tabs">
-          <h3 class="tablinks" id="defaultTab" onclick="openTab(event, 'settings')">Настройки</h3>
-          <h3 class="tablinks" onclick="openTab(event, 'decoration')">Оформление</h3>
-          <h3 class="tablinks" onclick="openTab(event, 'content')">Контент</h3>
-        </div>
-      </div>
-
       <div class="contents-container">
-        <div class="editorjs" id="editorResume"></div>
-          <%#= form.text_field :title, class: 'field', placeholder: "Новое резюме" %>
-          <%#= form.text_area :body, class: 'field', placeholder: "Опишите свой опыт" %>
+        <div class="editorjs" id="editorResume" data-contents="<%= @resume.content.to_json %>" data-url="<%= url_for(@resume.content) %>"></div>
       </div>
 
       <div class="constructor">
@@ -50,11 +37,15 @@
 
           <div class="tabs-list">
             <div class="tabs-list-header">
-              <h3>Портфолио</h3>
-              <%= link_to("#", class: "button") do%>
+              <div>
+                <%= image_tag "icons/menu/portfolios/default.svg" %>
+                <h3>Портфолио</h3>
+              </div>
+
+              <div class="button button-small" onclick="showAddResumeToPortfolio()">
                 <%= image_tag "icons/button/add/default.svg" %>
                 <h3>Связать с портфолио</h3>
-              <% end %>
+              </div>
             </div>
 
             <% resume.portfolios.each do |portfolio| %>
@@ -67,31 +58,64 @@
           </div>
         </div>
 
-        <div class="tabContent" id="decoration"><p>Coming soon...</p></div>
-        <div class="tabContent" id="content"><p>Coming soon...</p></div>
+        <div id="addPortfolioToResume">
+          <%= form.collection_check_boxes(:portfolio_ids, current_user.portfolios.all, :id, :name) do |b| %>
+            <%= b.label class:"label-checkbox" do %>
+              <%= b.check_box + b.text%>
+            <% end %>
+          <% end %>
+        </div>
 
-        <div class="bottombar">
-          <div class="button" id="editorJsSaveButton">
-            <%#= image_tag "icons/button/add/default.svg" %>
-            <%= form.submit "Сохранить" %>
+        <div class="tabContent" id="decoration"><p>Coming soon...</p></div>
+
+        <div class="tabContent" id="content"><p>Coming soon...</p></div>
+      </div>
+
+      <div class="fixed-bars bars-top-container">
+        <div class="bars-top bars-top-left"></div>
+
+        <div class="bars-top bars-top-right">
+          <div class="tablinks" id="defaultTab" onclick="openTab(event, 'settings')">
+            <h3>Настройки</h3>
+            <div></div>
           </div>
 
-          <!-- <div class=""> -->
-            <%= link_to(new_resume_path, class: "button") do%>
-              <%#= image_tag "icons/button/add/default.svg" %>
-              <h3>Опубликовать</h3>
-            <% end %>
-          <!-- </div> -->
+          <div class="tablinks" onclick="openTab(event, 'decoration')">
+            <h3>Оформление</h3>
+            <div></div>
+          </div>
 
-          <!-- <div> -->
-            <%= link_to(new_resume_path, class: "button") do%>
-              <%#= image_tag "icons/button/add/default.svg" %>
-              <h3>Экспортировать</h3>
-            <% end %>
-          <!-- </div> -->
+          <div class="tablinks" onclick="openTab(event, 'content')">
+            <h3>Контент</h3>
+            <div></div>
+          </div>
         </div>
       </div>
-      <!-- <div class="actions" id="editorJsSaveButton">Сохранить editor js -->
+
+      <div class="fixed-bars bars-bottom-container">
+        <div class="bars-bottom bars-bottom-left"></div>
+
+        <div class="bars-bottom bars-bottom-right">
+          <div class="bars-bottom-right-buttons">
+            <div class="button" >
+              <%= image_tag "icons/button/add/default.svg" %>
+              <%= form.submit "Сохранить" %>
+            </div>
+
+            <div id="exportButton" class="button" onclick="openExportPanel()">
+              <%= image_tag "icons/button/add/default.svg" %>
+              <h3>Экспортировать</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="export-panel">
+          Скопировать ссылку <a href="http://localhost:3000/<%= @resume.content.id %>-<%= @resume.content.contentable_type.downcase %>">
+            www.p-f.to/<%= @resume.content.id %>-<%= @resume.content.contentable_type.downcase %>
+          </a>
+        </div>
+
+      </div>
     </div>
   </div>
 <% end %>

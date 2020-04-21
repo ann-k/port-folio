@@ -47,22 +47,7 @@
             <%= form.text_area :description, placeholder: "Здесь будет описание" %>
           </div>
 
-          <div class="tab-list-area" id="tabsListArea" data-props="<%= @portfolio.projects.to_json %>">
-            <div class="tabs-list">
-              <% portfolio.projects.each do |project| %>
-                <% if current_user.projects.include?(project) %>
-                  <div class="tabs-list-item">
-                    <%= image_tag "icons/constructor/dragndrop.svg" %>
-                    <%= image_tag project.cover.url, :class => 'miniature' %>
-                    <p><%= project.name %></p>
-                    <%= image_tag "icons/constructor/remove.svg" %>
-                  </div>
-
-                  <div class="divider-line"></div>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
+          <div class="tab-list-area" id="tabsListArea" data-props="<%= @portfolio.projects.to_json %>" data-order="<%= @portfolio.project_in_portfolios.to_json %>"></div>
 
           <div class="tabs-list">
             <div class="tabs-list-header">

@@ -10,6 +10,7 @@ start = Time.now
 
 # Reset Database
 Portfolio.delete_all
+ProjectInPortfolio.delete_all
 Resume.delete_all
 Project.delete_all
 Content.delete_all
@@ -139,23 +140,25 @@ end
 
 @portfolios = Portfolio.all
 
-def create_project_in_portfolio(portfolio, project_id)
-  portfolio = @portfolios.sample
-
+def create_project_in_portfolio(portfolio, project_id, order)
   portfolio.project_in_portfolios.create(
-    project_id: project_id
+    project_id: project_id,
+    order: order,
   )
 end
 
+
 Portfolio.all.each do |portfolio|
+  @order = 1
   5.times do
     project = Project.all.sample
     project_in_certain_portfolios = Portfolio.find(portfolio.id).projects
 
-    # unless project_in_certain_portfolios.include?(project)
-      p = create_project_in_portfolio(portfolio, project.id)
-      puts "Project in portfolio with portfolio id #{p.portfolio_id} and project id #{p.project_id} created"
-    # end
+    unless project_in_certain_portfolios.include?(project)
+      p = create_project_in_portfolio(portfolio, project.id, @order)
+      puts "Project in portfolio with portfolio id #{p.portfolio_id}, project id #{p.project_id} and order #{p.order} created"
+      @order = @order + 1
+    end
   end
 end
 

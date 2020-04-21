@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import EditorJS from '@editorjs/editorjs'
 
 const Header = require('@editorjs/header')
-const List = require('@editorjs/list')
 
 // export const editorPortfolio = document.addEventListener('DOMContentLoaded', () => {
   const editor = new EditorJS({
@@ -23,14 +22,6 @@ const List = require('@editorjs/list')
           levels: [1, 2, 3],
           defaultLevel: 2
         }
-      },
-      list: {
-        class: List,
-        inlineToolbar: true,
-      },
-      embed: {
-        class: Embed,
-        inlineToolbar: true
       }
     }
   })

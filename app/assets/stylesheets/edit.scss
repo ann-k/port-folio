@@ -35,19 +35,16 @@
 
 .tabs-list {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
 
   margin-bottom: 32px;
-
-  div {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
 }
 
 .tabs-list-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
 
@@ -56,10 +53,20 @@
   }
 }
 
+.tab-list-items-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .tabs-list-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
   position: relative;
   height: 48px;
   width: 100%;
+  background-color: $background;
 
   img {
     margin-right: 16px;

@@ -11,17 +11,23 @@
     "html-react-parser": "^0.10.3",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
+    "react-beautiful-dnd": "^13.0.0",
     "react-dom": "^16.13.0",
     "react_ujs": "^2.6.1",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
   "devDependencies": {
-    "@editorjs/editorjs": "^2.16.1",
+    "@editorjs/editorjs": "^2.17.0",
     "@editorjs/embed": "^2.2.1",
     "@editorjs/header": "^2.4.0",
     "@editorjs/image": "^2.3.3",
     "@editorjs/list": "^1.4.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.1.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "webpack-dev-server": "^3.10.3"
   }
 }

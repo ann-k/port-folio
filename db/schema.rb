@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2020_04_13_212830) do
   end
 
   create_table "project_in_portfolios", force: :cascade do |t|
-    t.integer "order"
+    t.integer "position"
     t.integer "portfolio_id"
     t.integer "project_id"
     t.datetime "created_at", precision: 6, null: false
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2020_04_13_212830) do
   end
 
   create_table "resume_in_portfolios", force: :cascade do |t|
-    t.integer "order"
+    t.integer "position"
     t.integer "portfolio_id"
     t.integer "resume_id"
     t.datetime "created_at", precision: 6, null: false

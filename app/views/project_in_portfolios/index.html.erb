@@ -5,7 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>Order</th>
+      <th>position</th>
       <th>Portfolio</th>
       <th>Project</th>
       <th colspan="3"></th>
@@ -15,7 +15,7 @@
   <tbody>
     <% @project_in_portfolios.each do |project_in_portfolio| %>
       <tr>
-        <td><%= project_in_portfolio.order %></td>
+        <td><%= project_in_portfolio.position %></td>
         <td><%= project_in_portfolio.portfolio_id %></td>
         <td><%= project_in_portfolio.project_id %></td>
         <td><%= link_to 'Show', project_in_portfolio %></td>

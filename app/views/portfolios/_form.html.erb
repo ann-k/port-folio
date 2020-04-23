@@ -21,7 +21,7 @@
     <div class="edit-inner-container">
       <div class="contents-container">
         <div class="editorjs" id="editorPortfolio" data-contents="<%#= @portfolio.content.to_json %>" data-url="<%#= @portfolio.content.id %>-<%#= @portfolio.content.contentable_type.downcase %>"></div>
-        <div class="projects-container">
+        <div class="projects-container" id="projectsContainer">
           <% portfolio.projects.each do |project| %>
             <% if current_user.projects.include?(project) %>
               <div>
@@ -47,7 +47,13 @@
             <%= form.text_area :description, placeholder: "Здесь будет описание" %>
           </div>
 
-          <div class="tab-list-area" id="tabsListArea" data-props="<%= @portfolio.projects.to_json %>" data-order="<%= @portfolio.project_in_portfolios.to_json %>"></div>
+          <div
+            class="tab-list-area"
+            id="tabsListArea"
+            data-props="<%= @portfolio.projects.to_json %>"
+            data-order="<%= @portfolio.project_in_portfolios.to_json %>"
+            data-url="<%= certain_portfolio_project_in_portfolios_url(@portfolio.id) %>"
+          ></div>
 
           <div class="tabs-list">
             <div class="tabs-list-header">
@@ -174,3 +180,4 @@
 <% end %>
 
 <%= javascript_pack_tag "dragAndDrop" %>
+<%#= javascript_pack_tag "parent" %>

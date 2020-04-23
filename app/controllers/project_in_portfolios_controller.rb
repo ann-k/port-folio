@@ -1,10 +1,29 @@
 class ProjectInPortfoliosController < ApplicationController
   before_action :set_project_in_portfolio, only: [:show, :edit, :update, :destroy]
 
+  def certain_portfolio_project_in_portfolios
+    @project_in_portfolios = ProjectInPortfolio.where(portfolio_id: params[:portfolio_id])
+    render json: @project_in_portfolios
+
+    @project_in_portfolios.each_with_index do |item, index|
+      # puts "OLD POSITION"
+      # puts item.position
+      puts "TO BE CHANGED INTO"
+      puts params[:newOrder][index]
+      item.update(position: params[:newOrder][index])
+      # puts "OLD POSITION"
+      # puts item.position
+      puts "HAS CHANGED INTO"
+      puts params[:newOrder][index]
+      puts "~~~~~~~~~~~~~~~~"
+    end
+  end
+
   # GET /project_in_portfolios
   # GET /project_in_portfolios.json
   def index
-    @project_in_portfolios = ProjectInPortfolio.all
+    # @project_in_portfolios = ProjectInPortfolio.all
+    render json: ProjectInPortfolio.all
   end
 
   # GET /project_in_portfolios/1
@@ -69,6 +88,6 @@ class ProjectInPortfoliosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_in_portfolio_params
-      params.require(:project_in_portfolio).permit(:order, :portfolio_id, :project_id)
+      params.require(:project_in_portfolio).permit(:position, :portfolio_id, :project_id)
     end
 end

@@ -3,8 +3,10 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import { DragDropContext } from 'react-beautiful-dnd'
 
-import initialData from '../components/initialData'
 import TabList from '../components/TabList'
+import Test from '../components/TabList'
+import initialData from '../components/initialData'
+import ProjectPreview from '../components/ProjectPreview'
 
 export default class App extends React.Component {
   state = initialData
@@ -26,11 +28,6 @@ export default class App extends React.Component {
     newProjectIds.splice(source.index, 1)
     newProjectIds.splice(destination.index, 0, draggableId)
 
-    // const newTabList = {
-    //   ...tabList,
-    //   projectIds: newProjectIds,
-    // }
-
     const newState = {
       ...this.state,
       tabList: {
@@ -39,30 +36,42 @@ export default class App extends React.Component {
       }
     }
 
-    console.log(newState);
+    this.setState(newState)
 
-    this.setState(newState, () => {
-      console.log("state updated, this is new order" + newProjectIds);
+    let url = document.getElementById('tabsListArea').dataset.url + '.json'
+
+    fetch(url, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({newOrder: newProjectIds})
+    })
+    .then(res => {
+      return res.json()
+    })
+    .then(data => console.log(data))
+    .catch((error) => {
+      console.error('Error:', error)
     })
   }
 
   render() {
     return (
-      <DragDropContext onDragEnd={this.onDragEnd}>
-        {this.state.tabListOrder.map(tabListId => {
-        const tabList = this.state.tabList
-        // const projects = tabList.projectIds.map(projectId => this.state.projects[projectId])
-        const newProjects = tabList.projectIds.map(projectId => {
-          let filteredProjects = this.state.projects.filter(oldProject => oldProject.id === projectId)
-          return filteredProjects
-        })
-        const projects = [].concat(...newProjects)
+        <DragDropContext onDragEnd={this.onDragEnd}>
+          {this.state.tabListOrder.map(tabListId => {
+          const tabList = this.state.tabList
+          // const projects = tabList.projectIds.map(projectId => this.state.projects[projectId])
+          const newProjects = tabList.projectIds.map(projectId => {
+            let filteredProjects = this.state.projects.filter(oldProject => oldProject.id === projectId)
+            return filteredProjects
+          })
+          const projects = [].concat(...newProjects)
 
-        return <TabList key={tabList.id} tabList={tabList} projects={projects} />
-        })}
-      </DragDropContext>
+          return <TabList key={tabList.id} tabList={tabList} projects={projects} />
+          })}
+        </DragDropContext>
     )
   }
 }
 
 ReactDOM.render(<App />, document.getElementById('tabsListArea'));
+// ReactDOM.render(<ProjectPreview />, document.getElementById('projectsContainer'));

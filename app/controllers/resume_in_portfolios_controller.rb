@@ -69,6 +69,6 @@ class ResumeInPortfoliosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def resume_in_portfolio_params
-      params.require(:resume_in_portfolio).permit(:order, :portfolio_id, :resume_id)
+      params.require(:resume_in_portfolio).permit(:position, :portfolio_id, :resume_id)
     end
 end

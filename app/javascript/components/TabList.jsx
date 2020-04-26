@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { Droppable } from 'react-beautiful-dnd'
 
 import Project from './Project'
+import ProjectsContainer from '../components/ProjectsContainer'
 
 export default class TabList extends React.Component {
   render() {
@@ -29,3 +30,5 @@ export default class TabList extends React.Component {
     )
   }
 }
+
+// ReactDOM.render(<ProjectsContainer />, document.getElementById('projectsContainer'))

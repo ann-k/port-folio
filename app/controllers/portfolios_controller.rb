@@ -15,7 +15,8 @@ class PortfoliosController < ApplicationController
   # GET /portfolios/new
   def new
     @portfolio = current_user.portfolios.new
-    @portfolio.project_in_portfolios.build
+    # @portfolio.project_in_portfolios.build
+    @content = @portfolio.build_content
   end
 
   # GET /portfolios/1/edit
@@ -31,6 +32,7 @@ class PortfoliosController < ApplicationController
 
     respond_to do |format|
       if @portfolio.save
+        @content = @portfolio.create_content
         format.html { redirect_to edit_portfolio_path(@portfolio), notice: 'Portfolio was successfully created.' }
         format.json { render :show, status: :created, location: @portfolio }
       else

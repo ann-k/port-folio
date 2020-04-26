@@ -6,10 +6,17 @@
 
 <div class="contents-container">
   <div class="editorjs" id="editorReadOnly" data-contents="<%= @content.to_json %>"></div>
-  <!-- ТУТ БУДУТ ПРОЕКТЫ, ЕСЛИ ЭТО КОНТЕНТ ПОРТФОЛИО -->
+  <div class="projects-container">
+    <% if @content.contentable_type == "Portfolio"  %>
+      <% @content.contentable.projects.each do |project| %>
+        <div>
+          <%= image_tag project.cover.url %>
+          <h3><%= project.name %></h3>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>
-
-
 
 
 

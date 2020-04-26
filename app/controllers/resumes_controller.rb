@@ -15,6 +15,7 @@ class ResumesController < ApplicationController
   # GET /resumes/new
   def new
     @resume = current_user.resumes.new
+    @content = @resume.build_content
   end
 
   # GET /resumes/1/edit
@@ -29,6 +30,7 @@ class ResumesController < ApplicationController
 
     respond_to do |format|
       if @resume.save
+        @content = @resume.create_content
         format.html { redirect_to edit_portfolio_path(@resume), notice: 'Resume was successfully created.' }
         format.json { render :show, status: :created, location: @resume }
       else

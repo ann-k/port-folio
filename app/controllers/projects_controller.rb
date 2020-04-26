@@ -20,6 +20,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = current_user.projects.new
+    @content = @project.build_content
   end
 
   # GET /projects/1/edit
@@ -34,6 +35,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
+        @content = @project.create_content
         format.html { redirect_to edit_project_path(@project), notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else

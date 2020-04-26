@@ -1,4 +1,4 @@
-<%#= javascript_pack_tag "editorPortfolio" %>
+<%= javascript_pack_tag "editorPortfolio" %>
 <%= javascript_include_tag "tabs", "data-turbolinks-track" => true  %>
 <%= javascript_include_tag "exportPanel" %>
 
@@ -20,8 +20,8 @@
 
     <div class="edit-inner-container">
       <div class="contents-container">
-        <div class="editorjs" id="editorPortfolio" data-contents="<%#= @portfolio.content.to_json %>" data-url="<%#= @portfolio.content.id %>-<%#= @portfolio.content.contentable_type.downcase %>"></div>
-        <div class="projects-container" id="projectsContainer">
+        <div class="editorjs" id="editorPortfolio" data-contents="<%= @portfolio.content.to_json %>" data-url="<%= url_for(@portfolio.content) %>"></div>
+        <div class="projects-container">
           <% portfolio.projects.each do |project| %>
             <% if current_user.projects.include?(project) %>
               <div>
@@ -169,8 +169,8 @@
         </div>
 
         <div class="export-panel">
-          Скопировать ссылку <a href="http://localhost:3000<%#= url_for(@portfolio.content) %>">
-            www.p-f.to<%#= url_for(@portfolio.content) %>
+          Скопировать ссылку <a href="http://localhost:3000/<%= @portfolio.content.id %>-<%= @portfolio.content.contentable_type.downcase %>">
+            www.p-f.to/<%= @portfolio.content.id %>-<%= @portfolio.content.contentable_type.downcase %>
           </a>
         </div>
 

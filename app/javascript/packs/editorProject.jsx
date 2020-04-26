@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let dataFromBackend = JSON.parse(document.getElementById('editorProject').dataset.contents).content_data
   let url = 'http://localhost:3000/' + document.getElementById('editorProject').dataset.url + '.json'
+  console.log(url);
 
   const editor = new EditorJS({
     holder: 'editorProject',

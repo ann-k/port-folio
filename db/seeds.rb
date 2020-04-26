@@ -65,6 +65,41 @@ User.all.each do |user|
   end
 end
 
+#Portfolio Content
+
+@portfolio_content_data = {
+   "time": Time.current.to_i,
+   "blocks": [
+     {
+        "type": "header",
+        "data": {
+          "text": "Название портфолио",
+          "level": 1
+        }
+      },
+      {
+         "type": "paragraph",
+         "data": {
+           "text": "Здесь вы можете описать свое портфолио."
+         }
+      }
+   ],
+   "version": "2.16.1"
+}
+
+def create_portfolio_content(data, portfolio_id)
+  Content.create(
+    content_data: data,
+    contentable_id: portfolio_id,
+    contentable_type: Portfolio
+  )
+end
+
+Portfolio.all.each do |portfolio|
+  c = create_portfolio_content(@portfolio_content_data, portfolio.id)
+  puts "Content of a portfolio with id #{c.contentable_id} and type #{c.contentable_type} created"
+end
+
 
 #Projects
 
@@ -92,6 +127,7 @@ User.all.each do |user|
     puts "Project with user id #{p.user_id} and name #{p.name} created"
   }
 end
+
 
 #Project Content
 

@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = current_user.projects.all
+    @projects = current_user.projects.ordered_by_creation
 
     # @projects = Project.all(project_params)
     # if @project.user_id = current_user.id

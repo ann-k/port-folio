@@ -22,7 +22,7 @@
       <div class="contents-container">
         <div class="editorjs" id="editorPortfolio" data-contents="<%= @portfolio.content.to_json %>" data-url="<%= url_for(@portfolio.content) %>"></div>
         <div class="projects-container">
-          <% portfolio.projects.each do |project| %>
+          <% portfolio.projects.ordered_by_position.each do |project| %>
             <% if current_user.projects.include?(project) %>
               <div>
                 <%= image_tag project.cover.url %>
@@ -50,9 +50,8 @@
           <div
             class="tab-list-area"
             id="tabsListArea"
-            data-props="<%= @portfolio.projects.to_json %>"
-            data-order="<%= @portfolio.project_in_portfolios.to_json %>"
-            data-url="<%= certain_portfolio_project_in_portfolios_url(@portfolio.id) %>"
+            data-props="<%= @portfolio.projects.ordered_by_position.to_json %>"
+            data-url="<%= sort_project_in_portfolios_url(@portfolio.id) %>"
           ></div>
 
           <div class="tabs-list">
@@ -68,20 +67,23 @@
               </div>
             </div>
 
-            <div class="tab-list-items-container">
-              <% portfolio.projects.each do |project| %>
-                <% if current_user.projects.include?(project) %>
-                  <div class="tabs-list-item">
-                    <%#= image_tag "icons/constructor/dragndrop.svg" %>
-                    <%= image_tag project.cover.url, :class => 'miniature' %>
-                    <p><%= project.name %></p>
-                    <%= image_tag "icons/constructor/remove.svg" %>
-                  </div>
+            <!-- <div class="tab-list-items-container"> -->
+              <%# portfolio.projects.each do |project| %>
+                  <!-- <div class="tabs-list-item"> -->
+                    <%#= image_tag project.cover.url, :class => 'miniature' %>
+                    <%#= project.name %>
+                    <%#= image_tag "icons/constructor/remove.svg" %>
+                  <!-- </div> -->
+              <%# end %>
 
-                  <div class="divider-line"></div>
-                <% end %>
-              <% end %>
-            </div>
+              <%# portfolio.project_in_portfolios.ordered_by_position.each do |p| %>
+                <!-- <div class="tabs-list-item"> -->
+                  <%#= p.position %>
+                  <%#= image_tag p.project.cover.url, :class => 'miniature' %>
+                  <%#= p.project.name %>
+                <!-- </div> -->
+              <%# end %>
+            <!-- </div> -->
           </div>
 
           <div id="addProjectToPortfolio">

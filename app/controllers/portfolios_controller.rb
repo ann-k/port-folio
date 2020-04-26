@@ -4,7 +4,7 @@ class PortfoliosController < ApplicationController
   # GET /portfolios
   # GET /portfolios.json
   def index
-    @portfolios = current_user.portfolios.all
+    @portfolios = current_user.portfolios.all.order(created_at: :desc)
   end
 
   # GET /portfolios/1

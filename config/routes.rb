@@ -11,8 +11,7 @@ Rails.application.routes.draw do
 
   get ':id-:contentable_type' => 'contents#show'
 
-  put 'portfolios/:portfolio_id/project_in_portfolios' => 'project_in_portfolios#certain_portfolio_project_in_portfolios', as: :certain_portfolio_project_in_portfolios
-  # put 'portfolios/:portfolio_id/project_in_portfolios' => 'project_in_portfolios#update'
+  put 'portfolios/:portfolio_id/project_in_portfolios' => 'project_in_portfolios#sort_project_in_portfolios', as: :sort_project_in_portfolios
   resources :project_in_portfolios
 
   resources :resume_in_portfolios

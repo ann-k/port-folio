@@ -4,7 +4,7 @@ class ResumesController < ApplicationController
   # GET /resumes
   # GET /resumes.json
   def index
-    @resumes = current_user.resumes.all
+    @resumes = current_user.resumes.all.order(created_at: :desc)
   end
 
   # GET /resumes/1

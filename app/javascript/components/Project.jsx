@@ -19,7 +19,6 @@ export default class Project extends React.Component {
             <img src={DndIcon} {...provided.dragHandleProps}></img>
             <img src={this.props.project.cover.url} className="miniature"></img>
             <p>{this.props.project.name}</p>
-            <p>{this.props.project.id}</p>
             <img src={RemoveIcon}></img>
           </div>
         )}

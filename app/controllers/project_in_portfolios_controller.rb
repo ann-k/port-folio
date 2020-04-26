@@ -1,21 +1,12 @@
 class ProjectInPortfoliosController < ApplicationController
   before_action :set_project_in_portfolio, only: [:show, :edit, :update, :destroy]
 
-  def certain_portfolio_project_in_portfolios
-    @project_in_portfolios = ProjectInPortfolio.where(portfolio_id: params[:portfolio_id])
+  def sort_project_in_portfolios
+    @project_in_portfolios = ProjectInPortfolio.where(portfolio_id: params[:portfolio_id]).ordered_by_position
     render json: @project_in_portfolios
 
-    @project_in_portfolios.each_with_index do |item, index|
-      # puts "OLD POSITION"
-      # puts item.position
-      puts "TO BE CHANGED INTO"
-      puts params[:newOrder][index]
-      item.update(position: params[:newOrder][index])
-      # puts "OLD POSITION"
-      # puts item.position
-      puts "HAS CHANGED INTO"
-      puts params[:newOrder][index]
-      puts "~~~~~~~~~~~~~~~~"
+    params[:newOrder].each_with_index do |order, index|
+      @project_in_portfolios[order - 1].update(position: index + 1)
     end
   end
 
@@ -23,7 +14,7 @@ class ProjectInPortfoliosController < ApplicationController
   # GET /project_in_portfolios.json
   def index
     # @project_in_portfolios = ProjectInPortfolio.all
-    render json: ProjectInPortfolio.all
+    render json: ProjectInPortfolio.ordered_by_position.all
   end
 
   # GET /project_in_portfolios/1

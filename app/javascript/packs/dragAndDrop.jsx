@@ -39,10 +39,16 @@ export default class App extends React.Component {
 
     let url = document.getElementById('tabsListArea').dataset.url + '.json'
 
+    let newPositions = newProjectIds.map(id => {
+      return parseInt(id)
+    })
+
+    console.log(newPositions);
+
     fetch(url, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({newOrder: newProjectIds})
+      body: JSON.stringify({newOrder: newPositions})
     })
     .then(res => {
       return res.json()

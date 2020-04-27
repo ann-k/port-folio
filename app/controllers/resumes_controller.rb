@@ -4,7 +4,7 @@ class ResumesController < ApplicationController
   # GET /resumes
   # GET /resumes.json
   def index
-    @resumes = current_user.resumes.all.order(created_at: :desc)
+    @resumes = current_user.resumes.ordered_by_creation
   end
 
   # GET /resumes/1
@@ -16,6 +16,28 @@ class ResumesController < ApplicationController
   def new
     @resume = current_user.resumes.new
     @content = @resume.build_content
+  end
+
+  def copy
+    old_resume = current_user.resumes.find(params[:id])
+    new_resume = old_resume.dup
+    new_resume.name = new_resume.name + " 2"
+    new_resume.save
+
+    old_resume.resume_in_portfolios.each do |r_in_p|
+      new_r_in_p = r_in_p.dup
+      new_r_in_p.update(resume_id: new_resume.id)
+    end
+
+    old_content = old_resume.content
+    new_content = old_content.dup
+    new_content.save
+    new_content.update(contentable_id: new_resume.id)
+
+    respond_to do |format|
+      format.html { redirect_to resumes_path, notice: 'Resume was successfully duplicated.' }
+      format.json { render :index }
+    end
   end
 
   # GET /resumes/1/edit

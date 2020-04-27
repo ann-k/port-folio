@@ -1,4 +1,6 @@
 class Portfolio < ApplicationRecord
+  scope :ordered_by_creation, -> { order(created_at: :desc) }
+
   belongs_to :user
   has_one :content, as: :contentable, dependent: :destroy
 

@@ -32,13 +32,11 @@
         </div>
 
         <div class="card-icons-group">
-          <%= link_to do%>
-            <%= image_tag "icons/card/copy/default@2.png" %>
+          <%= link_to(copy_portfolio_path(:id => portfolio.id), method: :post, controller: "portfolios", action: "copy") do %>
+            <%= image_tag "icons/card/copy/default@2.png", id: "copyIcon" %>
           <% end %>
 
-          <%= link_to do %>
-            <%= image_tag "icons/card/export/default@2.png" %>
-          <% end %>
+          <%= image_tag "icons/card/export/default@2.png" %>
 
           <%= link_to(portfolio, method: :delete, data: { confirm: 'Are you sure?' }) do %>
             <%= image_tag "icons/card/options/default@2.png" %>
@@ -51,3 +49,5 @@
 
   </div>
 </div>
+
+<%= javascript_include_tag "copy" %>

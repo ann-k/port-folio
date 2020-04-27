@@ -32,8 +32,8 @@
         </div>
 
         <div class="card-icons-group">
-          <%= link_to do%>
-            <%= image_tag "icons/card/copy/default@2.png" %>
+          <%= link_to(copy_resume_path(:id => resume.id), method: :post, controller: "resumes", action: "copy") do %>
+            <%= image_tag "icons/card/copy/default@2.png", id: "copyIcon" %>
           <% end %>
 
           <%= link_to do %>

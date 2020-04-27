@@ -43,7 +43,7 @@ export default class App extends React.Component {
       return parseInt(id)
     })
 
-    console.log(newPositions);
+    console.log(url);
 
     fetch(url, {
       method: 'PUT',

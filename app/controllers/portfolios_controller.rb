@@ -4,7 +4,7 @@ class PortfoliosController < ApplicationController
   # GET /portfolios
   # GET /portfolios.json
   def index
-    @portfolios = current_user.portfolios.all.order(created_at: :desc)
+    @portfolios = current_user.portfolios.ordered_by_creation
   end
 
   # GET /portfolios/1
@@ -17,6 +17,33 @@ class PortfoliosController < ApplicationController
     @portfolio = current_user.portfolios.new
     # @portfolio.project_in_portfolios.build
     @content = @portfolio.build_content
+  end
+
+  def copy
+    old_portfolio = current_user.portfolios.find(params[:id])
+    new_portfolio = old_portfolio.dup
+    new_portfolio.name = new_portfolio.name + " 2"
+    new_portfolio.save
+
+    old_portfolio.project_in_portfolios.each do |p_in_p|
+      new_p_in_p = p_in_p.dup
+      new_p_in_p.update(portfolio_id: new_portfolio.id)
+    end
+
+    old_portfolio.resume_in_portfolios.each do |r_in_p|
+      new_r_in_p = r_in_p.dup
+      new_r_in_p.update(portfolio_id: new_portfolio.id)
+    end
+
+    old_content = old_portfolio.content
+    new_content = old_content.dup
+    new_content.save
+    new_content.update(contentable_id: new_portfolio.id)
+
+    respond_to do |format|
+      format.html { redirect_to portfolios_path, notice: 'Portfolio was successfully duplicated.' }
+      format.json { render :index }
+    end
   end
 
   # GET /portfolios/1/edit

@@ -8,6 +8,9 @@ import ImageTool from '@editorjs/image'
 const Header = require('@editorjs/header')
 const List = require('@editorjs/list')
 const Embed = require('@editorjs/embed')
+const CodeTool = require('@editorjs/code')
+const InlineCode = require('@editorjs/inline-code')
+// const Table = require('@editorjs/table')
 
 const editorProject = document.addEventListener('DOMContentLoaded', () => {
   // let projectName = document.getElementById('editorjstest').dataset.project
@@ -63,6 +66,12 @@ const editorProject = document.addEventListener('DOMContentLoaded', () => {
           class: Embed,
           inlineToolbar: true
         },
+        code: CodeTool,
+        inlineCode: {
+          class: InlineCode,
+          shortcut: 'CMD+SHIFT+M',
+        },
+        // table: { class: Table, },
         image: {
           class: ImageTool,
           config: {

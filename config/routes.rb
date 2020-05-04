@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :content_images
   root 'portfolios#index'
 
   devise_for :users, path: 'auth', path_names: { sign_in: 'sign_in', sign_out: 'sign_out' }
@@ -17,12 +18,15 @@ Rails.application.routes.draw do
 
   resources :resume_in_portfolios
 
+  post 'upload_content_image' => 'content_images#upload'
+
   post 'copy_portfolio' => 'portfolios#copy'
   resources :portfolios
 
   post 'copy_resume' => 'resumes#copy'
   resources :resumes
 
+  put 'upload_project_cover' => 'projects#upload_cover'
   resources :projects
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

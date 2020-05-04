@@ -178,7 +178,7 @@ end
 
 Portfolio.all.each do |portfolio|
   @position = 1
-  10.times do
+  20.times do
     project = Project.all.sample
     project_in_certain_portfolios = Portfolio.find(portfolio.id).projects
 

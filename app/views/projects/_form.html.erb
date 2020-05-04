@@ -23,15 +23,22 @@
         <div class="tabContent" id="settings">
           <div class="project-cover">
             <h3>Обложка</h3>
+            <%= image_tag project.cover.url if project.cover? %>
+            <div class="label-checkbox">
+              <p>Удалить обложку</p>
+              <%= form.check_box :remove_cover if project.cover? %>
+            </div>
+
+            <p>Загрузить новую обложку</p>
             <%= form.file_field :cover %>
 
-            <% if project.cover? %>
-              <%= image_tag project.cover.url %>
-              <div class="label-checkbox">
-                <p>Удалить обложку</p>
-                <%= form.check_box :remove_cover %>
-              </div>
-            <% end %>
+            <p>Или выбрать из изображений проекта</p>
+            <div id="chooseCover"
+              data-id="<%= project.id %>"
+              data-url="<%= upload_project_cover_url %>"
+            >
+            </div>
+
           </div>
 
           <div class="input">

@@ -22,28 +22,27 @@ export default class App extends React.Component {
       return
     }
 
-    const tabList = this.state.tabList
-    const newProjectIds = Array.from(tabList.projectIds)
-    newProjectIds.splice(source.index, 1)
-    newProjectIds.splice(destination.index, 0, draggableId)
+    const projectIds = Array.from(this.state.tabList.projectIds)
+    projectIds.splice(source.index, 1)
+    projectIds.splice(destination.index, 0, draggableId)
+
+    const projectsInNewOrder = projectIds.map(id => this.state.projects.filter(project => project.id == id)).flat()
+    const newProjectsWithNewIds = projectsInNewOrder.map((project, i) => {
+      i++
+      project.id = String(i)
+      return project
+    })
 
     const newState = {
       ...this.state,
-      tabList: {
-        ...this.state.tabList,
-        projectIds: newProjectIds,
-      }
+      projects: newProjectsWithNewIds,
     }
-
     this.setState(newState)
 
-    let url = document.getElementById('tabsListArea').dataset.url + '.json'
-
-    let newPositions = newProjectIds.map(id => {
+    let url = document.getElementById('tabsListArea').dataset.sorturl + '.json'
+    let newPositions = projectIds.map(id => {
       return parseInt(id)
     })
-
-    console.log(url);
 
     fetch(url, {
       method: 'PUT',
@@ -65,13 +64,16 @@ export default class App extends React.Component {
         {this.state.tabListOrder.map(tabListId => {
         const tabList = this.state.tabList
         // const projects = tabList.projectIds.map(projectId => this.state.projects[projectId])
-        const newProjects = tabList.projectIds.map(projectId => {
-          let filteredProjects = this.state.projects.filter(oldProject => oldProject.id === projectId)
-          return filteredProjects
-        })
-        const projects = [].concat(...newProjects)
+        // const newProjects = tabList.projectIds.map(projectId => {
+        //   let filteredProjects = this.state.projects.filter(oldProject => oldProject.id === projectId)
+        //   return filteredProjects
+        // })
+        // const projects = [].concat(...newProjects)
 
-        return <TabList key={tabList.id} tabList={tabList} projects={projects} />
+        let projects = tabList.projectIds.map(projectId => this.state.projects.filter(project => project.id === projectId))
+        projects = [].concat(...projects)
+
+        return <TabList key={tabList.id} tabList={tabList} projects={projects} removeProject={this.removeProject} />
         })}
       </DragDropContext>
     )

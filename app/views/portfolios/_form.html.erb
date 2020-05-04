@@ -46,10 +46,12 @@
           <div
             class="tab-list-area"
             id="tabsListArea"
-            data-props="<%= @portfolio.projects.ordered_by_position.to_json %>"
+            data-projects="<%= @portfolio.projects.ordered_by_position.to_json %>"
+            data-pinp="<%= @portfolio.project_in_portfolios.ordered_by_position.to_json %>"
+            data-removeurl="<%= project_in_portfolios_url %>"
 
             <%# if @portfolio.id %>
-              data-url="<%= sort_project_in_portfolios_url(@portfolio.id) %>"
+              data-sorturl="<%= sort_project_in_portfolios_url(@portfolio.id) %>"
             <%# end %>
           ></div>
 

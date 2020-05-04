@@ -13,15 +13,11 @@ const InlineCode = require('@editorjs/inline-code')
 // const Table = require('@editorjs/table')
 
 const editorProject = document.addEventListener('DOMContentLoaded', () => {
-  // let projectName = document.getElementById('editorjstest').dataset.project
-  // let saveButton = document.getElementById('editorJsSaveButton')
-
   let editorContainer = document.getElementById('editorProject')
 
   if (editorContainer) {
     let dataFromBackend = JSON.parse(document.getElementById('editorProject').dataset.contents).content_data
     let url = 'http://localhost:3000/' + document.getElementById('editorProject').dataset.url + '.json'
-    console.log(url);
 
     const editor = new EditorJS({
       holder: 'editorProject',
@@ -77,7 +73,7 @@ const editorProject = document.addEventListener('DOMContentLoaded', () => {
           config: {
             captionPlaceholder: 'Подпись',
             endpoints: {
-              byFile: 'http://localhost:8008/uploadFile', // Your backend file uploader endpoint
+              byFile: 'http://localhost:3000/upload_content_image', // Your backend file uploader endpoint
               // byUrl: 'http://localhost:8008/fetchUrl', // Your endpoint that provides uploading by Url
             }
           }
@@ -86,5 +82,36 @@ const editorProject = document.addEventListener('DOMContentLoaded', () => {
     })
   }
 })
+
+// document.addEventListener('DOMContentLoaded', () => {
+//   let data = JSON.parse(document.getElementById('editorProject').dataset.contents).content_data
+//
+//   ReactDOM.render(
+//     data.blocks
+//     .filter(block => block.type === "image")
+//     .map((block, id) => <img key={id} className="cover-image" src={block.data.file.url}
+//     onClick={() => {
+//       let id = document.getElementById('chooseCover').dataset.id
+//       let url = document.getElementById('chooseCover').dataset.url
+//
+//       fetch(url, {
+//         method: 'PUT',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({
+//           id: id,
+//           cover: block.data.file.url
+//         })
+//       })
+//       .then(res => {
+//         return res.json()
+//       })
+//       .then(data => console.log(data))
+//       .catch((error) => {
+//         console.error('Error:', error)
+//       })
+//     }}></img>),
+//     document.getElementById('chooseCover')
+//   )
+// })
 
 export default editorProject

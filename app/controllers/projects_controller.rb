@@ -27,6 +27,20 @@ class ProjectsController < ApplicationController
   def edit
   end
 
+  def upload_cover
+    # c = ContentImage.new
+    project = Project.find(params[:id])
+    project.update(cover: params[:cover])
+
+    # uploader_response = {
+    #   "success": 1,
+    #   "file": {
+    #     "url":  c.data.url,
+    #   }
+    # }
+    # render json: uploader_response
+  end
+
   # POST /projects
   # POST /projects.json
   def create

@@ -1,6 +1,8 @@
-let projectsArray = JSON.parse(document.getElementById('tabsListArea').dataset.props)
+let projectsArray = JSON.parse(document.getElementById('tabsListArea').dataset.projects)
+let pInPArray = JSON.parse(document.getElementById('tabsListArea').dataset.pinp)
 
 let projectsWithStringIds = projectsArray.map((item, i) => {
+  // item.pInPId = pInPArray[i].id
   i++
   item.id = String(i)
   return item
@@ -15,8 +17,6 @@ const initialData = {
     projectIds: stringIds
   },
   tabListOrder: ['tablist-1']
-  // delete tabLists and use projectsOrder instead
-  // projectsOrder: ['project-1', 'project-2', 'project-3']
 }
 
 export default initialData

@@ -6,12 +6,6 @@ class ProjectInPortfoliosController < ApplicationController
     render json: @project_in_portfolios
 
     params[:newOrder].each_with_index do |order, index|
-      puts 'НАЧАЛО'
-      puts @project_in_portfolios[order - 1].id
-      puts @project_in_portfolios[order - 1].project.name
-      puts @project_in_portfolios[order - 1].position
-      puts index + 1
-      puts 'КОНЕЦ'
       @project_in_portfolios[order - 1].update(position: index + 1)
     end
   end

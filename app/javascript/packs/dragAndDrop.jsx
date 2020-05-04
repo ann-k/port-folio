@@ -10,6 +10,37 @@ import initialData from '../components/initialData'
 export default class App extends React.Component {
   state = initialData
 
+  removeProject = (pInPId, projectId) => {
+    const projectIds = Array.from(this.state.tabList.projectIds).filter(item => item != projectId)
+    const projectsInNewOrder = projectIds.map(id => this.state.projects.filter(project => project.id == id)).flat()
+    const newProjectsWithNewIds = projectsInNewOrder.map((project, i) => {
+      i++
+      project.id = String(i)
+      return project
+    })
+    const newProjectsIds = projectIds.map((id, index) => {
+      id = String(index + 1)
+      return id
+    })
+
+    const newState = {
+      ...this.state,
+      projects: newProjectsWithNewIds,
+      tabList: {
+        ...this.state.tabList,
+        projectIds: newProjectsIds,
+      }
+    }
+    this.setState(newState)
+
+    let url = document.getElementById('tabsListArea').dataset.removeurl + '/' + pInPId
+    fetch(url, {
+      method: 'DELETE',
+    }).then(res => {
+      return res.json()
+    })
+  }
+
   onDragEnd = result => {
     const { destination, source, draggableId } = result
 

@@ -5,6 +5,7 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = current_user.projects.ordered_by_creation
+    render :layout => "index"
 
     # @projects = Project.all(project_params)
     # if @project.user_id = current_user.id
@@ -21,10 +22,12 @@ class ProjectsController < ApplicationController
   def new
     @project = current_user.projects.new
     @content = @project.build_content
+    render :layout => "edit"
   end
 
   # GET /projects/1/edit
   def edit
+    render :layout => "edit"
   end
 
   def upload_cover

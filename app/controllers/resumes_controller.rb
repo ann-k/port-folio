@@ -5,6 +5,7 @@ class ResumesController < ApplicationController
   # GET /resumes.json
   def index
     @resumes = current_user.resumes.ordered_by_creation
+    render :layout => "index"
   end
 
   # GET /resumes/1
@@ -16,6 +17,7 @@ class ResumesController < ApplicationController
   def new
     @resume = current_user.resumes.new
     @content = @resume.build_content
+    render :layout => "edit"
   end
 
   def copy
@@ -42,6 +44,7 @@ class ResumesController < ApplicationController
 
   # GET /resumes/1/edit
   def edit
+    render :layout => "edit"
   end
 
   # POST /resumes

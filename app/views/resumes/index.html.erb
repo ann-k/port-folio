@@ -1,52 +1,54 @@
 <div class="index-outer-container">
   <div class="index-inner-container">
     <%#= notice %>
-
-    <div class="index-buttons-container">
-      <%= link_to(new_resume_path, class: "button button-big") do%>
-        <%= image_tag "icons/button/search/default.svg" %>
-        <h3>Поиск по резюме</h3>
-      <% end %>
-
-      <%= link_to(new_resume_path, class: "button button-big") do%>
-        <%= image_tag "icons/button/add/default.svg" %>
-        <h3>Создать резюме</h3>
-      <% end %>
-    </div>
-
     <h1>Мои резюме</h1>
 
     <% @resumes.each do |resume| %>
-      <div class="card">
-        <div class="card-cover">
-          <%= link_to edit_resume_path(resume) do %>
-            <%= image_tag resume.cover.url %>
-          <% end %>
-        </div>
-
-        <div class="card-text">
-          <%= link_to edit_resume_path(resume) do %>
+      <div class="card card-long">
+        <%= link_to resume_path(resume) do %>
+          <div class="card-header">
             <h2><%= resume.name %></h2>
-            <p><%= resume.description %></p>
-          <% end %>
-        </div>
+          </div>
 
-        <div class="card-icons-group">
-          <%= link_to(copy_resume_path(:id => resume.id), method: :post, controller: "resumes", action: "copy") do %>
-            <%= image_tag "icons/card/copy/default@2.png", id: "copyIcon" %>
-          <% end %>
-
-          <%= link_to do %>
-            <%= image_tag "icons/card/export/default@2.png" %>
-          <% end %>
-
-          <%= link_to(resume, method: :delete, data: { confirm: 'Are you sure?' }) do %>
-            <%= image_tag "icons/card/options/default@2.png" %>
-          <% end %>
+          <div class="card-content">
+            <div class="card-description">
+              <p><%= resume.description %></p>
+            </div>
+          </div>
+        <% end %>
+        <div class="button-options"
+        onclick="showOptions(<%= resume.id %>)"
+        onmouseleave="hideOptions(<%= resume.id %>)">
+          <%= image_tag "icons/card/options.svg" %>
         </div>
       </div>
 
-      <div class="divider-line"></div>
+      <ul class="options" id="<%= resume.id %>">
+        <li>
+          <%= link_to(copy_resume_path(:id => resume.id), method: :post, controller: "resumes", action: "copy") do %>
+            <h3>Создать копию</h3>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to(resume, method: :delete, data: { confirm: 'Are you sure?' }) do %>
+            <h3>Удалить</h3>
+          <% end %>
+        </li>
+      </ul>
     <% end %>
+  </div>
+
+  <div class="index-buttons-container">
+    <button class="button button-big">
+      <%= link_to(new_resume_path) do%>
+        <%= image_tag "icons/button/search/default.svg" %>
+      <% end %>
+    </button>
+
+    <button class="button button-big">
+      <%= link_to(new_resume_path) do%>
+        <%= image_tag "icons/button/add/default.svg" %>
+      <% end %>
+    </button>
   </div>
 </div>

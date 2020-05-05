@@ -34,11 +34,11 @@
           <div class="tabs-list">
             <div class="tabs-list-header">
               <div>
-                <%= image_tag "icons/menu/portfolios/default.svg" %>
+                <%= image_tag "icons/menu/portfolio.svg" %>
                 <h3>Портфолио</h3>
               </div>
 
-              <div class="button button-small" onclick="showAddResumeToPortfolio()">
+              <div class="button button-medium" onclick="showAddResumeToPortfolio()">
                 <%= image_tag "icons/button/add/default.svg" %>
                 <h3>Связать с портфолио</h3>
               </div>
@@ -115,7 +115,3 @@
     </div>
   </div>
 <% end %>
-
-<%= javascript_pack_tag "editorjs" %>
-<%= javascript_include_tag "tabs"  %>
-<%= javascript_include_tag "exportPanel" %>

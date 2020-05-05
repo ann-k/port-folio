@@ -5,6 +5,7 @@ class PortfoliosController < ApplicationController
   # GET /portfolios.json
   def index
     @portfolios = current_user.portfolios.ordered_by_creation
+    render :layout => "index"
   end
 
   # GET /portfolios/1
@@ -17,6 +18,7 @@ class PortfoliosController < ApplicationController
     @portfolio = current_user.portfolios.new
     # @portfolio.project_in_portfolios.build
     @content = @portfolio.build_content
+    render :layout => "edit"
   end
 
   def copy
@@ -48,6 +50,7 @@ class PortfoliosController < ApplicationController
 
   # GET /portfolios/1/edit
   def edit
+    render :layout => "edit"
   end
 
   # POST /portfolios

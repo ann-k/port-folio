@@ -1,53 +1,62 @@
 <div class="index-outer-container">
   <div class="index-inner-container">
     <%#= notice %>
-
-    <div class="index-buttons-container">
-      <%= link_to(new_portfolio_path, class: "button button-big") do%>
-        <%= image_tag "icons/button/search/default.svg" %>
-        <h3>Поиск по портфолио</h3>
-      <% end %>
-
-      <%= link_to(new_portfolio_path, class: "button button-big") do%>
-        <%= image_tag "icons/button/add/default.svg" %>
-        <h3>Создать портфолио</h3>
-      <% end %>
-    </div>
-
     <h1>Мои портфолио</h1>
 
     <% @portfolios.each do |portfolio| %>
-      <div class="card">
-        <div class="card-cover">
-          <%= link_to edit_portfolio_path(portfolio) do %>
-            <%= image_tag portfolio.cover.url %>
-          <% end %>
-        </div>
-
-        <div class="card-text">
-          <%= link_to edit_portfolio_path(portfolio) do %>
+      <div class="card card-long">
+        <%= link_to edit_portfolio_path(portfolio) do %>
+          <div class="card-header">
             <h2><%= portfolio.name %></h2>
-            <p><%= portfolio.description %></p>
-          <% end %>
-        </div>
+          </div>
 
-        <div class="card-icons-group">
-          <%= link_to(copy_portfolio_path(:id => portfolio.id), method: :post, controller: "portfolios", action: "copy") do %>
-            <%= image_tag "icons/card/copy/default@2.png", id: "copyIcon" %>
-          <% end %>
+          <div class="card-content">
+            <% if portfolio.projects.any? %>
+              <div class="card-project-covers-container">
+                <% portfolio.projects.each do |project| %>
+                  <%= image_tag project.cover.url, class:"miniature" %>
+                <% end %>
+              </div>
+            <% end %>
 
-          <%= image_tag "icons/card/export/default@2.png" %>
-
-          <%= link_to(portfolio, method: :delete, data: { confirm: 'Are you sure?' }) do %>
-            <%= image_tag "icons/card/options/default@2.png" %>
-          <% end %>
+            <div class="card-description">
+              <p><%= portfolio.description %></p>
+            </div>
+          </div>
+        <% end %>
+        <div class="button-options"
+        onclick="showOptions(<%= portfolio.id %>)"
+        onmouseleave="hideOptions(<%= portfolio.id %>)">
+          <%= image_tag "icons/card/options.svg" %>
         </div>
       </div>
 
-      <div class="divider-line"></div>
+      <ul class="options" id="<%= portfolio.id %>">
+        <li>
+          <%= link_to(copy_portfolio_path(:id => portfolio.id), method: :post, controller: "portfolios", action: "copy") do %>
+            <h3>Создать копию</h3>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to(portfolio, method: :delete, data: { confirm: 'Are you sure?' }) do %>
+            <h3>Удалить</h3>
+          <% end %>
+        </li>
+      </ul>
     <% end %>
+  </div>
 
+  <div class="index-buttons-container">
+    <button class="button button-big">
+      <%= link_to(new_portfolio_path) do%>
+        <%= image_tag "icons/button/search/default.svg" %>
+      <% end %>
+    </button>
+
+    <button class="button button-big">
+      <%= link_to(new_portfolio_path) do%>
+        <%= image_tag "icons/button/add/default.svg" %>
+      <% end %>
+    </button>
   </div>
 </div>
-
-<%= javascript_include_tag "copy" %>

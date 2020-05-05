@@ -79,11 +79,6 @@
   }
 }
 
-.miniature {
-  width: 48px;
-  height: 32px;
-}
-
 .label-checkbox input {
   width: 24px;
 }
@@ -120,7 +115,7 @@
 
 .bars-top {
   background-color: $surface;
-  border-radius: 0 0 10px 10px;
+  border-radius: 0 0 8px 8px;
   box-shadow: $shadow;
 }
 
@@ -176,7 +171,7 @@
 
 .bars-bottom {
   background-color: $surface;
-  border-radius: 10px 10px 0 0;
+  border-radius: 8px 8px 0 0;
   box-shadow: $shadow;
 }
 
@@ -207,7 +202,7 @@
   height: 264px;
 
   background-color: $surface;
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 8px 8px 8px 8px;
 }
 
 .cover-image {

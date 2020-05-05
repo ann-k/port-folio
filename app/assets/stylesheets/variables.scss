@@ -1,14 +1,23 @@
-// Colors
+// Colors and shadows
 
 $text: #FFFFFF;
 $background: #212121;
 $surface: #2F2F2F;
+$on-surface: #3B3B3B;
+$on-surface-double: #444444;
 $primary: #648FFD;
 $secondary: #2C4EA6;
 $error: #EE5960;
 $grey: #4D4D4D;
 
 $shadow: 0 2px 10px rgba(0,0,0,0.1);
+
+
+// Grid
+
+$column-index: 100vw / 12;
+$column-gap-index: 24px;
+$column-edit: 100vw / 24;
 
 
 // Fonts
@@ -40,26 +49,20 @@ h2 {
 
   font-size: 24px;
   line-height: 24px;
-
-  // margin: 0;
 }
 
 h3 {
   font-family: "ptrootui bold";
   font-weight: normal;
 
-  font-size: 16px;
-  line-height: 24px;
-
-  // margin: 0;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 p, .ce-paragraph {
   font-family: "ptrootui medium";
   font-weight: normal;
 
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
-
-  // margin: 0;
 }

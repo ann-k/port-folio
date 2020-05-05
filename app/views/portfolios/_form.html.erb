@@ -58,11 +58,11 @@
           <div class="tabs-list">
             <div class="tabs-list-header">
               <div>
-                <%= image_tag "icons/menu/projects/default.svg" %>
+                <%= image_tag "icons/menu/project.svg" %>
                 <h3>Проекты</h3>
               </div>
 
-              <div class="button button-small" onclick="showAddProjectToPortfolio()">
+              <div class="button button-medium" onclick="showAddProjectToPortfolio()">
                 <%= image_tag "icons/button/add/default.svg" %>
                 <h3>Добавить проект</h3>
               </div>
@@ -98,11 +98,11 @@
           <div class="tabs-list">
             <div class="tabs-list-header">
               <div>
-                <%= image_tag "icons/menu/resumes/default.svg" %>
+                <%= image_tag "icons/menu/resume.svg" %>
                 <h3>Резюме</h3>
               </div>
 
-              <div class="button button-small" onclick="showAddResumeToPortfolio()">
+              <div class="button button-medium" onclick="showAddResumeToPortfolio()">
                 <%= image_tag "icons/button/add/default.svg" %>
                 <h3>Связать с резюме</h3>
               </div>
@@ -182,10 +182,4 @@
   </div>
 <% end %>
 
-<%= javascript_include_tag "exportPanel" %>
-<%= javascript_include_tag "tabs" %>
-<%#= javascript_include_tag "tabs", "data-turbolinks-track" => true  %>
-
-<%= javascript_pack_tag "editorjs" %>
 <%= javascript_pack_tag "dragAndDrop" %>
-<%#= javascript_pack_tag "parent" %>

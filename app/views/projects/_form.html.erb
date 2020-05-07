@@ -50,7 +50,7 @@
             <div class="tabs-list-header" id="specialButton" onclick="showBlock()">
               <h3>Портфолио</h3>
               <%= link_to("#", class: "button button-medium") do%>
-                <%= image_tag "icons/button/add/default.svg" %>
+                <%= image_tag "icons/button/add.svg" %>
                 <h3>Добавить в портфолио</h3>
               <% end %>
             </div>
@@ -83,7 +83,6 @@
 
       <div class="fixed-bars bars-top-container">
         <div class="bars-top bars-top-left">
-          <%#= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
         </div>
 
         <div class="bars-top bars-top-right">
@@ -110,12 +109,12 @@
         <div class="bars-bottom bars-bottom-right">
           <div class="bars-bottom-right-buttons">
             <div class="button" >
-              <%= image_tag "icons/button/add/default.svg" %>
+              <%= image_tag "icons/button/add.svg" %>
               <%= form.submit "Сохранить" %>
             </div>
 
             <div id="exportButton" class="button" onclick="openExportPanel()">
-              <%= image_tag "icons/button/add/default.svg" %>
+              <%= image_tag "icons/button/add.svg" %>
               <h3>Экспортировать</h3>
             </div>
           </div>

@@ -63,7 +63,7 @@
               </div>
 
               <div class="button button-medium" onclick="showAddProjectToPortfolio()">
-                <%= image_tag "icons/button/add/default.svg" %>
+                <%= image_tag "icons/button/add.svg" %>
                 <h3>Добавить проект</h3>
               </div>
             </div>
@@ -103,7 +103,7 @@
               </div>
 
               <div class="button button-medium" onclick="showAddResumeToPortfolio()">
-                <%= image_tag "icons/button/add/default.svg" %>
+                <%= image_tag "icons/button/add.svg" %>
                 <h3>Связать с резюме</h3>
               </div>
             </div>
@@ -133,7 +133,6 @@
 
       <div class="fixed-bars bars-top-container">
         <div class="bars-top bars-top-left">
-          <%#= form.select :language, options_for_select([["Ru"], ["Eng"]]), {}, {:class => 'custom-select'}%>
         </div>
 
         <div class="bars-top bars-top-right">
@@ -157,15 +156,22 @@
       <div class="fixed-bars bars-bottom-container">
         <div class="bars-bottom bars-bottom-left"></div>
 
+        <div id="panelAddProjects"
+        data-allprojects="<%= current_user.projects.all.ordered_by_position.to_json %>"
+        data-projects="<%= @portfolio.projects.ordered_by_position.to_json %>"
+        data-portfolioid="<%= @portfolio.id %>"
+        data-url="<%= project_in_portfolios_url %>">
+        </div>
+
         <div class="bars-bottom bars-bottom-right">
           <div class="bars-bottom-right-buttons">
             <div class="button" >
-              <%= image_tag "icons/button/add/default.svg" %>
+              <%= image_tag "icons/button/add.svg" %>
               <%= form.submit "Сохранить" %>
             </div>
 
             <div id="exportButton" class="button" onclick="openExportPanel()">
-              <%= image_tag "icons/button/add/default.svg" %>
+              <%= image_tag "icons/button/add.svg" %>
               <h3>Экспортировать</h3>
             </div>
           </div>

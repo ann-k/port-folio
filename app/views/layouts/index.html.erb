@@ -22,7 +22,7 @@
           <div class="nav-items-group">
             <div class="nav-items-top">
               <%= link_to(portfolios_path,
-              class: (current_page?(portfolios_path) ? "nav-item nav-item-active" : "nav-item")) do %>
+              class: ((current_page?(portfolios_path)) || (current_page?(root_path)) ? "nav-item nav-item-active" : "nav-item")) do %>
                 <div class="nav-item-active-indicator"></div>
                 <%= image_tag "icons/menu/portfolio.svg" %>
                 <h3 >Портфолио</h3>

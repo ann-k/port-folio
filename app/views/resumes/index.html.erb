@@ -5,7 +5,7 @@
 
     <% @resumes.each do |resume| %>
       <div class="card card-long">
-        <%= link_to resume_path(resume) do %>
+        <%= link_to edit_resume_path(resume) do %>
           <div class="card-header">
             <h2><%= resume.name %></h2>
           </div>
@@ -41,13 +41,13 @@
   <div class="index-buttons-container">
     <button class="button button-big">
       <%= link_to(new_resume_path) do%>
-        <%= image_tag "icons/button/search/default.svg" %>
+        <%= image_tag "icons/button/search.svg" %>
       <% end %>
     </button>
 
     <button class="button button-big">
       <%= link_to(new_resume_path) do%>
-        <%= image_tag "icons/button/add/default.svg" %>
+        <%= image_tag "icons/button/add.svg" %>
       <% end %>
     </button>
   </div>

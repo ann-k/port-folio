@@ -9,7 +9,6 @@
 
     <%= javascript_include_tag "nav", "data-turbolinks-track" => true  %>
     <%= javascript_include_tag "addToPortfolio", "data-turbolinks-track" => true  %>
-    <%= javascript_include_tag "exportPanel" %>
     <%= javascript_include_tag "tabs"#, "data-turbolinks-track" => true
     %>
 
@@ -70,4 +69,6 @@
     <%= yield %>
   </body>
   <%= javascript_pack_tag "panelAddProjects" %>
+  <%= javascript_include_tag "exportPanel" %>
+
 </html>

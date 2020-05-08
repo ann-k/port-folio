@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
 import ProjectToAdd from '../components/ProjectToAdd'
+import IconRemove from 'images/icons/constructor/remove.svg'
 
 let allProjects = JSON.parse(document.getElementById('panelAddProjects').dataset.allprojects)
 let currentProjects = JSON.parse(document.getElementById('panelAddProjects').dataset.projects)
@@ -46,6 +47,9 @@ export default class PanelAddProjects extends React.Component {
         </div>
         <div>
           {this.state.projects.map((project, index) => <ProjectToAdd key={project.id} project={project} index={index} addProject={this.addProject} />)}
+        </div>
+        <div id='iconRemove'>
+          <img src={IconRemove}></img>
         </div>
       </>
     )

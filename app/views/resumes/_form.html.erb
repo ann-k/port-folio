@@ -1,116 +1,140 @@
 <%= form_with(model: resume, local: true) do |form| %>
-  <div class="outer-container">
-    <div class="notification">
-      <% if resume.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(resume.errors.count, "error") %> prohibited this resume from being saved:</h2>
+  <div class="notification">
+    <% if resume.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(resume.errors.count, "error") %> prohibited this resume from being saved:</h2>
 
-          <ul>
-            <% resume.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
+        <ul>
+          <% resume.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="edit-page-container">
+    <div class="preview-container">
+      <div class="status">
+        <p class="disabled"><%= resume.name %></p>
+        <p class="disabled">Изменения сохранены</p>
+      </div>
+
+      <div class="contents-container">
+        <div class="browswer-bar">
+          <div></div>
+          <div></div>
+          <div></div>
         </div>
-      <% end %>
+        <div class="contents">
+          <div
+            class="editorjs"
+            id="editorResume"
+            data-contents="<%= @resume.content.to_json %>"
+            data-url="<%= url_for(@resume.content) %>">
+          </div>
+        </div>
+      </div>
+
+      <div id="bar-preview-wrapper">
+        <ul class="bar bar-bottom bar-with-three-tabs" id="bar-preview">
+          <li class="tablink preview-tablink active">
+            <div></div>
+            <%= image_tag "icons/preview/desktop.svg" %>
+          </li>
+          <li class="tablink preview-tablink">
+            <div></div>
+            <%= image_tag "icons/preview/mobile.svg" %>
+          </li>
+          <li class="tablink preview-tablink">
+            <div></div>
+            <%= image_tag "icons/preview/fullscreen.svg" %>
+          </li>
+        </ul>
+      </div>
+
+      <div class="panel" id="panelAddProjects"></div>
     </div>
 
-    <div class="edit-inner-container">
-      <div class="contents-container">
-        <div class="editorjs" id="editorResume" data-contents="<%= @resume.content.to_json %>" data-url="<%= url_for(@resume.content) %>"></div>
-      </div>
+    <div class="constructor-container">
+      <ul class="bar bar-top bar-with-two-tabs">
+        <li class="tablink constructor-tablink" id="defaultTab" onclick="openTab(event, 'settings')">
+          <h3>Настройки</h3>
+          <div></div>
+        </li>
 
-      <div class="constructor">
-        <div class="tabContent" id="settings">
-          <div class="input">
-            <h3>Название резюме (видно только вам)</h3>
-            <%= form.text_field :name, placeholder: "Новое резюме" %>
-          </div>
+        <li class="tablink constructor-tablink" onclick="openTab(event, 'decoration')">
+          <h3>Оформление</h3>
+          <div></div>
+        </li>
+      </ul>
 
-          <div class="input">
-            <h3>Описание (видно только вам)</h3>
-            <%= form.text_area :description, placeholder: "Здесь будет описание" %>
-          </div>
-
-          <div class="tabs-list">
-            <div class="tabs-list-header">
-              <div>
-                <%= image_tag "icons/menu/portfolio.svg" %>
-                <h3>Портфолио</h3>
-              </div>
-
-              <div class="button button-medium" onclick="showAddResumeToPortfolio()">
-                <%= image_tag "icons/button/add.svg" %>
-                <h3>Связать с портфолио</h3>
-              </div>
-            </div>
-
-            <% resume.portfolios.each do |portfolio| %>
-              <div class="tabs-list-item">
-                <p><%= portfolio.name %></p>
-              </div>
-
-              <div class="divider-line"></div>
-            <% end %>
-          </div>
+      <div class="constructor" id="settings">
+        <div class="input">
+          <h3>Название резюме (видно только вам)</h3>
+          <%= form.text_field :name, placeholder: "Новое резюме" %>
         </div>
 
-        <div id="addPortfolioToResume">
-          <%= form.collection_check_boxes(:portfolio_ids, current_user.portfolios.all, :id, :name) do |b| %>
-            <%= b.label class:"label-checkbox" do %>
-              <%= b.check_box + b.text%>
-            <% end %>
+        <div class="input">
+          <h3>Описание (видно только вам)</h3>
+          <%= form.text_area :description, placeholder: "Здесь будет описание" %>
+        </div>
+
+        <div class="tabs-list">
+          <div class="tabs-list-header">
+            <div>
+              <%= image_tag "icons/menu/portfolio.svg" %>
+              <h3>Портфолио</h3>
+            </div>
+
+            <div class="button button-medium" onclick="showAddResumeToPortfolio()">
+              <%= image_tag "icons/button/add.svg" %>
+              <h3>Связать с портфолио</h3>
+            </div>
+          </div>
+
+          <% resume.portfolios.each do |portfolio| %>
+            <div class="tabs-list-item">
+              <p><%= portfolio.name %></p>
+            </div>
+
+            <div class="divider-line"></div>
           <% end %>
         </div>
-
-        <div class="tabContent" id="decoration"><p>Coming soon...</p></div>
-
-        <div class="tabContent" id="content"><p>Coming soon...</p></div>
       </div>
 
-      <div class="fixed-bars bars-top-container">
-        <div class="bars-top bars-top-left"></div>
+      <div class="constructor" id="decoration"><div><p>Coming soon...</p></div></div>
 
-        <div class="bars-top bars-top-right">
-          <div class="tablinks" id="defaultTab" onclick="openTab(event, 'settings')">
-            <h3>Настройки</h3>
-            <div></div>
-          </div>
+      <div class="bar bar-bottom">
+        <div class="button" >
+          <%= image_tag "icons/button/add.svg" %>
+          <%= form.submit "Сохранить" %>
+        </div>
 
-          <div class="tablinks" onclick="openTab(event, 'decoration')">
-            <h3>Оформление</h3>
-            <div></div>
-          </div>
-
-          <div class="tablinks" onclick="openTab(event, 'content')">
-            <h3>Контент</h3>
-            <div></div>
-          </div>
+        <div id="exportButton" class="button" onclick="openExportPanel()">
+          <%= image_tag "icons/button/add.svg" %>
+          <h3>Экспортировать</h3>
         </div>
       </div>
 
-      <div class="fixed-bars bars-bottom-container">
-        <div class="bars-bottom bars-bottom-left"></div>
-
-        <div class="bars-bottom bars-bottom-right">
-          <div class="bars-bottom-right-buttons">
-            <div class="button" >
-              <%= image_tag "icons/button/add.svg" %>
-              <%= form.submit "Сохранить" %>
-            </div>
-
-            <div id="exportButton" class="button" onclick="openExportPanel()">
-              <%= image_tag "icons/button/add.svg" %>
-              <h3>Экспортировать</h3>
-            </div>
-          </div>
+      <div class="panel" id="exportPanel">
+        <div id="iconRemove">
+          <%= image_tag "icons/constructor/remove.svg" %>
         </div>
 
-        <div class="export-panel">
-          Скопировать ссылку <a href="http://localhost:3000/<%= @resume.content.id %>-<%= @resume.content.contentable_type.downcase %>">
-            www.p-f.to/<%= @resume.content.id %>-<%= @resume.content.contentable_type.downcase %>
-          </a>
-        </div>
+        <p>Ваше резюме доступно по ссылке<br>
+          <a href="http://localhost:3000/<%= @resume.content.id %>-<%= @resume.content.contentable_type.downcase %>">
+          www.p-f.to/<%= @resume.content.id %>-<%= @resume.content.contentable_type.downcase %>
+        </a></p>
 
+        <button class="button button-big">
+          <%= image_tag "icons/card/copy.svg" %>
+          <h3>Скопировать ссылку</h3>
+        </button>
+        <button class="button button-big">
+          <%= image_tag "icons/card/download.svg" %>
+          <h3>Сохранить в PDF</h3>
+        </button>
       </div>
     </div>
   </div>

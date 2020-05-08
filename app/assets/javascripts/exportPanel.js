@@ -1,5 +1,5 @@
 function openExportPanel() {
-  let exportPanel = document.getElementsByClassName("export-panel")[0]
+  let exportPanel = document.getElementById("exportPanel")
 
   if (exportPanel.style.display === "block") {
     exportPanel.style.display = "none"

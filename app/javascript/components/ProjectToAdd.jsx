@@ -7,7 +7,7 @@ import IconAdd from 'images/icons/button/add.svg'
 export default class ProjectToAdd extends React.Component {
   render() {
     return (
-      <div className='project-to-add'>
+      <div className='list-in-panel'>
         <img src={IconAdd} onClick={() => this.props.addProject(this.props.project.id)}></img>
           <img src={this.props.project.cover.url} className='miniature'></img>
           <p>{this.props.project.name}</p>

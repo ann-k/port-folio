@@ -1,188 +1,190 @@
 <%= form_with(model: portfolio, local: true) do |form| %>
-  <div class="edit-outer-container">
-    <div class="notification">
-      <% if portfolio.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(portfolio.errors.count, "error") %> prohibited this portfolio from being saved:</h2>
+  <div class="notification">
+    <% if portfolio.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(portfolio.errors.count, "error") %>prohibited this portfolio from being saved:</h2>
 
-          <ul>
-            <% portfolio.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-    </div>
-
-    <div class="edit-inner-container">
-      <div class="contents-container">
-        <div class="editorjs" id="editorPortfolio" data-contents="<%= @portfolio.content.to_json %>" data-url="<%= url_for(@portfolio.content) %>"></div>
-        <div class="projects-container">
-          <% portfolio.projects.ordered_by_position.each do |project| %>
-            <% if current_user.projects.include?(project) %>
-              <div>
-                <%= image_tag project.cover.url %>
-                <h3>
-                  <%= project.name %>
-                </h3>
-              </div>
-            <% end %>
+        <ul>
+          <% portfolio.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
           <% end %>
-        </div>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="edit-page-container">
+    <div class="preview-container">
+      <div class="status">
+        <p class="disabled"><%= portfolio.name %></p>
+        <p class="disabled">Изменения сохранены</p>
       </div>
 
-      <div class="constructor">
-        <div class="tabContent" id="settings">
-          <div class="input">
-            <h3>Название портфолио (видно только вам)</h3>
-            <%= form.text_field :name, placeholder: "Новое портфолио" %>
-          </div>
-
-          <div class="input">
-            <h3>Описание (видно только вам)</h3>
-            <%= form.text_area :description, placeholder: "Здесь будет описание" %>
-          </div>
-
+      <div class="contents-container">
+        <div class="browswer-bar">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div class="contents">
           <div
-            class="tab-list-area"
-            id="tabsListArea"
-            data-projects="<%= @portfolio.projects.ordered_by_position.to_json %>"
-            data-pinp="<%= @portfolio.project_in_portfolios.ordered_by_position.to_json %>"
-            data-removeurl="<%= project_in_portfolios_url %>"
-
-            <%# if @portfolio.id %>
-              data-sorturl="<%= sort_project_in_portfolios_url(@portfolio.id) %>"
-            <%# end %>
-          ></div>
-
-          <div class="tabs-list">
-            <div class="tabs-list-header">
-              <div>
-                <%= image_tag "icons/menu/project.svg" %>
-                <h3>Проекты</h3>
-              </div>
-
-              <div class="button button-medium" onclick="showAddProjectToPortfolio()">
-                <%= image_tag "icons/button/add.svg" %>
-                <h3>Добавить проект</h3>
-              </div>
-            </div>
-
-            <!-- <div class="tab-list-items-container"> -->
-              <%# portfolio.projects.each do |project| %>
-                  <!-- <div class="tabs-list-item"> -->
-                    <%#= image_tag project.cover.url, :class => 'miniature' %>
-                    <%#= project.name %>
-                    <%#= image_tag "icons/constructor/remove.svg" %>
-                  <!-- </div> -->
-              <%# end %>
-
-              <%# portfolio.project_in_portfolios.ordered_by_position.each do |p| %>
-                <!-- <div class="tabs-list-item"> -->
-                  <%#= p.position %>
-                  <%#= image_tag p.project.cover.url, :class => 'miniature' %>
-                  <%#= p.project.name %>
-                <!-- </div> -->
-              <%# end %>
-            <!-- </div> -->
+            class="editorjs"
+            id="editorPortfolio"
+            data-contents="<%= @portfolio.content.to_json %>"
+            data-url="<%= url_for(@portfolio.content) %>">
           </div>
-
-          <div id="addProjectToPortfolio">
-            <%= form.collection_check_boxes(:project_ids, current_user.projects.all, :id, :name) do |b| %>
-              <%= b.label class:"label-checkbox" do %>
-                <%= b.check_box + b.text%>
+          <div class="projects-container">
+            <% portfolio.projects.ordered_by_position.each do |project| %>
+              <% if current_user.projects.include?(project) %>
+              <div>
+                <%= image_tag project.cover.url %>
+                <h3><%= project.name %></h3>
+              </div>
               <% end %>
             <% end %>
           </div>
-
-          <div class="tabs-list">
-            <div class="tabs-list-header">
-              <div>
-                <%= image_tag "icons/menu/resume.svg" %>
-                <h3>Резюме</h3>
-              </div>
-
-              <div class="button button-medium" onclick="showAddResumeToPortfolio()">
-                <%= image_tag "icons/button/add.svg" %>
-                <h3>Связать с резюме</h3>
-              </div>
-            </div>
-
-            <% portfolio.resumes.each do |resume| %>
-              <div class="tabs-list-item">
-                <p><%= resume.name %></p>
-              </div>
-
-              <div class="divider-line"></div>
-            <% end %>
-          </div>
-        </div>
-
-        <div id="addResumeToPortfolio">
-          <%= form.collection_check_boxes(:resume_ids, current_user.resumes.all, :id, :name) do |b| %>
-            <%= b.label class:"label-checkbox" do %>
-              <%= b.check_box + b.text%>
-            <% end %>
-          <% end %>
-        </div>
-
-        <div class="tabContent" id="decoration"><p>Coming soon...</p></div>
-
-        <div class="tabContent" id="content"><p>Coming soon...</p></div>
-      </div>
-
-      <div class="fixed-bars bars-top-container">
-        <div class="bars-top bars-top-left">
-        </div>
-
-        <div class="bars-top bars-top-right">
-          <div class="tablinks" id="defaultTab" onclick="openTab(event, 'settings')">
-            <h3>Настройки</h3>
-            <div></div>
-          </div>
-
-          <div class="tablinks" onclick="openTab(event, 'decoration')">
-            <h3>Оформление</h3>
-            <div></div>
-          </div>
-
-          <div class="tablinks" onclick="openTab(event, 'content')">
-            <h3>Контент</h3>
-            <div></div>
-          </div>
         </div>
       </div>
 
-      <div class="fixed-bars bars-bottom-container">
-        <div class="bars-bottom bars-bottom-left"></div>
+      <div id="bar-preview-wrapper">
+        <ul class="bar bar-bottom bar-with-three-tabs" id="bar-preview">
+          <li class="tablink preview-tablink active">
+            <div></div>
+            <%= image_tag "icons/preview/desktop.svg" %>
+          </li>
+          <li class="tablink preview-tablink">
+            <div></div>
+            <%= image_tag "icons/preview/mobile.svg" %>
+          </li>
+          <li class="tablink preview-tablink">
+            <div></div>
+            <%= image_tag "icons/preview/fullscreen.svg" %>
+          </li>
+        </ul>
+      </div>
 
-        <div id="panelAddProjects"
+      <div class="panel" id="panelAddProjects"
         data-allprojects="<%= current_user.projects.all.ordered_by_position.to_json %>"
         data-projects="<%= @portfolio.projects.ordered_by_position.to_json %>"
         data-portfolioid="<%= @portfolio.id %>"
         data-url="<%= project_in_portfolios_url %>">
+          <div id="iconRemove">
+            <%= image_tag "icons/constructor/remove.svg" %>
+          </div>
+      </div>
+    </div>
+
+    <div class="constructor-container">
+      <ul class="bar bar-top bar-with-two-tabs">
+        <li class="tablink constructor-tablink" id="defaultTab" onclick="openTab(event, 'settings')">
+          <h3>Настройки</h3>
+          <div></div>
+        </li>
+
+        <li class="tablink constructor-tablink" onclick="openTab(event, 'decoration')">
+          <h3>Оформление</h3>
+          <div></div>
+        </li>
+      </ul>
+
+      <div class="constructor" id="settings">
+        <div class="input">
+          <h3>Название портфолио (видно только вам)</h3>
+          <%= form.text_field :name, placeholder: "Новое портфолио" %>
         </div>
 
-        <div class="bars-bottom bars-bottom-right">
-          <div class="bars-bottom-right-buttons">
-            <div class="button" >
-              <%= image_tag "icons/button/add.svg" %>
-              <%= form.submit "Сохранить" %>
+        <div class="input">
+          <h3>Описание (видно только вам)</h3>
+          <%= form.text_area :description, placeholder: "Здесь будет описание" %>
+        </div>
+
+        <div
+          class="tab-list-area"
+          id="tabsListArea"
+          data-projects="<%= @portfolio.projects.ordered_by_position.to_json %>"
+          data-pinp="<%= @portfolio.project_in_portfolios.ordered_by_position.to_json %>"
+          data-removeurl="<%= project_in_portfolios_url %>"
+
+          <%# if @portfolio.id %>
+          data-sorturl="<%= sort_project_in_portfolios_url(@portfolio.id) %>"
+          <%# end %>
+        ></div>
+
+        <div class="tabs-list">
+          <div class="tabs-list-header">
+            <div>
+              <%= image_tag "icons/menu/project.svg" %>
+              <h3>Проекты</h3>
             </div>
 
-            <div id="exportButton" class="button" onclick="openExportPanel()">
+            <div class="button button-medium" onclick="showAddProjectToPortfolio()">
               <%= image_tag "icons/button/add.svg" %>
-              <h3>Экспортировать</h3>
+              <h3>Добавить проект</h3>
             </div>
           </div>
         </div>
 
-        <div class="export-panel">
-          Скопировать ссылку <a href="http://localhost:3000/<%#= @portfolio.content.id %>-<%#= @portfolio.content.contentable_type.downcase %>">
-            www.p-f.to/<%#= @portfolio.content.id %>-<%#= @portfolio.content.contentable_type.downcase %>
-          </a>
+        <div class="tabs-list">
+          <div class="tabs-list-header">
+            <div>
+              <%= image_tag "icons/menu/resume.svg" %>
+              <h3>Резюме</h3>
+            </div>
+
+            <div class="button button-medium" onclick="showAddResumeToPortfolio()">
+              <%= image_tag "icons/button/add.svg" %>
+              <h3>Связать с резюме</h3>
+            </div>
+          </div>
+
+          <% portfolio.resumes.each do |resume| %>
+          <div class="tabs-list-item">
+            <p><%= resume.name %></p>
+          </div>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- <div id="addResumeToPortfolio"> -->
+        <%#= form.collection_check_boxes(:resume_ids, current_user.resumes.all, :id, :name) do |b| %>
+        <%#= b.label class:"label-checkbox" do %>
+        <%#= b.check_box + b.text%>
+        <%# end %>
+        <%# end %>
+      <!-- </div> -->
+
+      <div class="constructor" id="decoration"><div><p>Coming soon...</p></div></div>
+
+      <div class="bar bar-bottom">
+        <div class="button" >
+          <%= image_tag "icons/button/add.svg" %>
+          <%= form.submit "Сохранить" %>
         </div>
 
+        <div id="exportButton" class="button" onclick="openExportPanel()">
+          <%= image_tag "icons/button/add.svg" %>
+          <h3>Экспортировать</h3>
+        </div>
+      </div>
+
+      <div class="panel" id="exportPanel">
+        <div id="iconRemove">
+          <%= image_tag "icons/constructor/remove.svg" %>
+        </div>
+
+        <p>Ваше портфолио доступно по ссылке<br>
+          <a href="http://localhost:3000/<%#= @portfolio.content.id %>-<%#= @portfolio.content.contentable_type.downcase %>">
+          www.p-f.to/<%#= @portfolio.content.id %>-<%#= @portfolio.content.contentable_type.downcase %>
+        </a></p>
+
+        <button class="button button-big">
+          <%= image_tag "icons/card/copy.svg" %>
+          <h3>Скопировать ссылку</h3>
+        </button>
+        <button class="button button-big">
+          <%= image_tag "icons/card/download.svg" %>
+          <h3>Сохранить в PDF</h3>
+        </button>
       </div>
     </div>
   </div>

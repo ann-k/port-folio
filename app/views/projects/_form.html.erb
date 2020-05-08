@@ -1,133 +1,161 @@
 <%= form_with(model: project, local: true) do |form| %>
-  <div class="edit-outer-container">
-    <div class="notification">
-      <% if project.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
+  <div class="notification">
+    <% if project.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
 
-          <ul>
-            <% project.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
+        <ul>
+          <% project.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="edit-page-container">
+    <div class="preview-container">
+      <div class="status">
+        <p class="disabled"><%= project.name %></p>
+        <p class="disabled">Изменения сохранены</p>
+      </div>
+
+      <div class="contents-container">
+        <div class="browswer-bar">
+          <div></div>
+          <div></div>
+          <div></div>
         </div>
-      <% end %>
+        <div class="contents">
+          <div
+            class="editorjs"
+            id="editorProject"
+            data-contents="<%= @project.content.to_json %>"
+            data-url="<%= url_for(@project.content) %>">
+          </div>
+        </div>
+      </div>
+
+      <div id="bar-preview-wrapper">
+        <ul class="bar bar-bottom bar-with-three-tabs" id="bar-preview">
+          <li class="tablink preview-tablink active">
+            <div></div>
+            <%= image_tag "icons/preview/desktop.svg" %>
+          </li>
+          <li class="tablink preview-tablink">
+            <div></div>
+            <%= image_tag "icons/preview/mobile.svg" %>
+          </li>
+          <li class="tablink preview-tablink">
+            <div></div>
+            <%= image_tag "icons/preview/fullscreen.svg" %>
+          </li>
+        </ul>
+      </div>
+
+      <div class="panel" id="panelAddProjects"></div>
     </div>
 
-    <div class="edit-inner-container">
-      <div class="contents-container">
-        <div class="editorjs" id="editorProject" data-contents="<%= @project.content.to_json %>" data-url="<%= url_for(@project.content) %>"></div>
-      </div>
+    <div class="constructor-container">
+      <ul class="bar bar-top bar-with-two-tabs">
+        <li class="tablink constructor-tablink" id="defaultTab" onclick="openTab(event, 'settings')">
+          <h3>Настройки</h3>
+          <div></div>
+        </li>
 
-      <div class="constructor">
-        <div class="tabContent" id="settings">
-          <div class="project-cover">
-            <h3>Обложка</h3>
-            <%= image_tag project.cover.url if project.cover? %>
-            <div class="label-checkbox">
-              <p>Удалить обложку</p>
-              <%= form.check_box :remove_cover if project.cover? %>
+        <li class="tablink constructor-tablink" onclick="openTab(event, 'decoration')">
+          <h3>Оформление</h3>
+          <div></div>
+        </li>
+      </ul>
+
+      <div class="constructor" id="settings">
+        <div>
+          <h3>Обложка</h3>
+          <div id="addCoverToProject">
+            <% if project.cover? %>
+              <div class="project-cover">
+                <div id="iconRemove"><%= image_tag "icons/constructor/remove.svg" %></div>
+                <%= image_tag project.cover.url, class:"project-cover-file" %>
+              </div>
+            <% end %>
+
+            <div class="project-cover-buttons">
+              <button class="button button-medium"><h3>Загрузить новую обложку</h3></button>
+              <button class="button button-medium" id="chooseCover"
+                data-id="<%= project.id %>"
+                data-url="<%= upload_project_cover_url %>">
+                <h3>Или выбрать из изображений проекта</h3>
+              </button>
             </div>
-
-            <p>Загрузить новую обложку</p>
-            <%= form.file_field :cover %>
-
-            <p>Или выбрать из изображений проекта</p>
-            <div id="chooseCover"
-              data-id="<%= project.id %>"
-              data-url="<%= upload_project_cover_url %>"
-            >
-            </div>
-
           </div>
+        </div>
 
-          <div class="input">
-            <h3 id="editorjstest" data-project="<%= @project.name  %>">Название проекта</h3>
-            <%= form.text_field :name, placeholder: "Новый проект", id: "" %>
-          </div>
+        <div class="input">
+          <h3>Название проекта</h3>
+          <%= form.text_field :name, placeholder: "Новый проект", id: "" %>
+        </div>
 
-          <div class="tabs-list">
-            <div class="tabs-list-header" id="specialButton" onclick="showBlock()">
-              <h3>Портфолио</h3>
-              <%= link_to("#", class: "button button-medium") do%>
-                <%= image_tag "icons/button/add.svg" %>
-                <h3>Добавить в портфолио</h3>
-              <% end %>
-            </div>
-
-            <% project.portfolios.each do |portfolio| %>
-              <% if current_user.portfolios.include?(portfolio) %>
-                <div class="tabs-list-item">
-                  <p><%= portfolio.name %></p>
-                </div>
-
-                <div class="divider-line"></div>
-              <% end %>
+        <div class="tabs-list">
+          <div class="tabs-list-header" id="specialButton" onclick="showBlock()">
+            <h3>Портфолио</h3>
+            <%= link_to("#", class: "button button-medium") do%>
+              <%= image_tag "icons/button/add.svg" %>
+              <h3>Добавить в портфолио</h3>
             <% end %>
           </div>
 
-          <div id="addProjectToPortfolio" style="display: none;">
-            <%= form.collection_check_boxes(:portfolio_ids, current_user.portfolios.all, :id, :name) do |b| %>
-              <%= b.label class:"label-checkbox" do %>
-                <%= b.check_box + b.text%>
-              <% end %>
+          <% project.portfolios.each do |portfolio| %>
+            <% if current_user.portfolios.include?(portfolio) %>
+              <div class="tabs-list-item">
+                <p><%= portfolio.name %></p>
+              </div>
             <% end %>
-          </div>
+          <% end %>
         </div>
 
-        <div class="tabContent" id="decoration"><p>Coming soon...</p></div>
-
-        <div class="tabContent" id="content"><p>Coming soon...</p></div>
-
-      </div>
-
-      <div class="fixed-bars bars-top-container">
-        <div class="bars-top bars-top-left">
-        </div>
-
-        <div class="bars-top bars-top-right">
-          <div class="tablinks" id="defaultTab" onclick="openTab(event, 'settings')">
-            <h3>Настройки</h3>
-            <div></div>
-          </div>
-
-          <div class="tablinks" onclick="openTab(event, 'decoration')">
-            <h3>Оформление</h3>
-            <div></div>
-          </div>
-
-          <div class="tablinks" onclick="openTab(event, 'content')">
-            <h3>Контент</h3>
-            <div></div>
-          </div>
+        <div id="addProjectToPortfolio" style="display: none;">
+          <%= form.collection_check_boxes(:portfolio_ids, current_user.portfolios.all, :id, :name) do |b| %>
+            <%= b.label class:"label-checkbox" do %>
+              <%= b.check_box + b.text%>
+            <% end %>
+          <% end %>
         </div>
       </div>
 
-      <div class="fixed-bars bars-bottom-container">
-        <div class="bars-bottom bars-bottom-left"></div>
+      <div class="constructor" id="decoration"><p>Coming soon...</p></div>
 
-        <div class="bars-bottom bars-bottom-right">
-          <div class="bars-bottom-right-buttons">
-            <div class="button" >
-              <%= image_tag "icons/button/add.svg" %>
-              <%= form.submit "Сохранить" %>
-            </div>
-
-            <div id="exportButton" class="button" onclick="openExportPanel()">
-              <%= image_tag "icons/button/add.svg" %>
-              <h3>Экспортировать</h3>
-            </div>
-          </div>
+      <div class="bar bar-bottom">
+        <div class="button" >
+          <%= image_tag "icons/button/add.svg" %>
+          <%= form.submit "Сохранить" %>
         </div>
 
-        <div class="export-panel">
-          Скопировать ссылку <a href="http://localhost:3000/<%= @project.content.id %>-<%= @project.content.contentable_type.downcase %>">
+        <div id="exportButton" class="button" onclick="openExportPanel()">
+          <%= image_tag "icons/button/add.svg" %>
+          <h3>Экспортировать</h3>
+        </div>
+      </div>
+
+      <div class="panel" id="exportPanel">
+        <div id="iconRemove">
+          <%= image_tag "icons/constructor/remove.svg" %>
+        </div>
+
+        <p>Ваш проект доступен по ссылке<br>
+          <a href="http://localhost:3000/<%= @project.content.id %>-<%= @project.content.contentable_type.downcase %>">
             www.p-f.to/<%= @project.content.id %>-<%= @project.content.contentable_type.downcase %>
-          </a>
-        </div>
+        </a></p>
 
+        <button class="button button-big">
+          <%= image_tag "icons/card/copy.svg" %>
+          <h3>Скопировать ссылку</h3>
+        </button>
+        <button class="button button-big">
+          <%= image_tag "icons/card/download.svg" %>
+          <h3>Сохранить в PDF</h3>
+        </button>
       </div>
-
     </div>
   </div>
 <% end %>

@@ -7,7 +7,7 @@
   width: 100vw;
   height: 100vh;
   display: grid;
-  column-gap: $column-gap-index;
+  column-gap: $column-gap;
 }
 
 .nav-index-container {
@@ -62,7 +62,6 @@ nav {
 
   .nav-item {img {margin-left: 19px;}}
   .nav-item:hover {background-color: $on-surface;}
-  // .nav-item-active {background-color: $on-surface;}
 }
 
 .nav-item-active-indicator {display: none;}
@@ -95,26 +94,9 @@ nav {
   }
 
   .nav-item-shown {
-    // width: 16vw;
     background-color: $surface;
     border-radius: 8px;
 
     // h3 { display: block; }
   }
 }
-
-// #portfolio-icon {
-//   -webkit-mask: url("http://localhost:3000/assets/icons/menu/portfolios/default-25b0ece171a257e39a6acefa487952583ca3065cbbf8cf31ef1a7d61fb1a5b58.svg");
-// }
-//
-// #project-icon {
-//   -webkit-mask: url("http://localhost:3000/assets/icons/menu/projects/default-59231967d3d23129807c126fa300e6a53e5cd5ce211fb67b5a5ce482b6808221.svg");
-// }
-//
-// #resume-icon {
-//   -webkit-mask: url("http://localhost:3000/assets/icons/menu/resumes/default-fc786a2c8aa414f17be0020742ab0689afda917fd4e72ef1a1ac9c1b058be524.svg");
-// }
-//
-// #settings-icon {
-//   -webkit-mask: url("http://localhost:3000/assets/icons/menu/settings/default-0cec70e70fa175a7f4188a8d32c36e393059e2c0659a0ea1b97a5f81ec495312.svg");
-// }

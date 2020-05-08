@@ -1,12 +1,12 @@
 function openTab(evt, tabName) {
   var i, tabContent, tablinks;
 
-  tabContent = document.getElementsByClassName("tabContent");
+  tabContent = document.getElementsByClassName("constructor");
   for (i = 0; i < tabContent.length; i++) {
     tabContent[i].style.display = "none";
   }
 
-  tablinks = document.getElementsByClassName("tablinks");
+  tablinks = document.getElementsByClassName("constructor-tablink");
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }

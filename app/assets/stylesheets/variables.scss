@@ -8,7 +8,7 @@ $on-surface-double: #444444;
 $primary: #648FFD;
 $secondary: #2C4EA6;
 $error: #EE5960;
-$grey: #4D4D4D;
+$grey: #BCBCBC;
 
 $shadow: 0 2px 10px rgba(0,0,0,0.1);
 
@@ -16,7 +16,7 @@ $shadow: 0 2px 10px rgba(0,0,0,0.1);
 // Grid
 
 $column-index: 100vw / 12;
-$column-gap-index: 24px;
+$column-gap: 24px;
 $column-edit: 100vw / 24;
 
 
@@ -65,4 +65,8 @@ p, .ce-paragraph {
 
   font-size: 14px;
   line-height: 24px;
+}
+
+p.disabled {
+  color: $grey;
 }

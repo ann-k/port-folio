@@ -1,35 +1,138 @@
 @import "variables";
 
-.edit-outer-container {
+.edit-page-container {
+  display: grid;
+  grid-template-columns: repeat(23, 1fr);
+  column-gap: $column-gap;
+  position: fixed;
   right: 0;
-  position: absolute;
-  width: 100vw;
+  width: 100vw - $column-edit;
+  margin-left: $column-gap;
 }
 
-.edit-inner-container {
+
+// PREVIEW
+
+.preview-container {
+  grid-column-end: span 15;
+
   display: grid;
-  grid-template-columns: 1fr 32vw;
-  grid-column-gap: 64px;
+  grid-template-rows: 40px 1fr 40px;
+  grid-row-gap: 40px;
 
-  padding-right: 64px;
-  margin-left: 64px + 40px;
+  //??
+  position: relative;
 
-  .button input {
-    margin: auto;
+  height: 100vh;
+}
+
+.status {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  p {line-height: 14px;}
+}
+
+.contents-container {
+  min-height: 460px;
+  // max-height: 90vh;
+  // margin-top: 40px;
+
+  display: grid;
+  grid-template-rows: 40px 1fr;
+}
+
+.browswer-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  height: 40px;
+  background-color: $surface;
+  border-radius: 8px 8px 0 0;
+
+  div {
+    width: 12px;
+    height: 12px;
+    margin-right: 4px;
+
+    border-radius: 100%;
+    background-color: $on-surface-double;
+  }
+
+  div:first-child {
+    margin-left: 16px;
   }
 }
 
-.constructor {
-  margin-top: 64px;
-  margin-bottom: 64px;
+.contents {
+  overflow-y: scroll;
+  border-radius: 0 0 8px 8px;
+  background-color: white;
+  color: $background;
 }
 
-.tabContent {
-  display: none;
+
+// CONSTRUCTOR
+
+.constructor-container {
+  grid-column-start: 16;
+  grid-column-end: span 7;
+
+  display: grid;
+  grid-template-rows: 40px 1fr 40px;
+  // grid-row-gap: 40px;
+
+  //??
+  position: relative;
+
+  height: 100vh;
+}
+
+.constructor {
+  // max-height: 60vh;
+  overflow-y: scroll;
 
   input, textarea {
     width: 100%;
     margin-bottom: 24px;
+  }
+}
+
+.constructor > div:first-child {
+  margin-top: 40px;
+}
+
+#addCoverToProject {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-column-gap: $column-gap;
+
+  .project-cover {
+    grid-column-end: span 3;
+    position: relative;
+    #iconRemove {
+      display: none;
+      position: absolute;
+      top: 4px;
+      right: 4px;
+    }
+    &:hover { #iconRemove {
+      display: block;
+      background-color: $primary;
+    }}
+
+    .project-cover-file {
+      width: 100%;
+      border-radius: 8px;
+    }
+  }
+
+  .project-cover-buttons {
+    grid-column-end: span 4;
+    button {width: 100%;}
   }
 }
 
@@ -87,141 +190,158 @@
   width: 24px;
 }
 
-#addProjectToPortfolio, #addResumeToPortfolio {
-  display: none;
+
+
+.tablink {
+  position: relative;
+  cursor: pointer;
+
+  h3, img {
+    position: absolute;
+    right: 0;
+    left: 0;
+    margin: auto;
+
+    width: max-content;
+    line-height: 40px;
+  }
+
+  &.active {
+    cursor: default;
+
+    div {
+      position: absolute;
+      right: 0;
+      left: 0;
+      margin: auto;
+
+      width: 84%;
+      height: 4px;
+
+      background-color: $primary;
+      transition: all 0.5s ease-out;
+    }
+  }
+
+}
+
+.preview-tablink {
+  div {
+    bottom: 0;
+    border-radius: 10px 10px 0 0;
+  }
+}
+
+.constructor-tablink.active {
+  div {
+    top: 0;
+    border-radius: 0 0 10px 10px;
+  }
 }
 
 
+// BARS
 
-// FIXED BARS
-
-.fixed-bars {
+.bar {
   z-index: 2;
-  display: grid;
-  grid-template-columns: 5fr 3fr;
-  grid-column-gap: 64px;
-
-  position: fixed;
-  right: 0;
-
-  width: 100vw - 6vw;
-  height: 48px;
-  padding-right: 64px;
-}
-
-.bars-top-container {
-  top: 0;
-}
-
-.bars-bottom-container {
-  bottom: 0;
-}
-
-.bars-top {
+  height: 40px;
   background-color: $surface;
-  border-radius: 0 0 8px 8px;
   box-shadow: $shadow;
+
+  // right: 0;
+  // width: 100vw - 6vw;
+  // padding-right: 64px;
 }
 
-.bars-top-left {
-  width: 334px;
-  margin-left: auto;
-  margin-right: auto;
+.bar-top {
+  border-radius: 0 0 8px 8px;
 }
 
-.bars-top-right {
+#bar-preview-wrapper {
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  column-gap: $column-gap;
+}
+
+#bar-preview {
+  grid-column-start: 5;
+  grid-column-end: span 7;
+}
+
+.bar-bottom {
+  border-radius: 8px 8px 0 0;
+  // position: relative;
+  // left: 0;
+  // bottom: 0;
+  // width: 100%;
+}
+
+.bar-with-two-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: space-between;
+}
+
+.bar-with-three-tabs {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   justify-content: space-between;
 }
 
-.tablinks {
-  position: relative;
-  margin: 0;
+
+// PANELS
+
+#iconRemove {
+  width: 40px;
+  height: 40px;
+
+  text-align: center;
+  line-height: 40px;
+
   cursor: pointer;
-
-  h3 {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: max-content;
-    line-height: 48px;
-  }
-
-  // div { background-color: $text; }
-
-  &.active {
-    cursor: default;
-
-    h3 {
-      color: $primary;
-      transition: all 0.5s ease-out;
-    }
-
-    div {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      margin: auto;
-      width: 84%;
-      height: 2px;
-      background-color: $primary;
-      transition: all 0.5s ease-out;
-    }
-  }
+  border-radius: 8px;
+  &:hover {background-color: $primary;}
 }
 
-.bars-bottom {
-  background-color: $surface;
-  border-radius: 8px 8px 0 0;
-  box-shadow: $shadow;
-}
-
-.bars-bottom-left {
+.panel {
   display: none;
-}
-
-.bars-bottom-right {
-  grid-column-start: 2;
-}
-
-.bars-bottom-right-buttons {
-  // display: grid;
-  // grid-template-columns: 1fr 1fr 1fr;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.export-panel {
-  position: fixed;
-  bottom: 48px + 32px;
-  right: 64px;
-  z-index: 2;
-  display: none;
-
-  width: 32vw;
-  height: 264px;
-
-  background-color: $surface;
-  border-radius: 8px 8px 8px 8px;
-}
-
-.cover-image {
-  height: 80px;
-}
-
-#panelAddProjects {
   position: absolute;
-  bottom: 0;
-  left: 100px;
-  width: 600px;
+  bottom: 60px;
+  z-index: 3;
+
+  width: 100%;
+
   background-color: $surface;
+  border-radius: 8px;
+
+  padding-top: 24px;
+  padding-right: 16px;
+  padding-bottom: 16px;
+  padding-left: 16px;
+
+  button {
+    background-color: $on-surface;
+    width: 100%;
+  }
+
+  #iconRemove {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+  }
 }
 
-.project-to-add {
+#exportPanel {
+  p {
+    margin-bottom: 16px;
+  }
+
+  button:last-child {
+    margin-top: 8px;
+  }
+}
+
+.list-in-panel {
   display: flex;
   flex-direction: row;
   align-items: center;

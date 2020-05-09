@@ -9,19 +9,42 @@ import ConstructorSettings from '../3_Organisms/ConstructorSettings'
 import ConstructorDecoration from '../3_Organisms/ConstructorDecoration'
 
 export default class ConstructorContainer extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleTabChange = this.handleTabChange.bind(this)
+
+    this.state = {
+      settingsTabDisabled: false,
+      decorationTabDisabled: true,
+    }
+  }
+
+  handleTabChange(event) {
+    this.setState(prevState => ({
+      ...this.state,
+      settingsTabDisabled: !prevState.settingsTabDisabled,
+      decorationTabDisabled: !prevState.decorationTabDisabled,
+    }))
+  }
+
   render() {
     return (
       <div className='constructor-container'>
-        <BarConstructorWrapper />
+        <BarConstructorWrapper settingsTabDisabled={this.state.settingsTabDisabled}
+                               decorationTabDisabled={this.state.decorationTabDisabled}
+                               onTabChange={this.handleTabChange} />
 
         <ConstructorSettings portfolio={this.props.portfolio}
-                             handleNameChange={this.props.handleNameChange}
-                             handleDescriptionChange={this.props.handleDescriptionChange} />
-        <ConstructorDecoration />
+                             disabled={this.state.settingsTabDisabled}
+                             handleInputChange={this.props.handleInputChange}
+                             handlePanelAddProjectsDisplayChange={this.props.handlePanelAddProjectsDisplayChange} />
 
-        <BarExportWrapper />
+        <ConstructorDecoration disabled={this.state.decorationTabDisabled} />
 
-        <PanelExport />
+        <BarExportWrapper onPanelExportDisplayChange={this.props.handlePanelExportDisplayChange} />
+
+        <PanelExport disabled={this.props.panelExportState}
+                     onPanelExportDisplayChange={this.props.handlePanelExportDisplayChange} />
       </div>
     )
   }

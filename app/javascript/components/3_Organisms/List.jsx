@@ -130,7 +130,10 @@ export default class List extends React.Component {
           let projects = tabList.projectIds.map(projectId => this.state.projects.filter(project => project.id === projectId))
           projects = [].concat(...projects)
 
-          return <TabList key={tabList.id} tabList={tabList} projects={projects} removeProject={this.removeProject} />
+          return <TabList key={tabList.id}
+                          tabList={tabList}
+                          projects={projects}
+                          removeProject={this.removeProject} onPanelAddProjectsDisplayChange={this.props.handlePanelAddProjectsDisplayChange} />
           })}
         </DragDropContext>
       </div>

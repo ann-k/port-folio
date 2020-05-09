@@ -8,6 +8,16 @@ import IconProject from 'images/icons/menu/project.svg'
 import IconAdd from 'images/icons/button/add.svg'
 
 export default class TabList extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange(event) {
+    event.preventDefault()
+    this.props.onPanelAddProjectsDisplayChange(event)
+  }
+
   render() {
     return (
       <div className="tabs-list">
@@ -16,7 +26,7 @@ export default class TabList extends React.Component {
             <img src={IconProject} />
             <h3>Проекты</h3>
           </div>
-          <button className="button button-small">
+          <button className="button button-small" onClick={this.handleChange}>
             <img src={IconAdd} />
             <h3>Добавить проект</h3>
           </button>

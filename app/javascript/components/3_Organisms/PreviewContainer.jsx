@@ -17,7 +17,8 @@ export default class PreviewContainer extends React.Component {
 
         <BarPreviewWrapper />
 
-        <PanelAddProjects />
+        <PanelAddProjects disabled={this.props.panelAddProjectsState}
+                          onPanelAddProjectsDisplayChange={this.props.handlePanelAddProjectsDisplayChange} />
       </div>
     )
   }

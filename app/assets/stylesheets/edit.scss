@@ -101,6 +101,10 @@
   }
 }
 
+.constructor.disabled {
+  display: none;
+}
+
 .constructor > div:first-child {
   margin-top: 40px;
 }
@@ -268,6 +272,15 @@
   grid-column-end: span 7;
 }
 
+#exportBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  img {margin-right: 8px;}
+}
+
 .bar-bottom {
   border-radius: 8px 8px 0 0;
   // position: relative;
@@ -303,8 +316,11 @@
   &:hover {background-color: $primary;}
 }
 
-.panel {
+.panel.disabled {
   display: none;
+}
+
+.panel {
   position: absolute;
   bottom: 60px;
   z-index: 3;

@@ -12,12 +12,12 @@ export default class DndProject extends React.Component {
       <Draggable draggableId={this.props.project.id} index={this.props.index}>
         {(provided) => (
           <div
-            className="tabs-list-item"
+            className='tabs-list-item'
             {...provided.draggableProps}
             ref={provided.innerRef}
           >
             <img src={IconDnd} {...provided.dragHandleProps} />
-            <img src={this.props.project.cover.url} className="miniature" />
+            <img src={this.props.project.cover.url} className='miniature' />
             <p>{this.props.project.name}</p>
             <img src={IconRemove} onClick={() => this.props.removeProject(this.props.project.pInPId, this.props.project.id)} />
           </div>

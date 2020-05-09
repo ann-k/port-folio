@@ -2,16 +2,23 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
-import IconAdd from 'images/icons/button/add.svg'
+import IconExport from 'images/icons/card/export.svg'
 
 export default class BarExportWrapper extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange(event) {
+    this.props.onPanelExportDisplayChange(event)
+  }
+
   render() {
     return (
-      <div className="bar bar-bottom">
-        <button id="exportButton" className="button">
-          <img src={IconAdd} />
-          <h3>Экспортировать</h3>
-        </button>
+      <div className='bar bar-bottom' id='exportBar' onClick={this.handleChange}>
+        <img src={IconExport} />
+        <h3>Экспортировать</h3>
       </div>
     )
   }

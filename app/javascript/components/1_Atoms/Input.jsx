@@ -9,7 +9,7 @@ export default class Input extends React.Component {
   }
 
   handleChange(event) {
-    this.props.onNameChange(event.target.value)
+    this.props.onInputChange(event)
   }
 
   render() {

@@ -8,41 +8,42 @@ import ConstructorContainer from '../components/3_Organisms/ConstructorContainer
 export default class PortfolioEdit extends React.Component {
   constructor(props) {
     super(props)
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this)
+    this.handlePanelExportDisplayChange = this.handlePanelExportDisplayChange.bind(this)
+    this.handlePanelAddProjectsDisplayChange = this.handlePanelAddProjectsDisplayChange.bind(this)
 
     const portfolio = JSON.parse(document.getElementById('dataContainer').dataset.portfolio)
 
     this.state = {
-      portfolio: portfolio
+      portfolio: portfolio,
+      panelExportDisabled: true,
+      panelAddProjectsDisabled: true,
     }
   }
 
-  handleNameChange(name) {
-    this.setState({
-      portfolio: {
-        ...this.state.portfolio,
-        name: name
-      }
-    })
-
-    const url = document.getElementById('dataContainer').dataset.url_for_portfolio
-    fetch(url, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name: name
-      })
-    }).then(res => {
-      return res.json()
-    })
+  handlePanelExportDisplayChange(event) {
+    this.setState(prevState => ({
+      ...this.state,
+      panelExportDisabled: !prevState.panelExportDisabled
+    }))
   }
 
-  handleDescriptionChange(description) {
+  handlePanelAddProjectsDisplayChange(event) {
+    this.setState(prevState => ({
+      ...this.state,
+      panelAddProjectsDisabled: !prevState.panelAddProjectsDisabled
+    }))
+  }
+
+  handleInputChange(event) {
+    const value = event.target.value
+    const name = event.target.name
+
     this.setState({
+      ...this.state,
       portfolio: {
         ...this.state.portfolio,
-        description: description
+        [name]: value
       }
     })
 
@@ -51,7 +52,7 @@ export default class PortfolioEdit extends React.Component {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        description: description
+        [name]: value
       })
     }).then(res => {
       return res.json()
@@ -61,10 +62,14 @@ export default class PortfolioEdit extends React.Component {
   render() {
     return (
       <>
-        <PreviewContainer portfolio={this.state.portfolio} />
+        <PreviewContainer portfolio={this.state.portfolio}
+                          panelAddProjectsState={this.state.panelAddProjectsDisabled}
+                          handlePanelAddProjectsDisplayChange={this.handlePanelAddProjectsDisplayChange} />
         <ConstructorContainer portfolio={this.state.portfolio}
-                              handleNameChange={this.handleNameChange}
-                              handleDescriptionChange={this.handleDescriptionChange} />
+                              handleInputChange={this.handleInputChange}
+                              panelExportState={this.state.panelExportDisabled}
+                              handlePanelExportDisplayChange={this.handlePanelExportDisplayChange}
+                              handlePanelAddProjectsDisplayChange={this.handlePanelAddProjectsDisplayChange} />
       </>
     )
   }

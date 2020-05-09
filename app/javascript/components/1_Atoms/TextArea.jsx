@@ -9,7 +9,7 @@ export default class TextArea extends React.Component {
   }
 
   handleChange(event) {
-    this.props.onDescriptionChange(event.target.value)
+    this.props.onInputChange(event)
   }
 
   render() {

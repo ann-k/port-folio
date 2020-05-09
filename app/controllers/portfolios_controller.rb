@@ -77,7 +77,7 @@ class PortfoliosController < ApplicationController
   def update
     respond_to do |format|
       if @portfolio.update(portfolio_params)
-        format.html { redirect_to edit_portfolio_path }
+        # format.html { redirect_to edit_portfolio_path }
         format.json { render :show, status: :ok, location: @portfolio }
       else
         format.html { render :edit }
@@ -99,7 +99,7 @@ class PortfoliosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_portfolio
-      @portfolio = current_user.portfolios.find(params[:id])
+      @portfolio = Portfolio.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

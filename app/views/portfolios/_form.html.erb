@@ -13,7 +13,18 @@
     <% end %>
   </div>
 
-  <div class="edit-page-container">
+  <div class="edit-page-container" id="dataContainer"
+       data-portfolio="<%= @portfolio.to_json %>"
+       data-portfolio_id="<%= @portfolio.id %>"
+       data-projects="<%= @portfolio.projects.ordered_by_position.to_json %>"
+       data-all_projects="<%= current_user.projects.all.ordered_by_position.to_json %>"
+       data-p_in_ps="<%= @portfolio.project_in_portfolios.ordered_by_position.to_json %>"
+       data-contents="<%= @portfolio.content.to_json %>"
+       data-url_for_portfolio="<%= portfolio_url %>"
+       data-url_for_p_in_ps="<%= project_in_portfolios_url %>"
+       data-url_for_sort="<%= sort_project_in_portfolios_url(@portfolio.id) %>"
+       data-url_for_content="<%= url_for(@portfolio.content) %>"
+  >
     <div class="preview-container">
       <div class="status">
         <p class="disabled"><%= portfolio.name %></p>
@@ -189,5 +200,3 @@
     </div>
   </div>
 <% end %>
-
-<%= javascript_pack_tag "dragAndDrop" %>

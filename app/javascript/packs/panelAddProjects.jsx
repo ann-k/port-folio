@@ -5,8 +5,8 @@ import PropTypes from 'prop-types'
 import ProjectToAdd from '../components/ProjectToAdd'
 import IconRemove from 'images/icons/constructor/remove.svg'
 
-let allProjects = JSON.parse(document.getElementById('panelAddProjects').dataset.allprojects)
-let currentProjects = JSON.parse(document.getElementById('panelAddProjects').dataset.projects)
+let allProjects = JSON.parse(document.getElementById('dataContainer').dataset.all_projects)
+let currentProjects = JSON.parse(document.getElementById('dataContainer').dataset.projects)
 
 let projectsData = allProjects.filter(project => {
   if (!currentProjects.map(currentProject => {
@@ -22,8 +22,8 @@ export default class PanelAddProjects extends React.Component {
   state = stateData
 
   addProject = projectId => {
-    let url = document.getElementById('panelAddProjects').dataset.url
-    let portfolioId = document.getElementById('panelAddProjects').dataset.portfolioid
+    let url = document.getElementById('dataContainer').dataset.url_for_p_in_ps
+    let portfolioId = document.getElementById('dataContainer').dataset.portfolio_id
 
     fetch(url, {
       method: 'POST',

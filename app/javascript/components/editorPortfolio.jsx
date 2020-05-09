@@ -7,11 +7,11 @@ import EditorJS from '@editorjs/editorjs'
 const Header = require('@editorjs/header')
 
 const editorPortfolio = document.addEventListener('DOMContentLoaded', () => {
-  let editorContainer = document.getElementById('editorPortfolio')
+  let editorContainer = document.getElementById('dataContainer')
 
   if (editorContainer) {
     let dataFromBackend = JSON.parse(editorContainer.dataset.contents).content_data
-    let url = 'http://localhost:3000/' + editorContainer.dataset.url + '.json'
+    let url = 'http://localhost:3000/' + editorContainer.dataset.url_for_content + '.json'
 
     const editor = new EditorJS({
       holder: 'editorPortfolio',

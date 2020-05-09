@@ -12,8 +12,11 @@
     <%= javascript_include_tag "tabs"#, "data-turbolinks-track" => true
     %>
 
-    <%= javascript_pack_tag "application", "data-turbolinks-track": "reload" %>
-    <%= javascript_pack_tag "editorjs" %>
+    <%= javascript_pack_tag "portfolioEdit" %>
+    <%#= javascript_pack_tag "application", "data-turbolinks-track": "reload" %>
+    <%#= javascript_pack_tag "editorjs" %>
+    <%#= javascript_pack_tag "panelAddProjects" %>
+    <%#= javascript_include_tag "exportPanel" %>
   </head>
 
   <body class="<%= controller_name %>" id="<%= action_name %>">
@@ -68,7 +71,4 @@
     <% end %>
     <%= yield %>
   </body>
-  <%= javascript_pack_tag "panelAddProjects" %>
-  <%= javascript_include_tag "exportPanel" %>
-
 </html>

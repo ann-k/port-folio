@@ -1,5 +1,5 @@
-let projectsArray = JSON.parse(document.getElementById('tabsListArea').dataset.projects)
-let pInPArray = JSON.parse(document.getElementById('tabsListArea').dataset.pinp)
+let projectsArray = JSON.parse(document.getElementById('dataContainer').dataset.projects)
+let pInPArray = JSON.parse(document.getElementById('dataContainer').dataset.p_in_ps)
 
 let projectsWithStringIds = projectsArray.map((item, i) => {
   item.pInPId = pInPArray[i].id

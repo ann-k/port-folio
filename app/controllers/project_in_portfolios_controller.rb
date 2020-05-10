@@ -38,8 +38,13 @@ class ProjectInPortfoliosController < ApplicationController
 
     respond_to do |format|
       if @project_in_portfolio.save
-        format.html { redirect_to @project_in_portfolio, notice: 'Project in portfolio was successfully created.' }
-        format.json { render :show, status: :created, location: @project_in_portfolio }
+        # format.html { redirect_to @project_in_portfolio, notice: 'Project in portfolio was successfully created.' }
+        # format.json { render :show, status: :created, location: @project_in_portfolio }
+        # response = {
+        #   "project_in_portfolio_id": @project_in_portfolio.id,
+        # }
+        # render json: response
+
       else
         format.html { render :new }
         format.json { render json: @project_in_portfolio.errors, status: :unprocessable_entity }
@@ -63,10 +68,15 @@ class ProjectInPortfoliosController < ApplicationController
 
   # DELETE /project_in_portfolios/1
   # DELETE /project_in_portfolios/1.json
+  def delete_project_in_portfolio
+    project_in_portfolio = ProjectInPortfolio.where("portfolio_id = #{params[:portfolio_id]} and project_id = #{params[:project_id]}")[0]
+    ProjectInPortfolio.destroy(project_in_portfolio.id)
+  end
+
   def destroy
     @project_in_portfolio.destroy
     respond_to do |format|
-      format.html { redirect_to project_in_portfolios_url, notice: 'Project in portfolio was successfully destroyed.' }
+      # format.html { redirect_to project_in_portfolios_url, notice: 'Project in portfolio was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

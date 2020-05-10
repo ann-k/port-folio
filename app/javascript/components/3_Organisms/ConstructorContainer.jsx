@@ -35,6 +35,11 @@ export default class ConstructorContainer extends React.Component {
                                onTabChange={this.handleTabChange} />
 
         <ConstructorSettings portfolio={this.props.portfolio}
+                             projects={this.props.projects}
+                             tabList={this.props.tabList}
+                             tabListOrder={this.props.tabListOrder}
+                             handleDragEnd={this.props.handleDragEnd}
+                             removeProject={this.props.removeProject}
                              disabled={this.state.settingsTabDisabled}
                              handleInputChange={this.props.handleInputChange}
                              handlePanelAddProjectsDisplayChange={this.props.handlePanelAddProjectsDisplayChange} />

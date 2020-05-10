@@ -39,7 +39,7 @@ export default class TabList extends React.Component {
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
-              {this.props.projects.map((project, index) => <DndProject key={project.id} project={project} index={index} removeProject={this.props.removeProject}/>)}
+              {this.props.projects.map((project, index) => <DndProject key={project.position} project={project} index={index} removeProject={this.props.removeProject}/>)}
               {provided.placeholder}
             </div>
           )}

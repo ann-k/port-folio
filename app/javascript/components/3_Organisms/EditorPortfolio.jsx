@@ -6,15 +6,21 @@ import EditorJS from '@editorjs/editorjs'
 
 const Header = require('@editorjs/header')
 
-const editorPortfolio = document.addEventListener('DOMContentLoaded', () => {
-  let editorContainer = document.getElementById('dataContainer')
 
-  if (editorContainer) {
-    let dataFromBackend = JSON.parse(editorContainer.dataset.contents).content_data
-    let url = 'http://localhost:3000/' + editorContainer.dataset.url_for_content + '.json'
+
+
+export default class EditorPortfolio extends React.Component {
+  constructor(props) {
+    super(props)
+
+
+
+    let dataContainer = document.getElementById('dataContainer')
+    let dataFromBackend = JSON.parse(dataContainer.dataset.contents).content_data
+    let url = 'http://localhost:3000/' + dataContainer.dataset.url_for_content + '.json'
 
     const editor = new EditorJS({
-      holder: 'editorPortfolio',
+      holder: 'editorJSPortfolio',
       data: dataFromBackend,
       onChange: () => {console.log('Now I know that Editor\'s content changed!')},
       placeholder: 'Новое портфолио',
@@ -52,6 +58,8 @@ const editorPortfolio = document.addEventListener('DOMContentLoaded', () => {
       }
     })
   }
-})
 
-export default editorPortfolio
+  render() {
+    return <div className='editorjs' id='editorJSPortfolio' />
+  }
+}

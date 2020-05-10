@@ -81,6 +81,7 @@
             <% end %>
 
             <div class="project-cover-buttons">
+              <%= form.file_field :cover %>
               <button class="button button-medium"><h3>Загрузить новую обложку</h3></button>
               <button class="button button-medium" id="chooseCover"
                 data-id="<%= project.id %>"
@@ -92,7 +93,7 @@
         </div>
 
         <div class="input">
-          <h3>Название проекта</h3>
+          <h3>Название проекта (видно при добавлении в портфолио)</h3>
           <%= form.text_field :name, placeholder: "Новый проект", id: "" %>
         </div>
 
@@ -158,4 +159,6 @@
       </div>
     </div>
   </div>
+  <%= javascript_pack_tag "editorjs" %>
+
 <% end %>

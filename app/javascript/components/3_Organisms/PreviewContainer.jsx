@@ -13,11 +13,13 @@ export default class PreviewContainer extends React.Component {
       <div className='preview-container'>
         <Status portfolio={this.props.portfolio} />
 
-        <ContentsContainer />
+        <ContentsContainer projects={this.props.projects} />
 
         <BarPreviewWrapper />
 
-        <PanelAddProjects disabled={this.props.panelAddProjectsState}
+        <PanelAddProjects projectsToAdd={this.props.projectsToAdd}
+                          addProject={this.props.addProject}
+                          disabled={this.props.panelAddProjectsState}
                           onPanelAddProjectsDisplayChange={this.props.handlePanelAddProjectsDisplayChange} />
       </div>
     )

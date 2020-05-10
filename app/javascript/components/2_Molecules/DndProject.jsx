@@ -9,7 +9,7 @@ import IconRemove from 'images/icons/constructor/remove.svg'
 export default class DndProject extends React.Component {
   render() {
     return (
-      <Draggable draggableId={this.props.project.id} index={this.props.index}>
+      <Draggable draggableId={this.props.project.position} index={this.props.index}>
         {(provided) => (
           <div
             className='tabs-list-item'
@@ -19,7 +19,7 @@ export default class DndProject extends React.Component {
             <img src={IconDnd} {...provided.dragHandleProps} />
             <img src={this.props.project.cover.url} className='miniature' />
             <p>{this.props.project.name}</p>
-            <img src={IconRemove} onClick={() => this.props.removeProject(this.props.project.pInPId, this.props.project.id)} />
+            <img src={IconRemove} onClick={() => this.props.removeProject(this.props.project.id, this.props.project.position)} />
           </div>
         )}
       </Draggable>

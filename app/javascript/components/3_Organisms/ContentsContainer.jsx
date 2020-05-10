@@ -2,6 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
+import ProjectInEditor from '../2_Molecules/ProjectInEditor'
+import EditorPortfolio from '../3_Organisms/EditorPortfolio'
+
 export default class ContentsContainer extends React.Component {
   render() {
     return (
@@ -12,8 +15,11 @@ export default class ContentsContainer extends React.Component {
           <div />
         </div>
         <div className='contents'>
-          <div className='editorjs' />
-          <div className='projects-container' />
+          <EditorPortfolio />
+
+          <div className='projects-container'>
+            {this.props.projects.map((project) => <ProjectInEditor key={project.position} project={project} />)}
+          </div>
         </div>
       </div>
     )

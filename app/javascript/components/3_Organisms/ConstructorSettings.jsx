@@ -25,7 +25,12 @@ export default class ConstructorSettings extends React.Component {
                   name='description'
                   onInputChange={this.props.handleInputChange} />
 
-        <List handlePanelAddProjectsDisplayChange={this.props.handlePanelAddProjectsDisplayChange} />
+        <List projects={this.props.projects}
+              tabList={this.props.tabList}
+              tabListOrder={this.props.tabListOrder}
+              handleDragEnd={this.props.handleDragEnd}
+              removeProject={this.props.removeProject}
+              handlePanelAddProjectsDisplayChange={this.props.handlePanelAddProjectsDisplayChange} />
       </div>
     )
   }

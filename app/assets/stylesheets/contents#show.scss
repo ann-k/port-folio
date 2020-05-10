@@ -1,0 +1,134 @@
+@import "variables";
+
+body.contents#show {
+  background-color: white;
+  color: $background;
+
+  img {width: 100%;}
+}
+
+.content-in-show {
+  h1 {
+    font-size: 32px;
+    line-height: 40px;
+  }
+  h2 {
+    font-size: 24px;
+    line-height: 24px;
+  }
+  h3 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+.content-in-show {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-column-gap: $column-gap;
+
+  padding-top: 80px;
+  padding-bottom: 40px;
+}
+
+.editorjs-in-show {
+  grid-column-start: 4;
+  grid-column-end: span 5;
+
+  & > div {
+    margin-bottom: 16px;
+  }
+}
+
+.projects-container-in-show {
+  grid-column-start: 4;
+  grid-column-end: span 6;
+
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-column-gap: $column-gap;
+
+  margin-top: 16px;
+
+  div {
+    grid-column-end: span 3;
+    margin-bottom: 32px;
+  }
+}
+
+
+
+// .editorjs {
+//   // margin-top: 120px;
+//
+//   h1 {
+//     margin-bottom: 24px;
+//     padding: 0;
+//   }
+//
+//   .ce-paragraph {
+//     padding: 0;
+//   }
+//
+//   .embed-tool__content {
+//     min-height: 481px;
+//     margin-top: 24px;
+//     margin-bottom: 24px;
+//     padding: 0;
+//   }
+// }
+
+.editorjs {
+  // min-height: 20vh;
+  // max-height: 100vh;
+}
+
+// .portfolios#edit, .projects#edit, .resumes#edit {
+//   .contents-container {
+//     // margin-top: 64px;
+//   }
+//
+//   .editorjs {
+//     width: 40vw;
+//     min-height: 20vh;
+//
+//     h1 {
+//       font-size: 40px;
+//       line-height: 40px;
+//     }
+//
+//     .ce-paragraph {
+//       width: 32vw;
+//       font-size: 14px;
+//     }
+//
+//     .embed-tool__content {
+//       width: 40vw;
+//     }
+//   }
+// }
+
+// .contents#show {
+//   .contents-container {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     right: 0;
+//     width: 60vw;
+//     margin-left: auto;
+//     margin-right: auto;
+//   }
+//
+//   .editorjs {
+//     h1 {
+//       font-size: 60px;
+//       line-height: 60px;
+//     }
+//     .ce-paragraph { width: 40vw; }
+//     .embed-tool__content { width: 60vw; }
+//   }
+// }

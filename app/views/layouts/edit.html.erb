@@ -33,7 +33,7 @@
               class: ((controller_name == "portfolios") && (["new", "edit"].include? action_name) ? "nav-item nav-item-active" : "nav-item"),
               onmouseenter:"showMenuItem()", onmouseleave:"hideMenuItem()") do %>
                 <div class="nav-item-active-indicator"></div>
-                <%= image_tag "icons/menu/portfolio.svg" %>
+                <%= image_tag "icons/nav/portfolio.svg" %>
                 <!-- <h3>Портфолио</h3> -->
               <% end %>
 
@@ -41,7 +41,7 @@
               class: ((controller_name == "projects") && (["new", "edit"].include? action_name) ? "nav-item nav-item-active" : "nav-item"),
               onmouseenter:"showMenuItem()", onmouseleave:"hideMenuItem()") do %>
                 <div class="nav-item-active-indicator"></div>
-                <%= image_tag "icons/menu/project.svg" %>
+                <%= image_tag "icons/nav/project.svg" %>
                 <!-- <h3>Проекты</h3> -->
               <% end %>
 
@@ -50,7 +50,7 @@
               class: ((controller_name == "resumes") && (["new", "edit"].include? action_name) ? "nav-item nav-item-active" : "nav-item"),
               onmouseenter:"showMenuItem()", onmouseleave:"hideMenuItem()") do %>
                 <div class="nav-item-active-indicator"></div>
-                <%= image_tag "icons/menu/resume.svg" %>
+                <%= image_tag "icons/nav/resume.svg" %>
                 <!-- <h3>Резюме</h3> -->
               <% end %>
             </div>
@@ -61,7 +61,7 @@
               id:"nav-item-account",
               onmouseenter:"showMenuItem()", onmouseleave:"hideMenuItem()") do %>
                 <div class="nav-item-active-indicator"></div>
-                <%= image_tag "icons/menu/resume.svg" %>
+                <%= image_tag "icons/nav/account.svg" %>
                 <!-- <h3>Аккаунт</h3> -->
               <% end %>
             </div>

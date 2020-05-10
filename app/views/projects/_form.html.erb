@@ -20,15 +20,15 @@
         <p class="disabled">Изменения сохранены</p>
       </div>
 
-      <div class="contents-container">
+      <div class="contents-container contents-container-in-preview">
         <div class="browswer-bar">
           <div></div>
           <div></div>
           <div></div>
         </div>
-        <div class="contents">
+        <div class="content content-in-preview">
           <div
-            class="editorjs"
+            class="editorjs editorjs-in-preview"
             id="editorProject"
             data-contents="<%= @project.content.to_json %>"
             data-url="<%= url_for(@project.content) %>">
@@ -75,7 +75,7 @@
           <div id="addCoverToProject">
             <% if project.cover? %>
               <div class="project-cover">
-                <div id="iconRemove"><%= image_tag "icons/constructor/remove.svg" %></div>
+                <div id="iconRemove"><%= image_tag "icons/remove.svg" %></div>
                 <%= image_tag project.cover.url, class:"project-cover-file" %>
               </div>
             <% end %>
@@ -101,7 +101,7 @@
           <div class="tabs-list-header" id="specialButton" onclick="showBlock()">
             <h3>Портфолио</h3>
             <%= link_to("#", class: "button button-medium") do%>
-              <%= image_tag "icons/button/add.svg" %>
+              <%= image_tag "icons/add.svg" %>
               <h3>Добавить в портфолио</h3>
             <% end %>
           </div>
@@ -128,19 +128,19 @@
 
       <div class="bar bar-bottom">
         <div class="button" >
-          <%= image_tag "icons/button/add.svg" %>
+          <%= image_tag "icons/add.svg" %>
           <%= form.submit "Сохранить" %>
         </div>
 
         <div id="exportButton" class="button" onclick="openExportPanel()">
-          <%= image_tag "icons/button/add.svg" %>
+          <%= image_tag "icons/add.svg" %>
           <h3>Экспортировать</h3>
         </div>
       </div>
 
       <div class="panel" id="exportPanel">
         <div id="iconRemove">
-          <%= image_tag "icons/constructor/remove.svg" %>
+          <%= image_tag "icons/remove.svg" %>
         </div>
 
         <p>Ваш проект доступен по ссылке<br>
@@ -149,11 +149,11 @@
         </a></p>
 
         <button class="button button-big">
-          <%= image_tag "icons/card/copy.svg" %>
+          <%= image_tag "icons/copy.svg" %>
           <h3>Скопировать ссылку</h3>
         </button>
         <button class="button button-big">
-          <%= image_tag "icons/card/download.svg" %>
+          <%= image_tag "icons/download.svg" %>
           <h3>Сохранить в PDF</h3>
         </button>
       </div>

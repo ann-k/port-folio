@@ -6,14 +6,9 @@ import EditorJS from '@editorjs/editorjs'
 
 const Header = require('@editorjs/header')
 
-
-
-
 export default class EditorPortfolio extends React.Component {
   constructor(props) {
     super(props)
-
-
 
     let dataContainer = document.getElementById('dataContainer')
     let dataFromBackend = JSON.parse(dataContainer.dataset.contents).content_data
@@ -60,6 +55,6 @@ export default class EditorPortfolio extends React.Component {
   }
 
   render() {
-    return <div className='editorjs' id='editorJSPortfolio' />
+    return <div className='editorjs editorjs-in-preview' id='editorJSPortfolio' />
   }
 }

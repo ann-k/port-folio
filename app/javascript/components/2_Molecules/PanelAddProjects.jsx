@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
 import ProjectToAdd from '../2_Molecules/ProjectToAdd'
-import IconRemove from 'images/icons/constructor/remove.svg'
+import IconRemove from 'images/icons/remove.svg'
 
 export default class PanelAddProjects extends React.Component {
   constructor(props) {

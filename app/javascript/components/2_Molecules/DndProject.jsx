@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import { Draggable } from 'react-beautiful-dnd'
 
-import IconDnd from 'images/icons/constructor/dragndrop.svg'
-import IconRemove from 'images/icons/constructor/remove.svg'
+import IconDnd from 'images/icons/dragndrop.svg'
+import IconRemove from 'images/icons/remove.svg'
 
 export default class DndProject extends React.Component {
   render() {

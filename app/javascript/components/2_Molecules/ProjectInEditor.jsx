@@ -7,7 +7,7 @@ export default class ProjectInEditor extends React.Component {
     return (
       <div>
         <img src={this.props.project.cover.url} />
-        <h2>{this.props.project.name}</h2>
+        <h3>{this.props.project.name}</h3>
       </div>
     )
   }

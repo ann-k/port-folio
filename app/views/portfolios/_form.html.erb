@@ -37,14 +37,14 @@
           <div></div>
           <div></div>
         </div>
-        <div class="contents">
+        <div class="content content-in-preview">
           <div
-            class="editorjs"
+            class="editorjs editorjs-in-preview"
             id="editorPortfolio"
             data-contents="<%= @portfolio.content.to_json %>"
             data-url="<%= url_for(@portfolio.content) %>">
           </div>
-          <div class="projects-container">
+          <div class="projects-container projects-container-in-preview">
             <% portfolio.projects.ordered_by_position.each do |project| %>
               <% if current_user.projects.include?(project) %>
               <div>
@@ -80,7 +80,7 @@
         data-portfolioid="<%= @portfolio.id %>"
         data-url="<%= project_in_portfolios_url %>">
           <div id="iconRemove">
-            <%= image_tag "icons/constructor/remove.svg" %>
+            <%= image_tag "icons/remove.svg" %>
           </div>
       </div>
     </div>
@@ -124,12 +124,12 @@
         <div class="tabs-list">
           <div class="tabs-list-header">
             <div>
-              <%= image_tag "icons/menu/project.svg" %>
+              <%= image_tag "icons/nav/project.svg" %>
               <h3>Проекты</h3>
             </div>
 
             <div class="button button-medium" onclick="showAddProjectToPortfolio()">
-              <%= image_tag "icons/button/add.svg" %>
+              <%= image_tag "icons/add.svg" %>
               <h3>Добавить проект</h3>
             </div>
           </div>
@@ -138,12 +138,12 @@
         <div class="tabs-list">
           <div class="tabs-list-header">
             <div>
-              <%= image_tag "icons/menu/resume.svg" %>
+              <%= image_tag "icons/nav/resume.svg" %>
               <h3>Резюме</h3>
             </div>
 
             <div class="button button-medium" onclick="showAddResumeToPortfolio()">
-              <%= image_tag "icons/button/add.svg" %>
+              <%= image_tag "icons/add.svg" %>
               <h3>Связать с резюме</h3>
             </div>
           </div>
@@ -168,19 +168,19 @@
 
       <div class="bar bar-bottom">
         <div class="button" >
-          <%= image_tag "icons/button/add.svg" %>
+          <%= image_tag "icons/add.svg" %>
           <%= form.submit "Сохранить" %>
         </div>
 
         <div id="exportButton" class="button" onclick="openExportPanel()">
-          <%= image_tag "icons/button/add.svg" %>
+          <%= image_tag "icons/add.svg" %>
           <h3>Экспортировать</h3>
         </div>
       </div>
 
       <div class="panel" id="exportPanel">
         <div id="iconRemove">
-          <%= image_tag "icons/constructor/remove.svg" %>
+          <%= image_tag "icons/remove.svg" %>
         </div>
 
         <p>Ваше портфолио доступно по ссылке<br>
@@ -189,11 +189,11 @@
         </a></p>
 
         <button class="button button-big">
-          <%= image_tag "icons/card/copy.svg" %>
+          <%= image_tag "icons/copy.svg" %>
           <h3>Скопировать ссылку</h3>
         </button>
         <button class="button button-big">
-          <%= image_tag "icons/card/download.svg" %>
+          <%= image_tag "icons/download.svg" %>
           <h3>Сохранить в PDF</h3>
         </button>
       </div>

@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 import { Droppable } from 'react-beautiful-dnd'
 
 import DndProject from './DndProject'
-import IconProject from 'images/icons/menu/project.svg'
-import IconAdd from 'images/icons/button/add.svg'
+import IconProject from 'images/icons/nav/project.svg'
+import IconAdd from 'images/icons/add.svg'
 
 export default class TabList extends React.Component {
   constructor(props) {

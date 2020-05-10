@@ -2,13 +2,15 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
-import IconRemove from 'images/icons/constructor/remove.svg'
-import IconCopy from 'images/icons/card/copy.svg'
-import IconDownload from 'images/icons/card/download.svg'
+import IconRemove from 'images/icons/remove.svg'
+import IconCopy from 'images/icons/copy.svg'
+import IconDownload from 'images/icons/download.svg'
 
 export default class PanelExport extends React.Component {
   constructor(props) {
     super(props)
+    const content = JSON.parse(document.getElementById('dataContainer').dataset.contents)
+    this.state = {content: content}
     this.handleChange = this.handleChange.bind(this)
   }
 
@@ -25,7 +27,9 @@ export default class PanelExport extends React.Component {
 
         <p>
           Ваше портфолио доступно по ссылке<br/>
-          <a href='http://localhost:3000/<%#= @portfolio.content.id %>-<%#= @portfolio.content.contentable_type.downcase %>'>'www.p-f.to/portfolio.content.id-portfolio.content.contentable_type.downcase'</a>
+        <a href={`http://localhost:3000/${this.state.content.id}-${this.state.content.contentable_type.toLowerCase()}`}>
+            www.p-f.to/{this.state.content.id}-{this.state.content.contentable_type.toLowerCase()}
+          </a>
         </p>
 
         <button className='button button-big'>

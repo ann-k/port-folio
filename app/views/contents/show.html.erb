@@ -4,9 +4,9 @@
   nav { display: none; }
 </style>
 
-<div class="contents-container">
-  <div class="editorjs" id="editorReadOnly" data-contents="<%= @content.to_json %>"></div>
-  <div class="projects-container">
+<div class="content content-in-show">
+  <div class="editorjs editorjs-in-show" id="editorReadOnly" data-contents="<%= @content.to_json %>"></div>
+  <div class="projects-container projects-container-in-show">
     <% if @content.contentable_type == "Portfolio"  %>
       <% @content.contentable.projects.each do |project| %>
         <div>

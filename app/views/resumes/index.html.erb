@@ -19,7 +19,7 @@
         <div class="button-options"
         onclick="showOptions(<%= resume.id %>)"
         onmouseleave="hideOptions(<%= resume.id %>)">
-          <%= image_tag "icons/card/options.svg" %>
+          <%= image_tag "icons/options.svg" %>
         </div>
       </div>
 
@@ -41,13 +41,13 @@
   <div class="index-buttons-container">
     <button class="button button-big">
       <%= link_to(new_resume_path) do%>
-        <%= image_tag "icons/button/search.svg" %>
+        <%= image_tag "icons/search.svg" %>
       <% end %>
     </button>
 
     <button class="button button-big">
       <%= link_to(new_resume_path) do%>
-        <%= image_tag "icons/button/add.svg" %>
+        <%= image_tag "icons/add.svg" %>
       <% end %>
     </button>
   </div>

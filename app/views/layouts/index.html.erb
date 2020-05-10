@@ -24,21 +24,21 @@
               <%= link_to(portfolios_path,
               class: ((current_page?(portfolios_path)) || (current_page?(root_path)) ? "nav-item nav-item-active" : "nav-item")) do %>
                 <div class="nav-item-active-indicator"></div>
-                <%= image_tag "icons/menu/portfolio.svg" %>
+                <%= image_tag "icons/nav/portfolio.svg" %>
                 <h3 >Портфолио</h3>
               <% end %>
 
               <%= link_to(projects_path,
               class: (current_page?(projects_path) ? "nav-item nav-item-active" : "nav-item")) do %>
                 <div class="nav-item-active-indicator"></div>
-                <%= image_tag "icons/menu/project.svg" %>
+                <%= image_tag "icons/nav/project.svg" %>
                 <h3>Проекты</h3>
               <% end %>
 
               <%= link_to(resumes_path,
               class: (current_page?(resumes_path) ? "nav-item nav-item-active" : "nav-item")) do %>
                 <div class="nav-item-active-indicator"></div>
-                <%= image_tag "icons/menu/resume.svg" %>
+                <%= image_tag "icons/nav/resume.svg" %>
                 <h3>Резюме</h3>
               <% end %>
             </div>
@@ -48,7 +48,7 @@
               class: (current_page?(account_path) ? "nav-item nav-item-active" : "nav-item"),
               id:"nav-item-account") do %>
                 <div class="nav-item-active-indicator"></div>
-                <%= image_tag "icons/menu/account.svg" %>
+                <%= image_tag "icons/nav/account.svg" %>
                 <!-- <img class="nav-item-img" id="settings-icon"></img> -->
                 <h3>Аккаунт</h3>
               <% end %>

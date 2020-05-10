@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
-import IconExport from 'images/icons/card/export.svg'
+import IconExport from 'images/icons/export.svg'
 
 export default class BarExportWrapper extends React.Component {
   constructor(props) {

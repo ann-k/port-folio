@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
-import IconAdd from 'images/icons/button/add.svg'
+import IconAdd from 'images/icons/add.svg'
 
 export default class ProjectToAdd extends React.Component {
   render() {

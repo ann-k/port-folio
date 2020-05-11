@@ -16,6 +16,18 @@
   grid-column-end: span 6;
 }
 
+.background-illustration {
+  width: 400px;
+  position: absolute;
+  top: 50vh;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.background-illustration.disabled {display: none;}
+
 .card {
   position: relative;
   margin-bottom: 24px;
@@ -71,6 +83,7 @@
   grid-column-end: span 3;
   padding-right: 8px;
   padding-left: 8px;
+  height: max-content;
 
   .card-cover img {
     width: 100%;

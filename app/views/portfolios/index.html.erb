@@ -3,6 +3,8 @@
     <%#= notice %>
     <h1>Мои портфолио</h1>
 
+    <%= image_tag "background/portfolio.png", class: (current_user.portfolios.any? ? "background-illustration disabled" : "background-illustration") %>
+
     <% @portfolios.each do |portfolio| %>
       <div class="card card-long">
         <%= link_to edit_portfolio_path(portfolio) do %>

@@ -3,6 +3,8 @@
     <%#= notice %>
     <h1>Мои проекты</h1>
 
+    <%= image_tag "background/project.png", class: (current_user.projects.any? ? "background-illustration disabled" : "background-illustration") %>
+
     <div class="card-project-container">
       <% @projects.each do |project| %>
         <div class="card card-project">

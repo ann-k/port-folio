@@ -3,6 +3,8 @@
     <%#= notice %>
     <h1>Мои резюме</h1>
 
+    <%= image_tag "background/resume.png", class: (current_user.resumes.any? ? "background-illustration disabled" : "background-illustration") %>
+
     <% @resumes.each do |resume| %>
       <div class="card card-long">
         <%= link_to edit_resume_path(resume) do %>

@@ -67,6 +67,10 @@ p, .ce-paragraph {
   line-height: 24px;
 }
 
+p.link {
+  color: $primary;
+}
+
 p.disabled {
   color: $grey;
 }

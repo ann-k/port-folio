@@ -5,7 +5,7 @@ class ResumesController < ApplicationController
   # GET /resumes.json
   def index
     @resumes = current_user.resumes.ordered_by_creation
-    render :layout => "index"
+    # render :layout => "index"
   end
 
   # GET /resumes/1

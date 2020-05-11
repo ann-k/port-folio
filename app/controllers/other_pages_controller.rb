@@ -1,5 +1,5 @@
 class OtherPagesController < ApplicationController
   def account
-    render :layout => "index"
+    # render :layout => "index"
   end
 end

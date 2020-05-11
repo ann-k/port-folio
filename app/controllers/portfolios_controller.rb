@@ -5,7 +5,7 @@ class PortfoliosController < ApplicationController
   # GET /portfolios.json
   def index
     @portfolios = current_user.portfolios.ordered_by_creation
-    render :layout => "index"
+    # render :layout => "index"
   end
 
   # GET /portfolios/1

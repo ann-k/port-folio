@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = current_user.projects.ordered_by_creation
-    render :layout => "index"
+    # render :layout => "index"
 
     # @projects = Project.all(project_params)
     # if @project.user_id = current_user.id

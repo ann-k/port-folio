@@ -1,0 +1,9 @@
+.account-container {
+  position: relative;
+  grid-column-start: 2;
+  grid-column-end: span 4;
+
+  .input input {width: 100%;}
+  .input:last-child {margin-bottom: 40px;}
+  button {margin-bottom: 40px;}
+}

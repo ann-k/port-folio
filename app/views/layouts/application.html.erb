@@ -8,45 +8,54 @@
 
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
     <%= javascript_include_tag "nav", "data-turbolinks-track" => true  %>
-
-    <%= javascript_include_tag "addToPortfolio", "data-turbolinks-track" => true  %>
+    <%= javascript_include_tag "options", "data-turbolinks-track" => true  %>
     <%= javascript_pack_tag "application", "data-turbolinks-track": "reload" %>
-    <%#= javascript_pack_tag "main" %>
   </head>
 
   <body class="<%= controller_name %>" id="<%= action_name %>">
     <% if user_signed_in? %>
-      <nav>
-        <div class="logo">
-          <%= image_tag "logo/long.svg", id: "logo-long"%>
-          <%= image_tag "logo/short.svg", id: "logo-short" %>
-        </div>
-        <div class="nav-items-group">
-          <div class="nav-items-top">
-            <%= link_to(portfolios_path, class: "nav-item", id:"nav-item-portfolio", onmouseenter:"showMenu()", onmouseleave:"hideMenu()") do %>
-              <img class="nav-item-img" id="portfolio-icon"></img>
-              <h3>Портфолио</h3>
-            <% end %>
-
-            <%= link_to(projects_path, class: "nav-item", id:"nav-item-project", onmouseenter:"showMenu()", onmouseleave:"hideMenu()") do %>
-              <img class="nav-item-img" id="project-icon"></img>
-              <h3>Проекты</h3>
-            <% end %>
-
-            <%= link_to(resumes_path, class: "nav-item", id:"nav-item-resume", onmouseenter:"showMenu()", onmouseleave:"hideMenu()") do %>
-              <img class="nav-item-img" id="resume-icon"></img>
-              <h3>Резюме</h3>
-            <% end %>
+      <div class="nav-container nav-index-container">
+        <nav class="nav-index">
+          <div class="logo">
+            <%= image_tag "logo/long.svg"%>
           </div>
+          <div class="nav-items-group">
+            <div class="nav-items-top">
+              <%= link_to(portfolios_path,
+              class: ((current_page?(portfolios_path)) || (current_page?(root_path)) ? "nav-item nav-item-active" : "nav-item")) do %>
+                <div class="nav-item-active-indicator"></div>
+                <%= image_tag "icons/nav/portfolio.svg" %>
+                <h3 >Портфолио</h3>
+              <% end %>
 
-          <div class="nav-items-bottom">
-            <%= link_to(account_path, class: "nav-item", id:"nav-item-account", onmouseenter:"showMenu()", onmouseleave:"hideMenu()") do %>
-              <img class="nav-item-img" id="settings-icon"></img>
-              <h3>Аккаунт</h3>
-            <% end %>
+              <%= link_to(projects_path,
+              class: (current_page?(projects_path) ? "nav-item nav-item-active" : "nav-item")) do %>
+                <div class="nav-item-active-indicator"></div>
+                <%= image_tag "icons/nav/project.svg" %>
+                <h3>Проекты</h3>
+              <% end %>
+
+              <%= link_to(resumes_path,
+              class: (current_page?(resumes_path) ? "nav-item nav-item-active" : "nav-item")) do %>
+                <div class="nav-item-active-indicator"></div>
+                <%= image_tag "icons/nav/resume.svg" %>
+                <h3>Резюме</h3>
+              <% end %>
+            </div>
+
+            <div class="nav-items-bottom">
+              <%= link_to(edit_user_registration_path,
+              class: (current_page?(account_path) ? "nav-item nav-item-active" : "nav-item"),
+              id:"nav-item-account") do %>
+                <div class="nav-item-active-indicator"></div>
+                <%= image_tag "icons/nav/account.svg" %>
+                <!-- <img class="nav-item-img" id="settings-icon"></img> -->
+                <h3>Аккаунт</h3>
+              <% end %>
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </div>
     <% end %>
     <%= yield %>
   </body>

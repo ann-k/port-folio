@@ -10,7 +10,11 @@
     <% if @content.contentable_type == "Portfolio"  %>
       <% @content.contentable.projects.each do |project| %>
         <div>
-          <%= image_tag project.cover.url %>
+          <% if project.cover? %>
+            <%= image_tag project.cover.url%>
+          <%# else %>
+            <%#= image_tag "default.png" %>
+          <% end %>
           <h3><%= project.name %></h3>
         </div>
       <% end %>

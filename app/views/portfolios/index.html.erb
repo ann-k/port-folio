@@ -16,17 +16,14 @@
             <% if portfolio.projects.any? %>
               <div class="card-project-covers-container">
                 <% portfolio.projects.each do |project| %>
-
                   <% if project.cover? %>
-                  <div class="miniature">
-                    <%= image_tag project.cover.url, class:"" %>
-                  </div>
+                    <div class="miniature">
+                      <%= image_tag project.cover.url %>
+                    </div>
                   <% else %>
-                  <div class="miniature">
-
-                    <%= image_tag "default.png", class:"" %>
-                  </div>
-
+                    <div class="miniature">
+                      <%= image_tag "default.png" %>
+                    </div>
                   <% end %>
                 <% end %>
               </div>

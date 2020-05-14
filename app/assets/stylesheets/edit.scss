@@ -234,11 +234,15 @@ div.codex-editor__redactor {padding-bottom: 0px !important;}
   width: 100%;
   background-color: $background;
 
-  img {
-    margin-right: 16px;
+  .miniature {
+    margin-left: 4px;
   }
 
-  img:last-child {
+  p {
+    margin-left: 12px;
+  }
+
+  div:last-child {
     position: absolute;
     right: 0;
     margin-right: 8px;
@@ -358,16 +362,29 @@ div.codex-editor__redactor {padding-bottom: 0px !important;}
 
 
 // PANELS
-
-#iconRemove {
+#iconAdd {
+  // position: absolute;
   width: 40px;
   height: 40px;
+  background-color: inherit;
+  box-shadow: none;
+  &:hover {background-color: $primary;}
+}
 
-  text-align: center;
-  line-height: 40px;
+#iconRemove {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-color: inherit;
+  box-shadow: none;
+  &:hover {background-color: $primary;}
+}
 
-  cursor: pointer;
-  border-radius: 8px;
+#iconDnd {
+  width: 40px;
+  height: 40px;
+  background-color: inherit;
+  box-shadow: none;
   &:hover {background-color: $primary;}
 }
 
@@ -417,10 +434,17 @@ div.codex-editor__redactor {padding-bottom: 0px !important;}
   flex-direction: row;
   align-items: center;
   height: 40px;
-  margin-left: 4px;
 
   .miniature {
-    margin-left: 16px;
-    margin-right: 16px;
+    margin-left: 4px;
+    margin-right: 12px;
   }
+}
+
+#panelAddProjects {
+  max-height: 80vh;
+  overflow-y: scroll;
+  padding-bottom: 0px;
+  h3 {margin-bottom: 16px;}
+  .list-in-panel:last-child {margin-bottom: 16px;}
 }

@@ -78,6 +78,7 @@ nav {
 .nav-edit {
   grid-column-end: span 1;
   padding-top: 81px;
+  overflow-x: visible;
 
   h3 { display: none; }
 
@@ -95,7 +96,8 @@ nav {
 
   .nav-item-shown {
     background-color: $surface;
-    border-radius: 8px;
+    border-radius: 0 8px 8px 0;
+    img {transform: translate(-4px);}
 
     // h3 { display: block; }
   }

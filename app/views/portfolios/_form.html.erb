@@ -48,7 +48,13 @@
             <% portfolio.projects.ordered_by_position.each do |project| %>
               <% if current_user.projects.include?(project) %>
               <div>
-                <%= image_tag project.cover.url %>
+                <% portfolio.projects.each do |project| %>
+                  <% if project.cover? %>
+                    <%= image_tag project.cover.url %>
+                  <% else %>
+                    <%= image_tag "default.png" %>
+                  <% end %>
+                <% end %>
                 <h3><%= project.name %></h3>
               </div>
               <% end %>

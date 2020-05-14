@@ -16,7 +16,18 @@
             <% if portfolio.projects.any? %>
               <div class="card-project-covers-container">
                 <% portfolio.projects.each do |project| %>
-                  <%= image_tag project.cover.url, class:"miniature" %>
+
+                  <% if project.cover? %>
+                  <div class="miniature">
+                    <%= image_tag project.cover.url, class:"" %>
+                  </div>
+                  <% else %>
+                  <div class="miniature">
+
+                    <%= image_tag "default.png", class:"" %>
+                  </div>
+
+                  <% end %>
                 <% end %>
               </div>
             <% end %>
@@ -40,7 +51,7 @@
           <% end %>
         </li>
         <li>
-          <%= link_to(portfolio, method: :delete, data: { confirm: 'Are you sure?' }) do %>
+          <%= link_to(portfolio, method: :delete, data: { confirm: 'Вы хотите удалить это портфолио?' }) do %>
             <h3>Удалить</h3>
           <% end %>
         </li>
@@ -55,7 +66,7 @@
       <% end %>
     </button>
 
-    <button class="button button-big">
+    <button class="button button-big button-icon">
       <%= link_to(new_portfolio_path) do%>
         <%= image_tag "icons/add.svg" %>
       <% end %>

@@ -40,13 +40,15 @@
             <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
           </div>
 
-          <button class="button button-big">
+          <button class="button button-big button-words">
             <%= f.submit "Сохранить изменения" %>
           </button>
         <% end %>
 
-        <button class="button button-big">
-          <h3><%= link_to 'Выйти', destroy_user_session_path, method: :delete %></h3>
+        <button class="button button-big button-words">
+          <%= link_to(destroy_user_session_path, method: :delete) do %>
+            <h3>Выйти</h3>
+          <% end %>
         </button>
 
         <button class="button button-small button-danger">

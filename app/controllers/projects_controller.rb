@@ -20,9 +20,15 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    @project = current_user.projects.new
-    @content = @project.build_content
-    render :layout => "edit"
+    # @project = current_user.projects.new
+    # @content = @project.build_content
+    # render :layout => "edit"
+
+    project = current_user.projects.create
+    project.update(name: "Новый проект")
+    content = project.build_content
+    content.save
+    redirect_to edit_project_path(project)
   end
 
   # GET /projects/1/edit

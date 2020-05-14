@@ -26,7 +26,7 @@ export default class TabList extends React.Component {
             <img src={IconProject} />
             <h3>Проекты</h3>
           </div>
-          <button className="button button-small" onClick={this.handleChange}>
+          <button className="button button-small button-icon-and-words" onClick={this.handleChange}>
             <img src={IconAdd} />
             <h3>Добавить проект</h3>
           </button>

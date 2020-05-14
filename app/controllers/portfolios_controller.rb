@@ -15,10 +15,11 @@ class PortfoliosController < ApplicationController
 
   # GET /portfolios/new
   def new
-    @portfolio = current_user.portfolios.new
-    # @portfolio.project_in_portfolios.build
-    @content = @portfolio.build_content
-    render :layout => "edit"
+    portfolio = current_user.portfolios.create
+    portfolio.update(name: "Новое портфолио")
+    content = portfolio.build_content
+    content.save
+    redirect_to edit_portfolio_path(portfolio)
   end
 
   def copy

@@ -6,10 +6,9 @@
     <%= csp_meta_tag %>
     <%= favicon_link_tag asset_path('favicon.png') %>
 
-    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
-    <%= javascript_include_tag "nav", "data-turbolinks-track" => true  %>
+    <%= stylesheet_link_tag "application", media: "all" %>
     <%= javascript_include_tag "options", "data-turbolinks-track" => true  %>
-    <%= javascript_pack_tag "application", "data-turbolinks-track": "reload" %>
+    <%#= javascript_pack_tag "application" %>
   </head>
 
   <body class="<%= controller_name %>" id="<%= action_name %>">
@@ -45,7 +44,7 @@
 
             <div class="nav-items-bottom">
               <%= link_to(edit_user_registration_path,
-              class: (current_page?(account_path) ? "nav-item nav-item-active" : "nav-item"),
+              class: (current_page?(edit_user_registration_path) ? "nav-item nav-item-active" : "nav-item"),
               id:"nav-item-account") do %>
                 <div class="nav-item-active-indicator"></div>
                 <%= image_tag "icons/nav/account.svg" %>

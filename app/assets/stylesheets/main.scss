@@ -20,71 +20,9 @@ body#index h1, body.registrations#edit h1 {
   margin-bottom: 48px;
 }
 
-.button {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+ul {padding: 0;}
 
-  padding-left: 16px;
-  padding-right: 16px;
-
-  color: white;
-  border: none;
-  border-radius: 8px;
-  background-color: $surface;
-  box-shadow: $shadow;
-
-  cursor: pointer;
-  * {cursor: pointer;}
-
-  &:hover {background-color: $primary;}
-}
-
-.button-big {height: 48px;}
-.button-medium {height: 40px;}
-.button-small {height: 32px;}
-
-.button-danger {border: 2px solid $error;}
-
-.button h3 {margin-left: 8px;}
-.input h3 {margin-bottom: 8px;}
-.input {margin-bottom: 24px;}
-
-input[type=text], input[type=email], input[type=password], input[type=number], textarea {
-  padding: 16px;
-
-  color: $text;
-  background-color: $surface;
-  border: none;
-
-  font-family: "ptrootui medium";
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 24px;
-
-  resize: none;
-}
-
-input[type=submit] {
-  color: $text;
-  background-color: $surface;
-  border: none;
-  padding: 0;
-
-  font-family: "ptrootui bold";
-  font-weight: 400;
-
-  font-size: 14px;
-  line-height: 24px;
-}
-
-ul {
-  padding: 0;
-}
-
-li {
-  list-style-type: none;
-}
+li {list-style-type: none;}
 
 a, a:visited {
   color: $text;
@@ -106,4 +44,9 @@ a, a:visited {
   border-radius: 4px;
   width: 48px;
   height: 32px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+  }
 }

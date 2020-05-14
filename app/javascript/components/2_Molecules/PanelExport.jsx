@@ -21,7 +21,7 @@ export default class PanelExport extends React.Component {
   render() {
     return (
       <div className={this.props.disabled ? 'panel disabled' : 'panel'} id='exportPanel'>
-        <div id='iconRemove' onClick={this.handleChange}>
+        <div id='iconRemove' className='button button-icon' onClick={this.handleChange}>
           <img src={IconRemove} />
         </div>
 
@@ -32,11 +32,11 @@ export default class PanelExport extends React.Component {
           </a>
         </p>
 
-        <button className='button button-big'>
+        <button className='button button-big button-icon-and-words'>
           <img src={IconCopy} />
           <h3>Скопировать ссылку</h3>
         </button>
-        <button className='button button-big'>
+        <button className='button button-big button-icon-and-words'>
           <img src={IconDownload} />
           <h3>Сохранить в PDF</h3>
         </button>

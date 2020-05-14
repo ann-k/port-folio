@@ -6,8 +6,8 @@ export default class ConstructorContainer extends React.Component {
   render() {
     return (
       <div className='status'>
-        <p className='disabled'>РЕАКТ {this.props.portfolio.name}</p>
-        <p className='disabled'>Изменения сохранены</p>
+        <p className='disabled'>{this.props.portfolio.name}</p>
+        <p className='disabled'>Изменения сохраняются автоматически</p>
       </div>
     )
   }

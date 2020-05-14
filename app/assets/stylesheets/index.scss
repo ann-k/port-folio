@@ -39,11 +39,11 @@
 
 .card-long {
   min-height: 64px;
-  padding-bottom: 20px;
 
   a {
     display: flex;
     flex-direction: column;
+    padding-bottom: 20px;
   }
 
   .card-header {
@@ -58,17 +58,24 @@
     grid-template-columns: repeat(6, 1fr);
     column-gap: $column-gap;
 
-    div:first-child {
+    & > div:first-child {
       margin-left: 16px;
     }
 
     .card-project-covers-container {
-      grid-column-end: span 2;
+      grid-column-end: span 3;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      .miniature {
+        margin-right: 4px;
+        margin-bottom: 4px;
+      }
     }
 
     .card-description {
       margin-right: 16px;
-      grid-column-end: span 4;
+      grid-column-end: span 3;
     }
   }
 }

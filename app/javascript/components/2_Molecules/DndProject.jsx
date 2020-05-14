@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import { Draggable } from 'react-beautiful-dnd'
 
+import Miniature from '../1_Atoms/Miniature.jsx'
+
 import IconDnd from 'images/icons/dragndrop.svg'
 import IconRemove from 'images/icons/remove.svg'
 
@@ -16,10 +18,19 @@ export default class DndProject extends React.Component {
             {...provided.draggableProps}
             ref={provided.innerRef}
           >
-            <img src={IconDnd} {...provided.dragHandleProps} />
-            <img src={this.props.project.cover.url} className='miniature' />
-            <p>{this.props.project.name}</p>
-            <img src={IconRemove} onClick={() => this.props.removeProject(this.props.project.id, this.props.project.position)} />
+            <div id='iconDnd' className='button button-icon' {...provided.dragHandleProps}>
+              <img src={IconDnd} />
+            </div>
+
+            <Miniature src={this.props.project.cover.url} />
+
+            <div>
+              <p>{this.props.project.name}</p>
+            </div>
+
+            <div id='iconRemove' className='button button-icon' onClick={() => this.props.removeProject(this.props.project.id, this.props.project.position)}>
+              <img src={IconRemove} />
+            </div>
           </div>
         )}
       </Draggable>

@@ -20,14 +20,14 @@ export default class PanelAddProjects extends React.Component {
       <div className={this.props.disabled ? 'panel disabled' : 'panel'} id='panelAddProjects'>
         <div>
           <h3>Добавить проекты</h3>
-          <a>Добавить все</a>
+          {/* <a>Добавить все</a> */}
         </div>
 
         <div>
           {this.props.projectsToAdd.map((project, index) => <ProjectToAdd key={project.id} project={project} index={index} addProject={this.props.addProject} />)}
         </div>
 
-        <div id='iconRemove' onClick={this.handleChange}>
+        <div id='iconRemove' className='button button-icon' onClick={this.handleChange}>
           <img src={IconRemove} />
         </div>
       </div>

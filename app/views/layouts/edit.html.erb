@@ -45,7 +45,6 @@
                 <!-- <h3>Проекты</h3> -->
               <% end %>
 
-
               <%= link_to(resumes_path,
               class: ((controller_name == "resumes") && (["new", "edit"].include? action_name) ? "nav-item nav-item-active" : "nav-item"),
               onmouseenter:"showMenuItem()", onmouseleave:"hideMenuItem()") do %>
@@ -57,7 +56,7 @@
 
             <div class="nav-items-bottom">
               <%= link_to(edit_user_registration_path,
-              class: (current_page?(account_path) ? "nav-item nav-item-active" : "nav-item"),
+              class: (current_page?(edit_user_registration_path) ? "nav-item nav-item-active" : "nav-item"),
               id:"nav-item-account",
               onmouseenter:"showMenuItem()", onmouseleave:"hideMenuItem()") do %>
                 <div class="nav-item-active-indicator"></div>

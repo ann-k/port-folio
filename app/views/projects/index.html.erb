@@ -10,7 +10,11 @@
         <div class="card card-project">
           <%= link_to edit_project_path(project) do %>
             <div class="card-cover">
-              <%= image_tag project.cover.url %>
+              <% if project.cover? %>
+                <%= image_tag project.cover.url %>
+              <% else %>
+                <%= image_tag "default.png" %>
+              <% end %>
             </div>
             <div class="card-header">
               <h3><%= project.name %></h3>

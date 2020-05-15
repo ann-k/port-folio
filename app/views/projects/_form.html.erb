@@ -13,7 +13,16 @@
     <% end %>
   </div>
 
-  <div class="edit-page-container">
+  <div class="edit-page-container" id="dataContainerProject"
+       data-project="<%= @project.to_json %>"
+       data-portfolios="<%= @project.portfolios.to_json %>"
+       data-all_portfolios="<%= current_user.portfolios.all.to_json %>"
+       data-p_in_ps="<%= @project.project_in_portfolios.ordered_by_position.to_json %>"
+       data-contents="<%= @project.content.to_json %>"
+       data-url_for_project="<%= project_url %>"
+       data-url_for_p_in_ps="<%= project_in_portfolios_url %>"
+       data-url_for_content="<%= url_for(@project.content) %>"
+  >
     <div class="preview-container">
       <div class="status">
         <p class="disabled"><%= project.name %></p>

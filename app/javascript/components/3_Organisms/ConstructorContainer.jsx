@@ -35,20 +35,25 @@ export default class ConstructorContainer extends React.Component {
                                onTabChange={this.handleTabChange} />
 
         <ConstructorSettings portfolio={this.props.portfolio}
+                             portfolios={this.props.portfolios}
+                             project={this.props.project}
                              projects={this.props.projects}
+                             resume={this.props.resume}
                              tabList={this.props.tabList}
                              tabListOrder={this.props.tabListOrder}
                              handleDragEnd={this.props.handleDragEnd}
                              removeProject={this.props.removeProject}
+                             removePortfolio={this.props.removePortfolio}
                              disabled={this.state.settingsTabDisabled}
                              handleInputChange={this.props.handleInputChange}
-                             handlePanelAddProjectsDisplayChange={this.props.handlePanelAddProjectsDisplayChange} />
+                             handlePanelAddObjectsDisplayChange={this.props.handlePanelAddObjectsDisplayChange} />
 
         <ConstructorDecoration disabled={this.state.decorationTabDisabled} />
 
         <BarExportWrapper onPanelExportDisplayChange={this.props.handlePanelExportDisplayChange} />
 
-        <PanelExport disabled={this.props.panelExportState}
+        <PanelExport content={this.props.content}
+                     disabled={this.props.panelExportState}
                      onPanelExportDisplayChange={this.props.handlePanelExportDisplayChange} />
       </div>
     )

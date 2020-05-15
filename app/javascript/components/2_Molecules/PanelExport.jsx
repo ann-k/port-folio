@@ -10,9 +10,7 @@ import IconDownload from 'images/icons/download.svg'
 export default class PanelExport extends React.Component {
   constructor(props) {
     super(props)
-    const content = JSON.parse(document.getElementById('dataContainer').dataset.contents)
     this.state = {
-      content: content,
       copied: false,
     }
     this.handleChange = this.handleChange.bind(this)
@@ -31,12 +29,12 @@ export default class PanelExport extends React.Component {
 
         <p>
           Ваше портфолио доступно по ссылке<br/>
-          <a href={`http://localhost:3000/${this.state.content.id}-${this.state.content.contentable_type.toLowerCase()}`}>
-            www.p-f.to/{this.state.content.id}-{this.state.content.contentable_type.toLowerCase()}
+        <a href={`http://localhost:3000/${this.props.content.id}-${this.props.content.contentable_type.toLowerCase()}`}>
+            www.p-f.to/{this.props.content.id}-{this.props.content.contentable_type.toLowerCase()}
           </a>
         </p>
 
-        <CopyToClipboard text={`http://localhost:3000/${this.state.content.id}-${this.state.content.contentable_type.toLowerCase()}`}
+        <CopyToClipboard text={`http://localhost:3000/${this.props.content.id}-${this.props.content.contentable_type.toLowerCase()}`}
                          onCopy={() => {
                            event.preventDefault()
                            this.setState({copied: true})

@@ -2,28 +2,41 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
-import { DragDropContext } from 'react-beautiful-dnd'
+import IconPortfolio from 'images/icons/nav/portfolio.svg'
+import IconAdd from 'images/icons/add.svg'
 
-import TabList from '../2_Molecules/TabList'
+import ListItem from '../2_Molecules/ListItem'
 
 export default class List extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange(event) {
+    event.preventDefault()
+    this.props.onPanelAddObjectsDisplayChange(event)
+  }
+
   render() {
     return (
       <div className="tab-list-area" id="tabsListArea">
-        <DragDropContext onDragEnd={this.props.handleDragEnd}>
-          {this.props.tabListOrder.map(tabListId => {
-          const tabList = this.props.tabList
+          <div className="tabs-list">
+            <div className="tabs-list-header">
+              <div className="tabs-list-name">
+                <img src={IconPortfolio} />
+                <h3>Портфолио</h3>
+              </div>
+              <button className="button button-small button-icon-and-words" onClick={this.handleChange}>
+                <img src={IconAdd} />
+                <h3>Добавить портфолио</h3>
+              </button>
+            </div>
 
-          let projects = tabList.projectPositions.map(projectId => this.props.projects.filter(project => project.id === projectId))
-          projects = [].concat(...projects)
-
-          return <TabList key={this.props.tabList.id}
-                          tabList={this.props.tabList}
-                          projects={this.props.projects}
-                          removeProject={this.props.removeProject}
-                          onPanelAddProjectsDisplayChange={this.props.handlePanelAddProjectsDisplayChange} />
-          })}
-        </DragDropContext>
+            <div className="tabs-list-items-container">
+              {this.props.portfolios.map((portfolio, index) => <ListItem key={portfolio.id} portfolio={portfolio} index={index} removePortfolio={this.props.removePortfolio}/>)}
+            </div>
+          </div>
       </div>
     )
   }

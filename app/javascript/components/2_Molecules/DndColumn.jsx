@@ -7,7 +7,7 @@ import DndProject from './DndProject'
 import IconProject from 'images/icons/nav/project.svg'
 import IconAdd from 'images/icons/add.svg'
 
-export default class TabList extends React.Component {
+export default class DndColumn extends React.Component {
   constructor(props) {
     super(props)
     this.handleChange = this.handleChange.bind(this)
@@ -15,7 +15,7 @@ export default class TabList extends React.Component {
 
   handleChange(event) {
     event.preventDefault()
-    this.props.onPanelAddProjectsDisplayChange(event)
+    this.props.onPanelAddObjectsDisplayChange(event)
   }
 
   render() {

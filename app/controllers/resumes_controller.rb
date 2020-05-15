@@ -92,7 +92,7 @@ class ResumesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_resume
-      @resume = current_user.resumes.find(params[:id])
+      @resume = Resume.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

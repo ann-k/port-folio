@@ -71,6 +71,11 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
+    update_data = {
+      cover: params[:cover]
+    }
+    @project.update(update_data)
+
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to edit_project_path, notice: 'Project was successfully updated.' }
@@ -95,7 +100,7 @@ class ProjectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
-      @project = current_user.projects.find(params[:id])
+      @project = Project.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

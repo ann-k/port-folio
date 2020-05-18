@@ -8,17 +8,11 @@
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
 
     <%= javascript_include_tag "nav", "data-turbolinks-track" => true  %>
-    <%= javascript_include_tag "addToPortfolio", "data-turbolinks-track" => true  %>
-    <%= javascript_include_tag "tabs"#, "data-turbolinks-track" => true
-    %>
 
     <%= javascript_pack_tag "portfolioEdit" %>
     <%= javascript_pack_tag "projectEdit" %>
     <%= javascript_pack_tag "resumeEdit" %>
     <%#= javascript_pack_tag "application", "data-turbolinks-track": "reload" %>
-    <%#= javascript_pack_tag "editorjs" %>
-    <%#= javascript_pack_tag "panelAddProjects" %>
-    <%#= javascript_include_tag "exportPanel" %>
   </head>
 
   <body class="<%= controller_name %>" id="<%= action_name %>">

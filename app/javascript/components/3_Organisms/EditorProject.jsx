@@ -64,10 +64,10 @@ export default class EditorProject extends React.Component {
           inlineToolbar: true
         },
         code: CodeTool,
-        inlineCode: {
+        /* inlineCode: {
           class: InlineCode,
           shortcut: 'CMD+SHIFT+M',
-        },
+        }, */
         // table: { class: Table, },
         image: {
           class: ImageTool,

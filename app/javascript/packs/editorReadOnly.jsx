@@ -39,8 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
         break;
         case "code":
           content = (<div class="cdx-block ce-code">
-              <span style={{'text-align': "right", 'margin-bottom': "5px"}}>{data.language}</span>
-              <pre className="ce-code__textarea cdx-input prettyprint"><code className="lang-js">{data.code+""}</code></pre>
+              <pre className="ce-code__textarea cdx-input">
+                <code >{data.code+""}</code>
+              </pre>
             </div>)
         break;
         case "image":
@@ -48,7 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
               <div className="cdx-block image-tool image-tool--filled">
                 <div className="image-tool__image">
                   <img className="image-tool__image-picture" src={data.file.url}></img>
-                  <span style={{'text-align': "right", 'margin-bottom': "5px"}}>{data.caption}</span>
+                  <div className="cdx-input image-tool__caption" contenteditable="false">
+                    {data.caption}
+                  </div>
                 </div>
               </div>
             )

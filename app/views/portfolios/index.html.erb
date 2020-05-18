@@ -44,6 +44,7 @@
       <ul class="options" id="<%= portfolio.id %>">
         <li>
           <%= link_to(copy_portfolio_path(:id => portfolio.id), method: :post, controller: "portfolios", action: "copy") do %>
+            <%#= image_tag "icons/copy.svg" %>
             <h3>Создать копию</h3>
           <% end %>
         </li>

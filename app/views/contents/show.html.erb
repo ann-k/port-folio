@@ -10,18 +10,23 @@
     <% if @content.contentable_type == "Portfolio"  %>
       <% @content.contentable.projects.each do |project| %>
         <div>
-          <% if project.cover? %>
-            <%= image_tag project.cover.url%>
-          <%# else %>
-            <%#= image_tag "default.png" %>
+          <%#= link_to(project.content) do %>
+          <%= link_to("http://localhost:3000/" + project.content.id.to_s + "-project") do %>
+            <% if project.cover? %><%= image_tag(project.cover.url)%>
+            <% else %><%= image_tag "default.png" %>
+            <% end %>
+            <h3><%= project.name %></h3>
           <% end %>
-          <h3><%= project.name %></h3>
         </div>
       <% end %>
     <% end %>
   </div>
-</div>
 
+  <%= button_to(root_path, method: "get", class:"button button-big button-icon-and-words") do %>
+    <h3>Сделано в</h3>
+    <%= image_tag("logo/short.svg") %>
+  <% end %>
+</div>
 
 
 <%#= p @content.content_data["blocks"] %>
@@ -30,6 +35,3 @@
  <%#= key %>
  <%#= value %>
 <%# end %>
-
-<%#= link_to 'Edit', edit_content_path(@content) %>
-<%#= link_to 'Back', contents_path %>

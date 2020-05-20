@@ -16,9 +16,9 @@ export default class EditorProject extends React.Component {
   constructor(props) {
     super(props)
 
-    let dataContainerProject = document.getElementById('dataContainerProject')
-    let dataFromBackend = JSON.parse(dataContainerProject.dataset.contents).content_data
-    let url = 'http://localhost:3000/' + dataContainerProject.dataset.url_for_content + '.json'
+    let dataContainer = document.getElementById('dataContainer')
+    let dataFromBackend = JSON.parse(dataContainer.dataset.contents).content_data
+    let url = 'http://localhost:3000/' + dataContainer.dataset.url_for_content + '.json'
 
     const editor = new EditorJS({
       holder: 'editorJSProject',

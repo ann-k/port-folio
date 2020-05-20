@@ -51,7 +51,7 @@ class PortfoliosController < ApplicationController
 
   # GET /portfolios/1/edit
   def edit
-    render :layout => "edit"
+    render :layout => "edit_portfolio"
   end
 
   # POST /portfolios

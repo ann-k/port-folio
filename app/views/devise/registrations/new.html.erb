@@ -1,58 +1,64 @@
-<div class="auth">
-  <ul class="bar bar-top bar-with-two-tabs">
-    <li class="tablink">
-      <div></div>
+<%= render "devise/shared/landing_content" %>
+
+<div class="auth_container">
+  <div class="auth_panel">
+    <div class="auth">
+      <ul class="bar bar-not-fixed bar-with-two-tabs">
+        <li class="tablink active">
+          <div></div>
+          <h3>Регистрация</h3>
+        </li>
+        <li class="tablink">
+          <div></div>
+          <%- if controller_name != 'sessions' %>
+            <%= link_to new_session_path(resource_name) do %>
+              <h3>Вход</h3>
+            <% end %>
+          <% end %>
+        </li>
+      </ul>
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="input">
+          <h3>Имя</h3>
+          <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+        </div>
+
+        <div class="input">
+          <h3>Email</h3>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+
+        <div class="input">
+          <h3>Пароль
+            <% if @minimum_password_length %>
+              (<%= @minimum_password_length %> символов минимум)
+            <% end %>
+          </h3>
+          <%= f.password_field :password, autocomplete: "new-password" %>
+        </div>
+
+        <div class="input">
+          <h3>Повторите пароль</h3>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        </div>
+
+        <button class="button button-big">
+          <%= f.submit "Зарегистрироваться" %>
+        </button>
+      <% end %>
+
       <%- if controller_name != 'sessions' %>
-        <%= link_to new_session_path(resource_name) do %>
-          <h3>Вход</h3>
-        <% end %>
+        <div class="">
+          <%= link_to new_session_path(resource_name) do %>
+            <p class="link">Уже зарегистрированы?</p>
+          <% end %>
+        </div>
       <% end %>
-    </li>
-    <li class="tablink active">
-      <div></div>
-      <h3>Регистрация</h3>
-    </li>
-  </ul>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
-
-    <div class="input">
-      <h3>Имя</h3>
-      <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+      <%#= render "devise/shared/links" %>
     </div>
-
-    <div class="input">
-      <h3>Email</h3>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    </div>
-
-    <div class="input">
-      <h3>Пароль
-        <% if @minimum_password_length %>
-          (<%= @minimum_password_length %> символов минимум)
-        <% end %>
-      </h3>
-      <%= f.password_field :password, autocomplete: "new-password" %>
-    </div>
-
-    <div class="input">
-      <h3>Повторите пароль</h3>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-    </div>
-
-    <button class="button button-big">
-      <%= f.submit "Зарегистрироваться" %>
-    </button>
-  <% end %>
-
-  <%- if controller_name != 'sessions' %>
-    <div class="">
-      <%= link_to new_session_path(resource_name) do %>
-        <p class="link">Уже зарегистрированы?</p>
-      <% end %>
-    </div>
-  <% end %>
-
-  <%#= render "devise/shared/links" %>
+  </div>
 </div>

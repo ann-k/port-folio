@@ -10,9 +10,9 @@ export default class EditorPortfolio extends React.Component {
   constructor(props) {
     super(props)
 
-    let dataContainerPortfolio = document.getElementById('dataContainerPortfolio')
-    let dataFromBackend = JSON.parse(dataContainerPortfolio.dataset.contents).content_data
-    let url = 'http://localhost:3000/' + dataContainerPortfolio.dataset.url_for_content + '.json'
+    let dataContainer = document.getElementById('dataContainer')
+    let dataFromBackend = JSON.parse(dataContainer.dataset.contents).content_data
+    let url = 'http://localhost:3000/' + dataContainer.dataset.url_for_content + '.json'
 
     const editor = new EditorJS({
       holder: 'editorJSPortfolio',

@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import { Draggable } from 'react-beautiful-dnd'
 
-import Miniature from '../1_Atoms/Miniature.jsx'
-
 import IconRemove from 'images/icons/remove.svg'
 
 export default class ListItem extends React.Component {

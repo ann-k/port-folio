@@ -2,14 +2,14 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
-import Miniature from '../1_Atoms/Miniature.jsx'
+import Cover from '../1_Atoms/Cover.jsx'
 
 import IconAdd from 'images/icons/add.svg'
 
 export default class ObjectToAdd extends React.Component {
   render() {
     let addObject = this.props.addPortfolio || this.props.addProject
-    
+
     return (
       <div className='list-in-panel'>
         <div id='iconAdd' className='button button-icon'
@@ -17,7 +17,7 @@ export default class ObjectToAdd extends React.Component {
           <img src={IconAdd}></img>
         </div>
 
-        <Miniature src={this.props.object.cover.url}/>
+        <Cover src={this.props.object.cover.url} size={'miniature'}/>
         <p>{this.props.object.name}</p>
       </div>
     )

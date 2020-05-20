@@ -8,11 +8,11 @@ import ConstructorContainer from '../components/3_Organisms/ConstructorContainer
 export default class PortfolioEdit extends React.Component {
   constructor(props) {
     super(props)
-    const portfolio = JSON.parse(document.getElementById('dataContainerPortfolio').dataset.portfolio)
-    const content = JSON.parse(document.getElementById('dataContainerPortfolio').dataset.contents)
+    const portfolio = JSON.parse(document.getElementById('dataContainer').dataset.portfolio)
+    const content = JSON.parse(document.getElementById('dataContainer').dataset.contents)
 
-    let projectsArray = JSON.parse(document.getElementById('dataContainerPortfolio').dataset.projects)
-    let pInPArray = JSON.parse(document.getElementById('dataContainerPortfolio').dataset.p_in_ps)
+    let projectsArray = JSON.parse(document.getElementById('dataContainer').dataset.projects)
+    let pInPArray = JSON.parse(document.getElementById('dataContainer').dataset.p_in_ps)
     let projectsWithStringPositions = projectsArray.map((item, i) => {
       item.pInPId = pInPArray[i].id
       i++
@@ -21,7 +21,7 @@ export default class PortfolioEdit extends React.Component {
     })
     let stringPositions = projectsWithStringPositions.map(item => item.position)
 
-    let allProjects = JSON.parse(document.getElementById('dataContainerPortfolio').dataset.all_projects)
+    let allProjects = JSON.parse(document.getElementById('dataContainer').dataset.all_projects)
     let currentProjects = projectsArray
     let projectsToAdd = allProjects.filter(project => {
       if (!currentProjects.map(currentProject => {
@@ -75,7 +75,7 @@ export default class PortfolioEdit extends React.Component {
       }
     })
 
-    const url = document.getElementById('dataContainerPortfolio').dataset.url_for_portfolio
+    const url = document.getElementById('dataContainer').dataset.url_for_portfolio
     fetch(url, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -88,7 +88,7 @@ export default class PortfolioEdit extends React.Component {
   }
 
   addProject = projectId => {
-    const allProjects = JSON.parse(document.getElementById('dataContainerPortfolio').dataset.all_projects)
+    const allProjects = JSON.parse(document.getElementById('dataContainer').dataset.all_projects)
     const newProject = allProjects.filter(project => project.id === projectId)[0]
     const newProjectsArray = this.state.projects
     newProjectsArray.unshift(newProject)
@@ -109,8 +109,8 @@ export default class PortfolioEdit extends React.Component {
 
 
     // CREATE A NEW PROJECT IN PORTFOLIO
-    let urlForCreate = document.getElementById('dataContainerPortfolio').dataset.url_for_p_in_ps
-    let portfolioId = JSON.parse(document.getElementById('dataContainerPortfolio').dataset.portfolio).id
+    let urlForCreate = document.getElementById('dataContainer').dataset.url_for_p_in_ps
+    let portfolioId = JSON.parse(document.getElementById('dataContainer').dataset.portfolio).id
 
     fetch(urlForCreate, {
       method: 'POST',
@@ -126,7 +126,7 @@ export default class PortfolioEdit extends React.Component {
     })
 
     //UPDATE PROJECT IN PORTFOLIOS POSITIONS
-    let urlForSort = document.getElementById('dataContainerPortfolio').dataset.url_for_sort + '.json'
+    let urlForSort = document.getElementById('dataContainer').dataset.url_for_sort + '.json'
     let newPositions = this.state.projects.map(project => {
       return parseInt(project.position)
     })
@@ -175,7 +175,7 @@ export default class PortfolioEdit extends React.Component {
     }
     this.setState(newState)
 
-    let url = document.getElementById('dataContainerPortfolio').dataset.url_for_sort + '.json'
+    let url = document.getElementById('dataContainer').dataset.url_for_sort + '.json'
     let newPositions = projectPositions.map(position => {
       return parseInt(position)
     })
@@ -207,7 +207,7 @@ export default class PortfolioEdit extends React.Component {
       return position
     })
 
-    const allProjects = JSON.parse(document.getElementById('dataContainerPortfolio').dataset.all_projects)
+    const allProjects = JSON.parse(document.getElementById('dataContainer').dataset.all_projects)
     const currentProjects = newProjectsWithNewPositions
     const newProjectsToAdd = allProjects.filter(project => {
       if (!currentProjects.map(currentProject => {
@@ -226,8 +226,8 @@ export default class PortfolioEdit extends React.Component {
     }
     this.setState(newState)
 
-    let url = document.getElementById('dataContainerPortfolio').dataset.url_for_p_in_ps + '_delete'
-    let portfolioId = JSON.parse(document.getElementById('dataContainerPortfolio').dataset.portfolio).id
+    let url = document.getElementById('dataContainer').dataset.url_for_p_in_ps + '_delete'
+    let portfolioId = JSON.parse(document.getElementById('dataContainer').dataset.portfolio).id
     fetch(url, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
@@ -239,7 +239,7 @@ export default class PortfolioEdit extends React.Component {
       return res.json()
     })
 
-    // let url = document.getElementById('dataContainerPortfolio').dataset.url_for_p_in_ps + '/' + pInPId
+    // let url = document.getElementById('dataContainer').dataset.url_for_p_in_ps + '/' + pInPId
     // fetch(url, {
     //   method: 'DELETE',
     // }).then(res => {
@@ -274,5 +274,5 @@ export default class PortfolioEdit extends React.Component {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(<PortfolioEdit />, document.getElementById('dataContainerPortfolio'))
+  ReactDOM.render(<PortfolioEdit />, document.getElementById('dataContainer'))
 })

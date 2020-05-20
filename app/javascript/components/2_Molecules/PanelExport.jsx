@@ -21,6 +21,8 @@ export default class PanelExport extends React.Component {
   }
 
   render() {
+    let urlForExport = document.getElementById('dataContainer').dataset.url_for_content
+
     return (
       <div className={this.props.disabled ? 'panel disabled' : 'panel'} id='exportPanel'>
         <div id='iconRemove' className='button button-icon' onClick={this.handleChange}>
@@ -29,12 +31,12 @@ export default class PanelExport extends React.Component {
 
         <p>
           Ваше портфолио доступно по ссылке<br/>
-        <a href={`http://localhost:3000/${this.props.content.id}-${this.props.content.contentable_type.toLowerCase()}`}>
-            www.p-f.to/{this.props.content.id}-{this.props.content.contentable_type.toLowerCase()}
+        <a href={urlForExport}>
+            www.p-f.tools{urlForExport}
           </a>
         </p>
 
-        <CopyToClipboard text={`http://localhost:3000/${this.props.content.id}-${this.props.content.contentable_type.toLowerCase()}`}
+        <CopyToClipboard text={`http://localhost:3000/${urlForExport}`}
                          onCopy={() => {
                            event.preventDefault()
                            this.setState({copied: true})

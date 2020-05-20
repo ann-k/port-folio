@@ -33,7 +33,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
-    render :layout => "edit"
+    render :layout => "edit_project"
   end
 
   def upload_cover

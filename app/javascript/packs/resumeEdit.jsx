@@ -8,8 +8,8 @@ import ConstructorContainer from '../components/3_Organisms/ConstructorContainer
 export default class ResumeEdit extends React.Component {
   constructor(props) {
     super(props)
-    const resume = JSON.parse(document.getElementById('dataContainerResume').dataset.resume)
-    const content = JSON.parse(document.getElementById('dataContainerResume').dataset.contents)
+    const resume = JSON.parse(document.getElementById('dataContainer').dataset.resume)
+    const content = JSON.parse(document.getElementById('dataContainer').dataset.contents)
 
     this.state = {
       resume: resume,
@@ -41,7 +41,7 @@ export default class ResumeEdit extends React.Component {
       }
     })
 
-    const url = document.getElementById('dataContainerResume').dataset.url_for_resume
+    const url = document.getElementById('dataContainer').dataset.url_for_resume
     fetch(url, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -68,5 +68,5 @@ export default class ResumeEdit extends React.Component {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(<ResumeEdit />, document.getElementById('dataContainerResume'))
+  ReactDOM.render(<ResumeEdit />, document.getElementById('dataContainer'))
 })

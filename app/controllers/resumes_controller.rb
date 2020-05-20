@@ -15,9 +15,12 @@ class ResumesController < ApplicationController
 
   # GET /resumes/new
   def new
-    @resume = current_user.resumes.new
-    @content = @resume.build_content
-    render :layout => "edit"
+    resume = current_user.resumes.create
+    resume.update(name: "Новое резюме")
+    content = resume.build_content
+    content.save
+    redirect_to edit_resume_path(resume)
+    # render :layout => "edit_resume"
   end
 
   def copy
@@ -44,7 +47,7 @@ class ResumesController < ApplicationController
 
   # GET /resumes/1/edit
   def edit
-    render :layout => "edit"
+    render :layout => "edit_resume"
   end
 
   # POST /resumes

@@ -11,7 +11,7 @@
       <% @content.contentable.projects.each do |project| %>
         <div>
           <%#= link_to(project.content) do %>
-          <%= link_to("http://localhost:3000/" + project.content.id.to_s + "-project") do %>
+          <%= link_to(project.content) do %>
             <% if project.cover? %><%= image_tag(project.cover.url)%>
             <% else %><%= image_tag "default.png" %>
             <% end %>

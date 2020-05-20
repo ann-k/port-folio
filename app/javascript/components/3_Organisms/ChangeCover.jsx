@@ -14,7 +14,7 @@ export default class ChangeCover extends React.Component {
   handleCoverChange = (event) => {
     if (event.target.files[0]) this.setState({cover: event.target.files[0].preview})
 
-    let url = document.getElementById('dataContainerProject').dataset.url_for_project
+    let url = document.getElementById('dataContainer').dataset.url_for_project
     fetch(url, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },

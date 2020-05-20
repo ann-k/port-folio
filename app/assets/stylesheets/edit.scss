@@ -316,9 +316,9 @@ div.codex-editor__redactor {padding-bottom: 0px !important;}
   // padding-right: 64px;
 }
 
-.bar-top {
-  border-radius: 0 0 8px 8px;
-}
+.bar-top {border-radius: 0 0 8px 8px;}
+
+.bar-not-fixed {border-radius: 8px;}
 
 #bar-preview-wrapper {
   display: grid;

@@ -13,7 +13,7 @@
     <% end %>
   </div>
 
-  <div class="edit-page-container" id="dataContainerPortfolio"
+  <div class="edit-page-container" id="dataContainer"
        data-portfolio="<%= @portfolio.to_json %>"
        data-projects="<%= @portfolio.projects.ordered_by_position.to_json %>"
        data-all_projects="<%= current_user.projects.all.ordered_by_position.to_json %>"

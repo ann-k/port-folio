@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import { Draggable } from 'react-beautiful-dnd'
 
-import Miniature from '../1_Atoms/Miniature.jsx'
+import Cover from '../1_Atoms/Cover.jsx'
 
 import IconDnd from 'images/icons/dragndrop.svg'
 import IconRemove from 'images/icons/remove.svg'
@@ -22,7 +22,7 @@ export default class DndProject extends React.Component {
               <img src={IconDnd} />
             </div>
 
-            <Miniature src={this.props.project.cover.url} />
+            <Cover src={this.props.project.cover.url} size={'miniature'} />
 
             <div>
               <p>{this.props.project.name}</p>

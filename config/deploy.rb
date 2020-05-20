@@ -2,7 +2,7 @@
 lock "~> 3.14.0"
 
 set :rbenv_type, :user
-set :rbenv_ruby, "2.6.3-p62"
+set :rbenv_ruby, "2.6.3"
 
 set :application, "port-folio"
 set :repo_url, "git@github.com:ann-k/port-folio.git"

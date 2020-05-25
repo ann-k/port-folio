@@ -10,21 +10,26 @@ import EditorResume from '../3_Organisms/EditorResume'
 export default class ContentsContainer extends React.Component {
   render() {
     return (
-      <div className='contents-container contents-container-in-preview'>
-        <div className='browswer-bar'>
-          <div />
-          <div />
-          <div />
+      <div className='contents-and-browser-container-in-preview'>
+        <div className='browswer-bar-container'>
+          <div className='browswer-bar' id={this.props.tabActive}>
+            <div />
+            <div />
+            <div />
         </div>
-        <div className='content content-in-preview'>
-          {this.props.project && <EditorProject />}
-          {this.props.resume && <EditorResume />}
-          {this.props.portfolio && <EditorPortfolio />}
-          {this.props.portfolio &&
-            <div className='projects-container projects-container-in-preview'>
-              {this.props.projects.map((project) => <ProjectInEditor key={project.position} project={project} />)}
-            </div>
-          }
+      </div>
+
+        <div className='content-in-preview-container'>
+          <div className='content-in-preview' id={this.props.tabActive}>
+            {this.props.project && <EditorProject />}
+            {this.props.resume && <EditorResume />}
+            {this.props.portfolio && <EditorPortfolio />}
+            {this.props.portfolio &&
+              <div className='projects-container projects-container-in-preview'>
+                {this.props.projects.map((project) => <ProjectInEditor key={project.position} project={project} />)}
+              </div>
+            }
+          </div>
         </div>
       </div>
     )

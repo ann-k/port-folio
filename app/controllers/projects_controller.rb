@@ -26,8 +26,8 @@ class ProjectsController < ApplicationController
 
     project = current_user.projects.create
     project.update(name: "Новый проект")
-    content = project.build_content
-    content.save
+    @content = project.build_content
+    @content.save
     redirect_to edit_project_path(project)
   end
 
@@ -71,10 +71,10 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
-    update_data = {
-      cover: params[:cover]
-    }
-    @project.update(update_data)
+    # update_data = {
+    #   cover: params[:cover]
+    # }
+    # @project.update(update_data)
 
     respond_to do |format|
       if @project.update(project_params)

@@ -15,12 +15,12 @@ export default class BarConstructorWrapper extends React.Component {
   render() {
     return (
       <ul className='bar bar-top bar-with-two-tabs'>
-        <li className={this.props.settingsTabDisabled ? 'tablink constructor-tablink' : 'tablink constructor-tablink active'} onClick={this.handleChange}>
+        <li className={this.props.tabActive === 'settings' ? 'tablink constructor-tablink active' : 'tablink constructor-tablink'} onClick={this.handleChange} id='settings'>
           <div />
           <h3>Настройки</h3>
         </li>
 
-        <li className={this.props.decorationTabDisabled ? 'tablink constructor-tablink' : 'tablink constructor-tablink active'} onClick={this.handleChange}>
+        <li className={this.props.tabActive === 'decoration' ? 'tablink constructor-tablink active' : 'tablink constructor-tablink'} onClick={this.handleChange} id='decoration'>
           <div />
           <h3>Оформление</h3>
         </li>

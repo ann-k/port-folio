@@ -10,7 +10,6 @@
     <% if @content.contentable_type == "Portfolio"  %>
       <% @content.contentable.projects.each do |project| %>
         <div>
-          <%#= link_to(project.content) do %>
           <%= link_to(project.content) do %>
             <% if project.cover? %><%= image_tag(project.cover.url)%>
             <% else %><%= image_tag "default.png" %>
@@ -22,16 +21,8 @@
     <% end %>
   </div>
 
-  <%= button_to(root_path, method: "get", class:"button button-big button-icon-and-words") do %>
+  <%= button_to(root_path, method: "get", class:"button button-big button-icon-and-words", id:"made_with_button") do %>
     <h3>Сделано в</h3>
-    <%= image_tag("logo/short.svg") %>
+    <%= image_tag("logo/short_black.svg") %>
   <% end %>
 </div>
-
-
-<%#= p @content.content_data["blocks"] %>
-
-<%# @content.content_data.each_pair do |key, value| %>
- <%#= key %>
- <%#= value %>
-<%# end %>

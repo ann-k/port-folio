@@ -10,15 +10,15 @@ body.contents#show {
 
   h1 {
     font-size: 32px;
-    line-height: 40px;
+    line-height: 28px;
   }
   h2 {
     font-size: 24px;
     line-height: 24px;
   }
   h3 {
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 14px;
+    line-height: 18px;
   }
   p {
     font-size: 16px;
@@ -40,7 +40,7 @@ body.contents#show {
   grid-column-end: span 5;
 
   & > div {
-    margin-bottom: 16px;
+    margin-bottom: 8px;
   }
 }
 
@@ -56,7 +56,7 @@ body.contents#show {
 
   div {
     grid-column-end: span 3;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
   }
 
   a {
@@ -64,6 +64,38 @@ body.contents#show {
     width: 100%;
     height: 100%;
     h3 {color: $background;}
+  }
+}
+
+@media screen and (max-device-width: 600px) {
+  .editorjs-in-show {
+    grid-column-start: 3;
+    grid-column-end: span 7;
+  }
+
+  .projects-container-in-show {
+    grid-column-start: 3;
+    grid-column-end: span 8;
+  }
+}
+
+@media screen and (max-device-width: 414px) {
+  .content-in-show {
+    grid-column-gap: 8px;
+  }
+
+  .editorjs-in-show {
+    grid-column-start: 2;
+    grid-column-end: span 10;
+  }
+
+  .projects-container-in-show {
+    grid-column-start: 2;
+    grid-column-end: span 10;
+
+    div {
+      grid-column-end: span 10;
+    }
   }
 }
 
@@ -84,6 +116,14 @@ body.contents#show {
   }
 }
 
+#made_with_button {
+  background-color: white;
+  border-radius: 0;
+  border: solid 2px $background;
+
+  h3 {color: $background;}
+}
+
 .image-tool__caption {
   text-align: center;
   padding-top: 0;
@@ -98,7 +138,6 @@ body.contents#show {
 }
 
 .ce-paragraph {
-
 }
 
 .cdx-list__item {

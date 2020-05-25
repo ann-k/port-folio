@@ -1,7 +1,8 @@
 class ContentsController < ApplicationController
-  before_action :authenticate_user!, :except => [:show]
+  before_action :authenticate_user!, :except => [:show, :create, :update, :destroy]
 
-  before_action :set_content, only: [:show, :edit, :update, :destroy]
+  before_action :set_content_by_slug, only: [:show, :edit]
+  before_action :set_content_by_id, only: [:update, :destroy]
 
   # GET /contents
   # GET /contents.json
@@ -84,8 +85,12 @@ class ContentsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_content
+    def set_content_by_slug
       @content = Content.find_by_slug(params[:slug])
+    end
+
+    def set_content_by_id
+      @content = Content.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

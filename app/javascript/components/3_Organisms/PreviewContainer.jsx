@@ -8,6 +8,20 @@ import BarPreviewWrapper from '../2_Molecules/BarPreviewWrapper'
 import ContentsContainer from '../3_Organisms/ContentsContainer'
 
 export default class PreviewContainer extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleTabChange = this.handleTabChange.bind(this)
+
+    this.state = {
+      tabActive: 'desktop'
+    }
+  }
+
+  handleTabChange(event) {
+    const tabName = event.currentTarget.id
+    this.setState({tabActive: tabName})
+  }
+
   render() {
     return (
       <div className='preview-container'>
@@ -18,9 +32,11 @@ export default class PreviewContainer extends React.Component {
         <ContentsContainer portfolio={this.props.portfolio}
                            project={this.props.project}
                            resume={this.props.resume}
-                           projects={this.props.projects} />
+                           projects={this.props.projects}
+                           tabActive={this.state.tabActive} />
 
-        <BarPreviewWrapper />
+       <BarPreviewWrapper onTabChange={this.handleTabChange}
+                          tabActive={this.state.tabActive} />
 
         <PanelAddObjects projectsToAdd={this.props.projectsToAdd}
                          addProject={this.props.addProject}

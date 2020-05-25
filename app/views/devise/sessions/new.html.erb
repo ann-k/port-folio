@@ -1,6 +1,11 @@
-<%= render "devise/shared/landing_content" %>
+<div class="landing_content_container">
+  <%= image_tag("logo/long.svg", class:"logo") %>
 
-<div class="auth_container">
+  <div class="landing-header">
+    <h1>Создайте личный сайт в Port–Folio </h1>
+    <%= image_tag "landing/first_arrow.svg" %>
+  </div>
+
   <div class="auth_panel">
     <div class="auth">
       <ul class="bar bar-not-fixed bar-with-two-tabs">
@@ -20,18 +25,87 @@
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="input">
-          <h3>Email</h3>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "" %>
+          <!-- <h3>Email</h3> -->
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
         </div>
 
-        <div class="input">
-          <h3>Имя пользователя</h3>
-          <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "" %>
-        </div>
+        <!-- <div class="input"> -->
+          <!-- <h3>Имя пользователя</h3> -->
+          <%#= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "" %>
+        <!-- </div> -->
 
         <div class="input">
-          <h3>Пароль</h3>
-          <%= f.password_field :password, autocomplete: "current-password", placeholder: "" %>
+          <!-- <h3>Пароль</h3> -->
+          <%= f.password_field :password, autocomplete: "current-password", placeholder: "Пароль" %>
+        </div>
+
+        <%# if devise_mapping.rememberable? %>
+          <!-- <div class="field"> -->
+            <%#= f.check_box :remember_me %>
+            <!-- <h3>Запомнить</h3> -->
+          <!-- </div> -->
+        <%# end %>
+
+        <button class="button button-big">
+          <%= f.submit "Войти" %>
+        </button>
+      <% end %>
+
+      <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+        <%= link_to new_password_path(resource_name) do %>
+          <p class="link">Забыли пароль?</p>
+        <% end %>
+      <% end %>
+
+      <%#= render "devise/shared/links" %>
+    </div>
+  </div>
+
+  <div class="landing-content">
+    <div class="landing-video">
+      <%= image_tag "landing/video.gif" %>
+    </div>
+    <%= image_tag "landing/illustration.png" %>
+  </div>
+
+  <div class="landing-end">
+    <h1>Попробуйте<br>бета-версию</h1><br><br>
+    <div id="last_arrow_container">
+      <%= image_tag "landing/last_arrow.svg" %>
+    </div>
+  </div>
+
+  <div class="auth_panel">
+    <div class="auth">
+      <ul class="bar bar-not-fixed bar-with-two-tabs">
+        <li class="tablink">
+          <div></div>
+          <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+            <%= link_to new_registration_path(resource_name) do %>
+            <h3>Регистрация</h3>
+            <% end %>
+          <% end %>
+        </li>
+        <li class="tablink active">
+          <div></div>
+          <h3>Вход</h3>
+        </li>
+      </ul>
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="input">
+          <!-- <h3>Email</h3> -->
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
+        </div>
+
+        <!-- <div class="input"> -->
+          <!-- <h3>Имя пользователя</h3> -->
+          <%#= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "" %>
+        <!-- </div> -->
+
+        <div class="input">
+          <!-- <h3>Пароль</h3> -->
+          <%= f.password_field :password, autocomplete: "current-password", placeholder: "Пароль" %>
         </div>
 
         <%# if devise_mapping.rememberable? %>

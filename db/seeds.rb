@@ -43,9 +43,9 @@ end
 #Portfolios
 
 @portfolios = [
-  {name: "Веб-дизайн портфолио", description: "На первом месте проекты веб-дизайна. Только мобильный дизайн в конце. Без старых графических проектов."},
-  {name: "Дизайн мобильных приложений", description: "Только проекты, где есть мобильный дизайн."},
-  {name: "Лендинги, презентации, графика", description: "На первом месте лендинги, презентации, графика. Весь веб в конце. Без старых проектов."}
+  {name: "Портфолио для работы", description: "Только лучшие проекты. Сначала веб, потом графика."},
+  {name: "Портфолио для волонтерства", description: "Вначале социально значимые проекты."},
+  {name: "Портфолио для стажировки", description: "Все проекты, в том числе учебные."}
 ]
 
 def create_portfolio(portfolio, user_id)
@@ -104,13 +104,13 @@ end
 #Projects
 
 @projects_names = [
-  "Сайт",
-  "Приложение",
-  "Лендинг",
-  "Книга",
-  "Сервис",
-  "Журнал",
-  "Фото-проект",
+  "Дизайн образовательного сайта",
+  "UX-исследование",
+  "Банковское приложение",
+  "Лендинг для кофейни",
+  "Интерфейсы для нового сервиса",
+  "Медицинское приложение",
+  "Дизайн упаковки",
   "Фирменный стиль"
 ]
 
@@ -184,7 +184,6 @@ Portfolio.all.each do |portfolio|
 
     unless project_in_certain_portfolios.include?(project)
       if portfolio.user_id == project.user_id
-        puts "user matches"
         p = create_project_in_portfolio(portfolio, project, @position)
         puts "Project in portfolio with portfolio id #{p.portfolio_id}, project id #{p.project_id} and position #{p.position} created"
         @position = @position + 1
@@ -197,9 +196,9 @@ end
 #Resumes
 
 @resumes = [
-  {name: "Веб резюме", description: "Для веб-дизайна"},
-  {name: "Граф резюме", description: "Для граф дизайна"},
-  {name: "Код резюме", description: "Для программирования"}
+  {name: "Резюме для работы", description: ""},
+  {name: "Резюме для стажировки", description: ""},
+  {name: "Резюме для волонтерства", description: ""}
 ]
 
 def create_resume(resume, user_id)

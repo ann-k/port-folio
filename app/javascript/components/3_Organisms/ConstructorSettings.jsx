@@ -12,7 +12,7 @@ export default class ConstructorSettings extends React.Component {
   render() {
     if (this.props.portfolio) {
       return (
-        <div className={this.props.disabled ? 'constructor disabled' : 'constructor'} id='settings'>
+        <div className={this.props.tabActive === 'settings' ? 'constructor' : 'constructor disabled'} id='settings'>
           <Input label='Название портфолио (видно только вам)'
                  id='portfolio_name'
                  placeholder='Новое портфолио'

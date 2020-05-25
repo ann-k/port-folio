@@ -9,9 +9,10 @@ Rails.application.routes.draw do
   end
 
   # get 'account' => 'other_pages#account'
+  get 'privacy' => 'other_pages#privacy'
 
   get 'contents/:contentable_type-:slug' => 'contents#show'
-  resources :contents, only: [:index, :create, :update, :destroy]
+  resources :contents, only: [:create, :update, :destroy]
 
   put 'portfolios/:portfolio_id/project_in_portfolios' => 'project_in_portfolios#sort_project_in_portfolios', as: :sort_project_in_portfolios
   delete 'project_in_portfolios_delete' => 'project_in_portfolios#delete_project_in_portfolio'

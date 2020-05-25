@@ -5,7 +5,7 @@ import EditorJS from '@editorjs/editorjs'
 
 document.addEventListener('DOMContentLoaded', () => {
   let data = JSON.parse(document.getElementById('editorReadOnly').dataset.contents).content_data
-
+console.log(data);
   function ReadOnly() {
     const renderBlock = (block) => {
       let type = block.type

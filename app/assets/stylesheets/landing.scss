@@ -1,34 +1,23 @@
 @import "variables";
 
-// LANDING CONTENT
-
-
 .landing_content_container {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-column-gap: $column-gap;
-}
 
-.landing_content {
-  // div {text-align: center;}
-  grid-column-start: 2;
-  grid-column-end: span 5;
-  margin-top: 24vh;
-  margin-bottom: 40vh;
-
-  h1 {
-    display: inline;
-
-    font-family: "tttravels";
-    font-size: 56px;
-    line-height: 56px;
-    vertical-align: top;
-  }
+  margin-bottom: 160px;
 
   .logo {
-    display: inline;
-    width: 240px;
-    margin: 0;
+    position: fixed;
+    top: $column-gap;
+  }
+
+  h1 {
+    font-family: "tttravels";
+    font-size: 56px;
+    line-height: 50px;
+    vertical-align: top;
+    margin-top: 40%;
   }
 
   #last_arrow_container {
@@ -38,21 +27,11 @@
   }
 }
 
+.landing-header {
+  grid-column-start: 2;
+  grid-column-end: span 5;
 
-
-
-// AUTHENTIFICATION
-
-.auth_container {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-column-gap: $column-gap;
-
-  position: fixed;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-
+  height: 95vh;
 }
 
 .auth_panel {
@@ -61,7 +40,6 @@
   margin: auto 0;
   border: 4px solid $primary;
   border-radius: 8px;
-
 
   .auth {
     margin: 48px auto;
@@ -83,4 +61,24 @@
 .auth .tablink.active div {
   top: 0;
   border-radius: 0 0 10px 10px;
+}
+
+.landing-content {
+  grid-column-start: 2;
+  grid-column-end: span 10;
+
+  img {width: 100%;}
+  margin-bottom: 160px;
+}
+
+.landing-video {
+  box-shadow: $shadow;
+  border-radius: 8px;
+  border: solid 4px $primary;
+  margin-bottom: 160px;
+}
+
+.landing-end {
+  grid-column-start: 2;
+  grid-column-end: span 5;
 }

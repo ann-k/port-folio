@@ -12,9 +12,9 @@ export default class PortfolioEdit extends React.Component {
     const content = JSON.parse(document.getElementById('dataContainer').dataset.contents)
 
     let projectsArray = JSON.parse(document.getElementById('dataContainer').dataset.projects)
-    let pInPArray = JSON.parse(document.getElementById('dataContainer').dataset.p_in_ps)
+    {/* let pInPArray = JSON.parse(document.getElementById('dataContainer').dataset.p_in_ps) */}
     let projectsWithStringPositions = projectsArray.map((item, i) => {
-      item.pInPId = pInPArray[i].id
+      {/* item.pInPId = pInPArray[i].id */}
       i++
       item.position = String(i)
       return item
@@ -25,9 +25,11 @@ export default class PortfolioEdit extends React.Component {
     let currentProjects = projectsArray
     let projectsToAdd = allProjects.filter(project => {
       if (!currentProjects.map(currentProject => {
-        if (project.id === currentProject.id) return "not yet in portfolio"
-      }).includes("not yet in portfolio")) return true
+        if (project.id === currentProject.id) return 'not yet in portfolio'
+      }).includes('not yet in portfolio')) return true
     })
+
+    console.log(projectsWithStringPositions);
 
     this.state = {
       portfolio: portfolio,
@@ -93,6 +95,7 @@ export default class PortfolioEdit extends React.Component {
     const newProjectsArray = this.state.projects
     newProjectsArray.unshift(newProject)
     const newProjectsToAdd = this.state.projectsToAdd.filter(projectToAdd => projectToAdd.id != newProject.id)
+    console.log("when adding project id is " + newProject.id);
 
     const newProjectsWithNewPositions = newProjectsArray.map((project, i) => {
       i++
@@ -100,17 +103,27 @@ export default class PortfolioEdit extends React.Component {
       return project
     })
 
+    const newStringPositions = newProjectsWithNewPositions.map(project => project.position)
+
     const newState = {
       ...this.state,
       projects: newProjectsWithNewPositions,
       projectsToAdd: newProjectsToAdd,
+      tabList: {
+        id: 'Проекты',
+        projectPositions: newStringPositions,
+      },
     }
     this.setState(newState)
 
-
-    // CREATE A NEW PROJECT IN PORTFOLIO
+    // CREATE A NEW PROJECT IN PORTFOLIO, THEN UPDATE PROJECT IN PORTFOLIOS POSITIONS
     let urlForCreate = document.getElementById('dataContainer').dataset.url_for_p_in_ps
     let portfolioId = JSON.parse(document.getElementById('dataContainer').dataset.portfolio).id
+
+    let urlForSort = document.getElementById('dataContainer').dataset.url_for_sort + '.json'
+    let newPositions = this.state.projects.map(project => {
+      return parseInt(project.position)
+    })
 
     fetch(urlForCreate, {
       method: 'POST',
@@ -121,28 +134,21 @@ export default class PortfolioEdit extends React.Component {
         position: 0,
       })
     }).then(res => {
-      console.log(res);
       return res.json()
     })
-
-    //UPDATE PROJECT IN PORTFOLIOS POSITIONS
-    let urlForSort = document.getElementById('dataContainer').dataset.url_for_sort + '.json'
-    let newPositions = this.state.projects.map(project => {
-      return parseInt(project.position)
-    })
-    console.log(newPositions);
-
-    fetch(urlForSort, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({newOrder: newPositions})
-    })
-    .then(res => {
-      return res.json()
-    })
-    .then(data => console.log(data))
-    .catch((error) => {
-      console.error('Error:', error)
+    .then(data => {
+      fetch(urlForSort, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({newOrder: newPositions})
+      })
+      .then(res => {
+        return res.json()
+      })
+      .then(data => console.log(data))
+      .catch((error) => {
+        console.error('Error:', error)
+      })
     })
   }
 
@@ -195,7 +201,13 @@ export default class PortfolioEdit extends React.Component {
   }
 
   removeProject = (projectId, projectPosition) => {
+    //find current project positions and filter out the one that got added
     const projectPositions = Array.from(this.state.tabList.projectPositions).filter(item => item != projectPosition)
+    console.log('current projects positions');
+    console.log(Array.from(this.state.tabList.projectPositions));
+    console.log('current projects positions without the one that got added');
+    console.log(projectPositions);
+
     const projectsInNewOrder = projectPositions.map(id => this.state.projects.filter(project => project.position == id)).flat()
     const newProjectsWithNewPositions = projectsInNewOrder.map((project, i) => {
       i++

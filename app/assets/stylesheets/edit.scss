@@ -42,23 +42,23 @@
 }
 
 
-.browswer-bar-container {
+.browser-bar-container {
   display: grid;
   grid-template-columns: repeat(15, 1fr);
   grid-column-gap: $column-gap;
 }
 
-.browswer-bar#desktop {
+.browser-bar#desktop {
   grid-column-start: 1;
   grid-column-end: 16;
 }
 
-.browswer-bar#mobile {
+.browser-bar#mobile {
   grid-column-start: 5;
   grid-column-end: 12;
 }
 
-.browswer-bar {
+.browser-bar {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -137,8 +137,8 @@
     line-height: 24px;
   }
   h3 {
-    font-size: 16px;
-    line-height: 18px;
+    font-size: 14px;
+    line-height: 16px;
   }
   p {
     font-size: 16px;
@@ -162,6 +162,20 @@ div.codex-editor__redactor {padding-bottom: 0px !important;}
 .projects-container {img {width: 100%;}}
 
 .cdx-notifies {color: $surface;}
+
+
+// .fullscreen-preview {
+//   position: fixed;
+//   z-index: 3;
+//   margin-top: 80px;
+//
+//   .browser-bar-container, .content-in-preview-container {
+//     width: 95vw;
+//     height: 80vh;
+//     display: grid;
+//     grid-template-columns: 1fr;
+//   }
+// }
 
 
 // CONSTRUCTOR

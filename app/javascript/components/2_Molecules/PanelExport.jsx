@@ -30,7 +30,10 @@ export default class PanelExport extends React.Component {
         </div>
 
         <p>
-          Ваше портфолио доступно по ссылке<br/>
+          {this.props.portfolio && 'Ваше портфолио доступно '}
+          {this.props.project && 'Ваш проект доступен '}
+          {this.props.resume && 'Ваше резюме доступно '}
+          по ссылке<br/>
         <a href={urlForExport}>
             www.p-f.tools{urlForExport}
           </a>

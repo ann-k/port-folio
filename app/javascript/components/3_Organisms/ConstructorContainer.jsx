@@ -49,7 +49,10 @@ export default class ConstructorContainer extends React.Component {
 
         <PanelExport content={this.props.content}
                      disabled={this.props.panelExportState}
-                     onPanelExportDisplayChange={this.props.handlePanelExportDisplayChange} />
+                     onPanelExportDisplayChange={this.props.handlePanelExportDisplayChange}
+                     portfolio={this.props.portfolio}
+                     project={this.props.project}
+                     resume={this.props.resume} />
       </div>
     )
   }

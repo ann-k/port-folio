@@ -33,6 +33,9 @@ export default class PanelAddObjects extends React.Component {
           <div id='iconRemove' className='button button-icon' onClick={this.handleChange}>
             <img src={IconRemove} />
           </div>
+
+          {objectsToAdd.length === 0 && this.props.portfoliosToAdd ? <p>Этот проект добавлен во все существующие портфолио!</p> : ''}
+          {objectsToAdd.length === 0 && this.props.projectsToAdd ? <p>Вы добавили все существующие проекты!</p> : ''}
         </div>
       )
     }

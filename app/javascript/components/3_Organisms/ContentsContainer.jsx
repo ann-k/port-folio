@@ -11,8 +11,8 @@ export default class ContentsContainer extends React.Component {
   render() {
     return (
       <div className='contents-and-browser-container-in-preview'>
-        <div className='browswer-bar-container'>
-          <div className='browswer-bar' id={this.props.tabActive}>
+        <div className='browser-bar-container'>
+          <div className='browser-bar' id={this.props.tabActive}>
             <div />
             <div />
             <div />

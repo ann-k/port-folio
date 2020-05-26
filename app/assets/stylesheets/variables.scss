@@ -76,6 +76,14 @@ p, .ce-paragraph {
   line-height: 20px !important;
 }
 
+p.caption, a.caption {
+  font-size: 12px;
+}
+
+p.caption {
+  color: $grey;
+}
+
 p.link, a.link {
   color: $primary;
 }

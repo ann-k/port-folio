@@ -18,10 +18,10 @@ export default class DndList extends React.Component {
           projects = [].concat(...projects)
 
           return <DndColumn key={this.props.tabList.id}
-                          tabList={this.props.tabList}
-                          projects={this.props.projects}
-                          removeProject={this.props.removeProject}
-                          onPanelAddObjectsDisplayChange={this.props.handlePanelAddObjectsDisplayChange} />
+                            tabList={this.props.tabList}
+                            projects={this.props.projects}
+                            removeProject={this.props.removeProject}
+                            onPanelAddObjectsDisplayChange={this.props.handlePanelAddObjectsDisplayChange} />
           })}
         </DragDropContext>
       </div>

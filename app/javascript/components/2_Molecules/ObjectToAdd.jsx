@@ -8,7 +8,7 @@ import IconAdd from 'images/icons/add.svg'
 
 export default class ObjectToAdd extends React.Component {
   render() {
-    let addObject = this.props.addPortfolio || this.props.addProject
+    let addObject = this.props.addProject || this.props.addPortfolio
 
     return (
       <div className='list-in-panel'>

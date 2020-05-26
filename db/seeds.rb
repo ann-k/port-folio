@@ -198,7 +198,7 @@ end
 @resumes = [
   {name: "Резюме для работы", description: ""},
   {name: "Резюме для стажировки", description: ""},
-  {name: "Резюме для волонтерства", description: ""}
+  {name: "Резюме для волонтерства", description: "Подробно про мой опыт с волонтерством"}
 ]
 
 def create_resume(resume, user_id)

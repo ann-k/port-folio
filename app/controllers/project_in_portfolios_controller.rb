@@ -39,7 +39,7 @@ class ProjectInPortfoliosController < ApplicationController
     respond_to do |format|
       if @project_in_portfolio.save
         # format.html { redirect_to @project_in_portfolio, notice: 'Project in portfolio was successfully created.' }
-        # format.json { render :show, status: :created, location: @project_in_portfolio }
+        format.json { render :show, status: :created, location: @project_in_portfolio }
         # response = {
         #   "project_in_portfolio_id": @project_in_portfolio.id,
         # }

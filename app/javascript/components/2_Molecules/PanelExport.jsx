@@ -43,6 +43,7 @@ export default class PanelExport extends React.Component {
                          onCopy={() => {
                            event.preventDefault()
                            this.setState({copied: true})
+                           setTimeout(() => this.setState({copied: false}), 1000)
                          }}>
           <button className='button button-big button-icon-and-words'>
             <img src={IconCopy} />
@@ -50,10 +51,10 @@ export default class PanelExport extends React.Component {
           </button>
         </CopyToClipboard>
 
-        <button className='button button-big button-icon-and-words'>
+        {/* <button className='button button-big button-icon-and-words'>
           <img src={IconDownload} />
           <h3>Сохранить в PDF</h3>
-        </button>
+        </button> */}
       </div>
     )
   }

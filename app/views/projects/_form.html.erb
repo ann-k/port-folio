@@ -21,6 +21,7 @@
        data-contents="<%= @project.content.to_json %>"
        data-url_for_project="<%= project_url %>"
        data-url_for_p_in_ps="<%= project_in_portfolios_url %>"
+       data-url_for_sort="<%= sort_project_in_portfolios_from_project_page_url %>"
        data-url_for_content="<%= url_for(@project.content) %>"
   >
     <div class="preview-container">
@@ -168,6 +169,4 @@
       </div>
     </div>
   </div>
-  <%= javascript_pack_tag "editorjs" %>
-
 <% end %>

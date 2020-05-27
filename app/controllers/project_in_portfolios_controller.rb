@@ -10,6 +10,15 @@ class ProjectInPortfoliosController < ApplicationController
     end
   end
 
+  def sort_project_in_portfolios_from_project_page
+    @project_in_portfolios = ProjectInPortfolio.where(portfolio_id: params[:portfolio_id]).ordered_by_position
+    render json: @project_in_portfolios
+
+    @project_in_portfolios.length.times do |index|
+      @project_in_portfolios[index].update(position: index + 1)
+    end
+  end
+
   # GET /project_in_portfolios
   # GET /project_in_portfolios.json
   def index

@@ -1,0 +1,21 @@
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in-out;
+}
+
+.example-leave {
+  // opacity: 1;
+  width: 40%;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 100ms ease-in-out;
+  width: 0%;
+  transition: width 300ms ease-in-out;
+  // animation-delay: 0.5s;
+}

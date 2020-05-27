@@ -41,7 +41,7 @@ export default class PreviewContainer extends React.Component {
         <PanelAddObjects projectsToAdd={this.props.projectsToAdd}
                          addProject={this.props.addProject}
                          portfoliosToAdd={this.props.portfoliosToAdd}
-                         addPortfolio={this.props.addPortfolio}
+                         addToPortfolio={this.props.addToPortfolio}
                          disabled={this.props.panelAddObjectsState}
                          onPanelAddObjectsDisplayChange={this.props.handlePanelAddObjectsDisplayChange} />
       </div>

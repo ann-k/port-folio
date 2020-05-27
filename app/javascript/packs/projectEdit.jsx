@@ -9,12 +9,12 @@ export default class ProjectEdit extends React.Component {
   constructor(props) {
     super(props)
     const project = JSON.parse(document.getElementById('dataContainer').dataset.project)
-    let portfolios = JSON.parse(document.getElementById('dataContainer').dataset.portfolios)
+    const portfolios = JSON.parse(document.getElementById('dataContainer').dataset.portfolios)
     const content = JSON.parse(document.getElementById('dataContainer').dataset.contents)
 
-    let allPortfolios = JSON.parse(document.getElementById('dataContainer').dataset.all_portfolios)
-    let currentPortfolios = portfolios
-    let portfoliosToAdd = allPortfolios.filter(portfolio => {
+    const allPortfolios = JSON.parse(document.getElementById('dataContainer').dataset.all_portfolios)
+    const currentPortfolios = portfolios
+    const portfoliosToAdd = allPortfolios.filter(portfolio => {
       if (!currentPortfolios.map(currentPortfolio => {
         if (portfolio.id === currentPortfolio.id) return 'not yet in portfolio'
       }).includes('not yet in portfolio')) return true
@@ -73,7 +73,7 @@ export default class ProjectEdit extends React.Component {
     })
   }
 
-  addPortfolio = portfolioId => {
+  addToPortfolio = portfolioId => {
     const allPortfolios = JSON.parse(document.getElementById('dataContainer').dataset.all_portfolios)
     const newPortfolio = allPortfolios.filter(portfolio => portfolio.id === portfolioId)[0]
     const newPortfolios = this.state.portfolios
@@ -90,6 +90,7 @@ export default class ProjectEdit extends React.Component {
     // CREATE A NEW PROJECT IN PORTFOLIO
     let urlForCreate = document.getElementById('dataContainer').dataset.url_for_p_in_ps
     let projectId = JSON.parse(document.getElementById('dataContainer').dataset.project).id
+    let urlForSort = document.getElementById('dataContainer').dataset.url_for_sort + '.json'
 
     fetch(urlForCreate, {
       method: 'POST',
@@ -100,8 +101,21 @@ export default class ProjectEdit extends React.Component {
         position: 0,
       })
     }).then(res => {
-      console.log(res);
       return res.json()
+    })
+    .then(data => {
+      fetch(urlForSort, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({portfolio_id: portfolioId})
+      })
+      .then(res => {
+        return res.json()
+      })
+      .then(data => console.log(data))
+      .catch((error) => {
+        console.error('Error:', error)
+      })
     })
   }
 
@@ -143,7 +157,7 @@ export default class ProjectEdit extends React.Component {
         <PreviewContainer project={this.state.project}
                           portfolios={this.state.portfolios}
                           portfoliosToAdd={this.state.portfoliosToAdd}
-                          addPortfolio={this.addPortfolio}
+                          addToPortfolio={this.addToPortfolio}
                           panelAddObjectsState={this.state.panelAddObjectsDisabled}
                           handlePanelAddObjectsDisplayChange={this.handlePanelAddObjectsDisplayChange} />
         <ConstructorContainer project={this.state.project}

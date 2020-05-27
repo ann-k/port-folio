@@ -27,7 +27,7 @@ export default class PanelAddObjects extends React.Component {
           </div>
 
           <div>
-            {objectsToAdd.map((object, index) => <ObjectToAdd key={object.id} object={object} index={index} addProject={this.props.addProject} addPortfolio={this.props.addPortfolio} />)}
+            {objectsToAdd.map((object, index) => <ObjectToAdd key={object.id} object={object} index={index} addProject={this.props.addProject} addToPortfolio={this.props.addToPortfolio} />)}
           </div>
 
           <div id='iconRemove' className='button button-icon' onClick={this.handleChange}>

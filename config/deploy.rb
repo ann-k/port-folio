@@ -28,9 +28,9 @@ set :pty, true
 
 # Default value for :linked_files is []
 append :linked_files, "config/database.yml"
-append :linked_files, "config/credentials.production.key"
+append :linked_files, "config/credentials/production.key"
 append :linked_files, "config/puma.rb"
-# set :linked_files, fetch(:linked_files, []).push("config/database.yml", "config/puma.rb", "config/credentials.production.key")
+# set :linked_files, fetch(:linked_files, []).push("config/database.yml", "config/puma.rb", "config/credentials/production.key")
 
 # Default value for linked_dirs is []
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
@@ -57,8 +57,8 @@ namespace :deploy do
   namespace :check do
     before :linked_files, :set_master_key do
       on roles(:app), in: :sequence, wait: 10 do
-        unless test("[ -f #{shared_path}/config/credentials.production.key ]")
-          upload! 'config/credentials.production.key', "#{shared_path}/config/credentials.production.key"
+        unless test("[ -f #{shared_path}/config/credentials/production.key ]")
+          upload! 'config/credentials/production.key', "#{shared_path}/config/credentials/production.key"
         end
       end
     end

@@ -19,8 +19,7 @@
           </div>
         <% end %>
         <div class="button-options"
-        onclick="showOptions(<%= resume.id %>)"
-        onmouseleave="hideOptions(<%= resume.id %>)">
+             data-object_id="<%= resume.id %>">
           <%= image_tag "icons/options.svg" %>
         </div>
       </div>

@@ -22,8 +22,7 @@
           <% end %>
 
           <div class="button-options"
-          onclick="showOptions(<%= project.id %>)"
-          onmouseleave="hideOptions(<%= project.id %>)">
+          data-object_id="<%= project.id %>">
             <%= image_tag "icons/options.svg" %>
           </div>
         </div>
@@ -56,6 +55,6 @@
           <%= image_tag "icons/add.svg" %>
         <% end %>
       </button>
-      
+
       <%= render 'layouts/footer' %>
 </div>

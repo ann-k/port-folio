@@ -7,10 +7,9 @@
     <%= favicon_link_tag asset_path('favicon.png') %>
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
 
-    <%= javascript_include_tag "nav", "data-turbolinks-track" => true  %>
-
+    <%= javascript_pack_tag "nav" %>
     <%= javascript_pack_tag "resumeEdit" %>
-    <%#= javascript_pack_tag "application", "data-turbolinks-track": "reload" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body class="<%= controller_name %>" id="<%= action_name %>">

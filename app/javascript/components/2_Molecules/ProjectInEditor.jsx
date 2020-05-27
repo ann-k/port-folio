@@ -7,7 +7,7 @@ import Cover from '../1_Atoms/Cover'
 export default class ProjectInEditor extends React.Component {
   render() {
     return (
-      <div class='project-in-editor'>
+      <div className='project-in-editor'>
         <Cover src={this.props.project.cover.url}/>
         <h3>{this.props.project.name}</h3>
       </div>

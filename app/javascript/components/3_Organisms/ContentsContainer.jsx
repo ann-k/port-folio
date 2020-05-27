@@ -10,8 +10,6 @@ import EditorResume from '../3_Organisms/EditorResume'
 
 export default class ContentsContainer extends React.Component {
   render() {
-    const projects = this.props.projects.map((project) => <ProjectInEditor key={project.name} project={project} />)
-
     return (
       <div className='contents-and-browser-container-in-preview'>
         <div className='browser-bar-container'>
@@ -34,7 +32,7 @@ export default class ContentsContainer extends React.Component {
                 transitionName='example'
                 transitionEnterTimeout={300}
                 transitionLeaveTimeout={300}>
-                {projects}
+                  {this.props.projects.map((project) => <ProjectInEditor key={project.name} project={project} />)}
               </CSSTransitionGroup>
             }
           </div>

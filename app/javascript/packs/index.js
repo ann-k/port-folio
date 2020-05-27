@@ -1,4 +1,4 @@
-function showOptions(id) {
+function toggleOptions(id) {
   let options = document.getElementById(id)
   options.style.display === "none" ? options.style.display = "block" : options.style.display = "none"
 
@@ -10,8 +10,17 @@ function showOptions(id) {
 
   options.style.top = offsetTop + "px"
   options.style.right = -offsetRight + "px"
+
+  console.log("hello, id is " + id);
 }
 
-function hideOptions(id) {
-//   document.getElementById(id).style.display = "none";
-}
+document.addEventListener('DOMContentLoaded', () => {
+  const buttons = Array.from(document.getElementsByClassName('button-options'))
+  const portfolioIds = buttons.map(button => parseInt(button.dataset.object_id))
+
+  buttons.map((button, i) => {
+    button.onclick = () => {
+      toggleOptions(portfolioIds[i])
+    }
+  })
+})

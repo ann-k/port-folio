@@ -35,8 +35,7 @@
           </div>
         <% end %>
         <div class="button-options"
-        onclick="showOptions(<%= portfolio.id %>)"
-        onmouseleave="hideOptions(<%= portfolio.id %>)">
+        data-object_id="<%= portfolio.id %>">
           <%= image_tag "icons/options.svg" %>
         </div>
       </div>

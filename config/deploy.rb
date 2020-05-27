@@ -27,24 +27,16 @@ set :deploy_to, "/home/deployer/apps/#{fetch :application}"
 set :pty, true
 
 # Default value for :linked_files is []
-# append :linked_files, "config/database.yml"
-set :linked_files, fetch(:linked_files, []).push("config/database.yml", "config/secrets.yml", "config/puma.rb", "config/master.key")
-
-namespace :deploy do
-  namespace :check do
-    before :linked_files, :set_master_key do
-      on roles(:app), in: :sequence, wait: 10 do
-        unless test("[ -f #{shared_path}/config/master.key ]")
-          upload! 'config/master.key', "#{shared_path}/config/master.key"
-        end
-      end
-    end
-  end
-end
+append :linked_files, "config/database.yml"
+append :linked_files, "config/credentials.production.key"
+append :linked_files, "config/puma.rb"
+# set :linked_files, fetch(:linked_files, []).push("config/database.yml", "config/puma.rb", "config/credentials.production.key")
 
 # Default value for linked_dirs is []
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
-set :linked_dirs, fetch(:linked_dirs, []).push("log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads")
+append :linked_dirs, "public/system"
+append :linked_dirs, "public/uploads"
+# set :linked_dirs, fetch(:linked_dirs, []).push("log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads")
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -60,6 +52,18 @@ set :keep_releases, 5
 
 set :puma_init_active_record, true
 set :puma_conf, -> { File.join(shared_path, "config", "puma.rb") }
+
+namespace :deploy do
+  namespace :check do
+    before :linked_files, :set_master_key do
+      on roles(:app), in: :sequence, wait: 10 do
+        unless test("[ -f #{shared_path}/config/credentials.production.key ]")
+          upload! 'config/credentials.production.key', "#{shared_path}/config/credentials.production.key"
+        end
+      end
+    end
+  end
+end
 
 
 desc "Run rake task on server. Usage example: cap production rake task=import:products"

@@ -235,8 +235,8 @@ div.codex-editor__redactor {padding-bottom: 0px !important;}
     #iconRemove {
       display: none;
       position: absolute;
-      top: 4px;
-      right: 4px;
+      top: 0;
+      right: 0;
     }
     &:hover { #iconRemove {
       display: block;
@@ -426,6 +426,7 @@ div.codex-editor__redactor {padding-bottom: 0px !important;}
   background-color: inherit;
   box-shadow: none;
   &:hover {background-color: $primary;}
+  img {position: absolute;}
 }
 
 #iconDnd {

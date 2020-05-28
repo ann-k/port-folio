@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   post 'copy_resume' => 'resumes#copy'
   resources :resumes
 
-  put 'upload_project_cover' => 'projects#upload_cover'
+  post ':project_id/upload_project_cover' => 'projects#upload_cover', as: :upload_cover
   resources :projects
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

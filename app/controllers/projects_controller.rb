@@ -37,8 +37,7 @@ class ProjectsController < ApplicationController
   end
 
   def upload_cover
-    # c = ContentImage.new
-    project = Project.find(params[:id])
+    project = Project.find(params[:project_id])
     project.update(cover: params[:cover])
 
     # uploader_response = {

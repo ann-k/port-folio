@@ -22,6 +22,7 @@
        data-url_for_project="<%= project_url %>"
        data-url_for_p_in_ps="<%= project_in_portfolios_url %>"
        data-url_for_sort="<%= sort_project_in_portfolios_from_project_page_url %>"
+       data-url_for_upload_cover="<%= upload_cover_url(@project.id) %>"
        data-url_for_content="<%= url_for(@project.content) %>"
   >
     <div class="preview-container">
@@ -94,8 +95,7 @@
               <%= form.file_field :cover %>
               <button class="button button-medium"><h3>Загрузить новую обложку</h3></button>
               <button class="button button-medium" id="chooseCover"
-                data-id="<%= project.id %>"
-                data-url="<%= upload_project_cover_url %>">
+                data-id="<%= project.id %>">
                 <h3>Или выбрать из изображений проекта</h3>
               </button>
             </div>

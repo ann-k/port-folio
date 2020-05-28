@@ -91,3 +91,7 @@ p.link, a.link {
 p.disabled {
   color: $grey;
 }
+
+.editorjs a, .editorjs a:visited {
+  color: $primary;
+}

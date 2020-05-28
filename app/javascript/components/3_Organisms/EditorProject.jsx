@@ -18,7 +18,8 @@ export default class EditorProject extends React.Component {
 
     let dataContainer = document.getElementById('dataContainer')
     let dataFromBackend = JSON.parse(dataContainer.dataset.contents).content_data
-    let url = 'http://localhost:3000/contents/' + JSON.parse(dataContainer.dataset.contents).id + '.json'
+    let urlForRoot = document.getElementById('dataContainer').dataset.url_for_root
+    let url = urlForRoot + 'contents/' +JSON.parse(dataContainer.dataset.contents).id + '.json'
 
     const editor = new EditorJS({
       holder: 'editorJSProject',
@@ -74,7 +75,7 @@ export default class EditorProject extends React.Component {
           config: {
             captionPlaceholder: 'Подпись',
             endpoints: {
-              byFile: 'http://localhost:3000/upload_content_image', // Your backend file uploader endpoint
+              byFile: urlForRoot + 'upload_content_image', // Your backend file uploader endpoint
             }
           }
         }

@@ -22,6 +22,7 @@ export default class PanelExport extends React.Component {
 
   render() {
     let urlForExport = document.getElementById('dataContainer').dataset.url_for_content
+    let urlForRoot = document.getElementById('dataContainer').dataset.url_for_root
 
     return (
       <div className={this.props.disabled ? 'panel disabled' : 'panel'} id='exportPanel'>
@@ -39,7 +40,7 @@ export default class PanelExport extends React.Component {
           </a>
         </p>
 
-        <CopyToClipboard text={`http://localhost:3000/${urlForExport}`}
+        <CopyToClipboard text={`${urlForRoot}${urlForExport}`}
                          onCopy={() => {
                            event.preventDefault()
                            this.setState({copied: true})

@@ -29,7 +29,7 @@ gem 'carrierwave', '~> 2.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails', '~> 5.0'
 gem 'react-rails'
-gem 'active_model_serializers'
+gem 'active_model_serializers', require: true
 
 gem 'ed25519', '>= 1.2', '< 2.0'
 gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'

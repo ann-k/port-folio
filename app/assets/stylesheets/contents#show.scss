@@ -6,33 +6,46 @@ body.contents#show {
 }
 
 .content-in-show {
-  img {width: 100%;}
-
-  h1 {
-    font-size: 32px;
-    line-height: 28px;
-  }
-  h2 {
-    font-size: 24px;
-    line-height: 24px;
-  }
-  h3 {
-    font-size: 14px;
-    line-height: 18px;
-  }
-  p {
-    font-size: 16px;
-    line-height: 24px;
-  }
-}
-
-.content-in-show {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-column-gap: $column-gap;
 
   padding-top: 80px;
   padding-bottom: 40px;
+  img {width: 100%;}
+}
+
+.editorjs-in-show {
+  h1 {
+    font-size: 32px;
+    line-height: 32px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+  h2 {
+    font-size: 24px;
+    line-height: 24px;
+    margin-top: 24px;
+    margin-bottom: 12px;
+  }
+  h3 {
+    font-size: 16px;
+    line-height: 20px;
+    margin-top: 16px;
+  }
+  p, .ce-paragraph {
+    font-size: 16px;
+    line-height: 24px !important;
+    margin-right: calc(100vw / 12);
+    padding: 0;
+  }
+  .cdx-list {padding-left: 24px;}
+  li {margin-bottom: 8px;}
+
+  iframe {
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 .editorjs-in-show {
@@ -70,7 +83,8 @@ body.contents#show {
 @media screen and (max-device-width: 600px) {
   .editorjs-in-show {
     grid-column-start: 3;
-    grid-column-end: span 7;
+    grid-column-end: span 8;
+    .ce-paragraph {margin-right: 0;}
   }
 
   .projects-container-in-show {

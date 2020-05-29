@@ -26,8 +26,13 @@ console.log(data);
             </div>)
         break;
         case "list":
-          content = (<ul className={`"cdx-block" "cdx-list" "cdx-list--${data.style}"`}>
-            {data.items.map(item =>  <li class="cdx-list__item">{item}</li>)}
+          content = (<ul className={`cdx-block cdx-list cdx-list--${data.style}`}>
+            {data.items.map((item, i) =>  {
+              if (i === data.items.length - 1) return <li className="cdx-list__item"><p>{item}</p></li>
+                let re = /<br>/gi;
+                let newstr = item.replace(re, '');
+              return <li className="cdx-list__item"><p>{newstr}</p></li>
+            })}
           </ul>)
         break;
         case "embed":

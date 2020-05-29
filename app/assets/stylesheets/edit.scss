@@ -123,6 +123,23 @@
     grid-column-start: 2;
     grid-column-end: span 5;
   }
+
+  .codex-block, .codex-editor__redactor {
+    margin-right: 0;
+  }
+
+  .projects-container-in-preview {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+
+    .project-in-editor {
+      width: 100%;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
 }
 
 .content-in-preview > div:first-child {margin-top: 40px;}
@@ -224,10 +241,15 @@ div.codex-editor__redactor {padding-bottom: 0px !important;}
   margin-top: 40px;
 }
 
+.constructor > div > h3 {
+  margin-bottom: 8px;
+}
+
 #addCoverToProject {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-column-gap: $column-gap;
+  margin-bottom: 24px;
 
   .project-cover {
     grid-column-end: span 3;
@@ -271,8 +293,6 @@ div.codex-editor__redactor {padding-bottom: 0px !important;}
   width: 100%;
   height: 32px;
 
-  h3 {margin-left: 8px;}
-
   .tabs-list-name {
     display: flex;
     flex-direction: row;
@@ -282,6 +302,10 @@ div.codex-editor__redactor {padding-bottom: 0px !important;}
 .tab-list-items-container {
   display: flex;
   flex-direction: column;
+}
+
+body.projects .tabs-list-item {
+  height: 40px;
 }
 
 .tabs-list-item {
@@ -296,10 +320,11 @@ div.codex-editor__redactor {padding-bottom: 0px !important;}
 
   .miniature {
     margin-left: 4px;
+    margin-right: 12px;
   }
 
   p {
-    margin-left: 12px;
+    // margin-left: 12px;
   }
 
   div:last-child {

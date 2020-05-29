@@ -23,7 +23,6 @@ export default class DndColumn extends React.Component {
       <div className="tabs-list">
         <div className="tabs-list-header">
           <div className="tabs-list-name">
-            <img src={IconProject} />
             <h3>Проекты</h3>
           </div>
           <button className="button button-small button-icon-and-words" onClick={this.handleChange}>

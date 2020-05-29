@@ -24,7 +24,6 @@ export default class List extends React.Component {
           <div className="tabs-list">
             <div className="tabs-list-header">
               <div className="tabs-list-name">
-                <img src={IconPortfolio} />
                 <h3>Портфолио</h3>
               </div>
               <button className="button button-small button-icon-and-words" onClick={this.handleChange}>

@@ -43,7 +43,7 @@ console.log(data);
             </div> )
         break;
         case "code":
-          content = (<div class="cdx-block ce-code">
+          content = (<div className="cdx-block ce-code">
               <pre className="ce-code__textarea cdx-input">
                 <code >{data.code+""}</code>
               </pre>
@@ -57,6 +57,22 @@ console.log(data);
                   <div className="cdx-input image-tool__caption" contenteditable="false">
                     {data.caption}
                   </div>
+                </div>
+              </div>
+            )
+        break;
+        case "linkTool":
+            const backgroundImageStyle = { backgroundImage: 'url(' + data.meta.image.url + ')', }
+
+            content = (
+              <div className="cdx-block">
+                <div className="link-tool">
+                  <a className="link-tool__content link-tool__content--rendered" target="_blank" href={data.link}>
+                    <div className="link-tool__image" style={backgroundImageStyle}></div>
+                    <div className="link-tool__title">{data.meta.title}</div>
+                    <p className="link-tool__description">{data.meta.description}</p>
+                    <span className="link-tool__anchor">{data.link}</span>
+                  </a>
                 </div>
               </div>
             )

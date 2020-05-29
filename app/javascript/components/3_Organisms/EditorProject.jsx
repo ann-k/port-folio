@@ -10,6 +10,7 @@ const List = require('@editorjs/list')
 const Embed = require('@editorjs/embed')
 const CodeTool = require('@editorjs/code')
 const InlineCode = require('@editorjs/inline-code')
+const LinkTool = require('@editorjs/link')
 // const Table = require('@editorjs/table')
 
 export default class EditorProject extends React.Component {
@@ -77,6 +78,12 @@ export default class EditorProject extends React.Component {
             endpoints: {
               byFile: urlForRoot + 'upload_content_image', // Your backend file uploader endpoint
             }
+          }
+        },
+        linkTool: {
+          class: LinkTool,
+          config: {
+            endpoint: urlForRoot + 'fetch_link', // Your backend endpoint for url data fetching
           }
         }
       }

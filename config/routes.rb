@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :links
   resources :content_images
   root 'portfolios#index'
 
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
   resources :resume_in_portfolios
 
   post 'upload_content_image' => 'content_images#upload'
+  get 'fetch_link' => 'links#fetch'
 
   post 'copy_portfolio' => 'portfolios#copy'
   resources :portfolios

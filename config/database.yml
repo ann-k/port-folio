@@ -23,4 +23,4 @@ production:
   <<: *default
   database: port-folio_production
   username: port-folio
-  password: <%= Rails.application.credentials.postgres[:database_password] %>
+  

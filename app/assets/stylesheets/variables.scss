@@ -24,22 +24,22 @@ $column-edit: 100vw / 24;
 
 @font-face {
   font-family: "ptrootui bold";
-  src: asset-url(ptrootui-bold.ttf) format("truetype");
+  src: asset-url('ptrootui-bold.ttf') format("truetype");
 }
 
 @font-face {
   font-family: "ptrootui medium";
-  src: asset-url(ptrootui-medium.ttf) format("truetype");
+  src: asset-url('ptrootui-medium.ttf') format("truetype");
 }
 
 @font-face {
   font-family: "menlo";
-  src: asset-url(menlo-regular.woff) format("truetype");
+  src: asset-url('menlo-regular.woff') format("truetype");
 }
 
 @font-face {
   font-family: "tttravels";
-  src: asset-url(tttravels-demibold.ttf) format("truetype");
+  src: asset-url('tttravels-demibold.ttf') format("truetype");
 }
 
 // Text Styles

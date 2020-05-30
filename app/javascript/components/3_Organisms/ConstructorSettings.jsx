@@ -41,7 +41,7 @@ export default class ConstructorSettings extends React.Component {
         <div className={this.props.disabled ? 'constructor disabled' : 'constructor'} id='settings'>
           <ChangeCover project={this.props.project}/>
 
-          <Input label='Название проекта (видно только вам)'
+          <Input label='Название проекта'
                  id='project_name'
                  placeholder='Новый проект'
                  type='text'

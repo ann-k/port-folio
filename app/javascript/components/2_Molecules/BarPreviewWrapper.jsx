@@ -28,7 +28,7 @@ export default class BarPreviewWrapper extends React.Component {
             <div />
             <img src={IconMobile} />
           </li>
-          <li className={this.props.tabActive === 'fullscreen' ? 'tablink preview-tablink active' : 'tablink preview-tablink'} onClick={this.handleChange} id='fullscreen'>
+          <li className={'tablink preview-tablink'} id='fullscreen'>
             <div />
             <img src={IconFullscreen} />
           </li>

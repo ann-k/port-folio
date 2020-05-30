@@ -6,6 +6,7 @@ import EditorJS from '@editorjs/editorjs'
 
 const Header = require('@editorjs/header')
 const List = require('@editorjs/list')
+const LinkTool = require('@editorjs/link')
 
 export default class EditorResume extends React.Component {
   constructor(props) {
@@ -59,6 +60,12 @@ export default class EditorResume extends React.Component {
         list: {
           class: List,
           inlineToolbar: true,
+        },
+        linkTool: {
+          class: LinkTool,
+          config: {
+            endpoint: urlForRoot + 'fetch_link', // Your backend endpoint for url data fetching
+          }
         }
       }
     })

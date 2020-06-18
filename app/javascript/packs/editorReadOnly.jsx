@@ -63,6 +63,7 @@ console.log(data);
         break;
         case "linkTool":
             const backgroundImageStyle = { backgroundImage: 'url(' + data.meta.image.url + ')', }
+            console.log(typeof(data.meta.description));
 
             content = (
               <div className="cdx-block">
@@ -70,7 +71,7 @@ console.log(data);
                   <a className="link-tool__content link-tool__content--rendered" target="_blank" href={data.link}>
                     <div className="link-tool__image" style={backgroundImageStyle}></div>
                     <div className="link-tool__title">{data.meta.title}</div>
-                    <p className="link-tool__description">{data.meta.description}</p>
+                    <p className="link-tool__description">{typeof(data.meta.description) === 'string' ? data.meta.description : null}</p>
                     <span className="link-tool__anchor">{data.link}</span>
                   </a>
                 </div>

@@ -32,7 +32,7 @@ export default class ContentsContainer extends React.Component {
                 transitionName='example'
                 transitionEnterTimeout={300}
                 transitionLeaveTimeout={300}>
-                  {this.props.projects.map((project) => <ProjectInEditor key={project.name} project={project} />)}
+                  {this.props.projects.map((project) => <ProjectInEditor key={project.id} project={project} />)}
               </CSSTransitionGroup>
             }
           </div>

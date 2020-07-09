@@ -29,7 +29,6 @@ export default class PortfolioEdit extends React.Component {
       }).includes('not yet in portfolio')) return true
     })
 
-    console.log(projectsWithStringPositions);
 
     this.state = {
       portfolio: portfolio,

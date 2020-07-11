@@ -5,14 +5,14 @@
 <div class="content content-in-show">
   <div class="editorjs editorjs-in-show" id="editorReadOnly" data-contents="<%= @content.to_json %>"></div>
   <div class="projects-container projects-container-in-show">
-    <% if @content.contentable_type == "Portfolio"  %>
-      <% @content.contentable.projects.each do |project| %>
+    <% if @content.contentable_type == "Portfolio" %>
+      <% @content.contentable.projects.ordered_by_position.each do |project| %>
         <div>
           <%= link_to(project.content) do %>
             <% if project.cover? %><%= image_tag(project.cover.url)%>
             <% else %><%= image_tag "default.png" %>
             <% end %>
-            <h3><%= project.name %></h3>
+            <h3><%#= project.project_in_portfolios.where(portfolio_id: @content.contentable.id) %><%= project.name %></h3>
           <% end %>
         </div>
       <% end %>

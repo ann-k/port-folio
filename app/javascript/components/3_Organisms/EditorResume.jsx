@@ -16,7 +16,6 @@ export default class EditorResume extends React.Component {
     let dataFromBackend = JSON.parse(dataContainer.dataset.contents).content_data
     let urlForRoot = document.getElementById('dataContainer').dataset.url_for_root
     let url = urlForRoot + 'contents/' + JSON.parse(dataContainer.dataset.contents).id + '.json'
-    console.log(url);
 
     const editor = new EditorJS({
       holder: 'editorJSResume',

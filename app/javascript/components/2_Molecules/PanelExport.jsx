@@ -13,6 +13,7 @@ export default class PanelExport extends React.Component {
     super(props)
     this.state = {
       copied: false,
+      exportPDFHeight: 841,
     }
     this.handleChange = this.handleChange.bind(this)
   }
@@ -25,6 +26,11 @@ export default class PanelExport extends React.Component {
     let urlForExport = document.getElementById('dataContainer').dataset.url_for_content
     let urlForRoot = document.getElementById('dataContainer').dataset.url_for_root
 
+    const exportPDFOptions = {
+      unit: 'px',
+      format: [595, this.state.exportPDFHeight]
+    }
+
     return (
       <div className={this.props.disabled ? 'panel disabled' : 'panel'} id='exportPanel'>
         <div id='iconRemove' className='button button-icon' onClick={this.handleChange}>
@@ -36,7 +42,7 @@ export default class PanelExport extends React.Component {
           {this.props.project && 'Ваш проект доступен '}
           {this.props.resume && 'Ваше резюме доступно '}
           по ссылке<br/>
-        <a href={urlForExport}>
+          <a href={urlForExport}>
             www.p-f.tools{urlForExport}
           </a>
         </p>
@@ -54,13 +60,17 @@ export default class PanelExport extends React.Component {
         </CopyToClipboard>
 
         {this.props.resume &&
-          <Pdf targetRef={this.props.exportPDFRef} filename='cv.pdf'>
+          <Pdf targetRef={this.props.exportPDFRef} options={exportPDFOptions} filename='cv.pdf'>
             {({ toPdf }) => {
               return (
                 <button className='button button-big button-icon-and-words'
-                        onClick={(event) => {
-                            event.preventDefault()
-                            toPdf()
+                  onClick={(event) => {
+                    event.preventDefault()
+                    this.setState(
+                      {exportPDFHeight: this.props.exportPDFRef.current.scrollHeight > 595 + 250
+                        ? this.props.exportPDFRef.current.scrollHeight - 250
+                        : 841},
+                    () => toPdf())
                 }}>
                   <img src={IconDownload} />
                   <h3>Сохранить в PDF</h3>

@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
+import Pdf from 'react-to-pdf'
 
 import PreviewContainer from '../components/3_Organisms/PreviewContainer'
 import ConstructorContainer from '../components/3_Organisms/ConstructorContainer'
@@ -8,6 +9,8 @@ import ConstructorContainer from '../components/3_Organisms/ConstructorContainer
 export default class ResumeEdit extends React.Component {
   constructor(props) {
     super(props)
+    this.exportPDFRef = React.createRef()
+
     const resume = JSON.parse(document.getElementById('dataContainer').dataset.resume)
     const content = JSON.parse(document.getElementById('dataContainer').dataset.contents)
 
@@ -53,15 +56,36 @@ export default class ResumeEdit extends React.Component {
     })
   }
 
+  exportPDFButton() {
+    return (
+      <Pdf targetRef={this.exportPDFRef} filename='cv.pdf'>
+        {({ toPdf }) => {
+          return (
+            <button className='button button-big button-icon-and-words'
+                    onClick={(event) => {
+                        event.preventDefault()
+                        toPdf()
+            }}>
+              <img src={IconDownload} />
+              <h3>Сохранить в PDF</h3>
+            </button>
+          )
+        }}
+      </Pdf>
+    )
+  }
+
   render() {
     return (
       <>
-        <PreviewContainer resume={this.state.resume} />
+        <PreviewContainer resume={this.state.resume}
+                          exportPDFRef={this.exportPDFRef} />
         <ConstructorContainer resume={this.state.resume}
                               handleInputChange={this.handleInputChange}
                               content={this.state.content}
                               panelExportState={this.state.panelExportDisabled}
-                              handlePanelExportDisplayChange={this.handlePanelExportDisplayChange} />
+                              handlePanelExportDisplayChange={this.handlePanelExportDisplayChange}
+                              exportPDFRef={this.exportPDFRef} />
       </>
     )
   }

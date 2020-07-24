@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
-import { CSSTransitionGroup } from 'react-transition-group'
+import Pdf from 'react-to-pdf'
+import { CSSTransitionGroup } from 'react-transition-group';
 
 import ProjectInEditor from '../2_Molecules/ProjectInEditor'
 import EditorPortfolio from '../3_Organisms/EditorPortfolio'
@@ -17,11 +18,12 @@ export default class ContentsContainer extends React.Component {
             <div />
             <div />
             <div />
+          </div>
         </div>
-      </div>
 
         <div className='content-in-preview-container'>
-          <div className='content-in-preview' id={this.props.tabActive}>
+          <div className='content-in-preview' id={this.props.tabActive}
+                                              ref={this.props.exportPDFRef} >
             {this.props.project && <EditorProject />}
             {this.props.resume && <EditorResume />}
             {this.props.portfolio && <EditorPortfolio />}

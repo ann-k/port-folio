@@ -33,7 +33,8 @@ export default class PreviewContainer extends React.Component {
                            project={this.props.project}
                            resume={this.props.resume}
                            projects={this.props.projects}
-                           tabActive={this.state.tabActive} />
+                           tabActive={this.state.tabActive}
+                           exportPDFRef={this.props.exportPDFRef} />
 
         <BarPreviewWrapper onTabChange={this.handleTabChange}
                           tabActive={this.state.tabActive} />
